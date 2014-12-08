@@ -41,8 +41,24 @@
     <Reference Include="Moq">
       <HintPath>..\packages\Moq.4.2.1409.1722\lib\net40\Moq.dll</HintPath>
     </Reference>
+    <Reference Include="nunit.core">
+      <HintPath>..\packages\NUnitTestAdapter.1.2\lib\nunit.core.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="nunit.core.interfaces">
+      <HintPath>..\packages\NUnitTestAdapter.1.2\lib\nunit.core.interfaces.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.util">
+      <HintPath>..\packages\NUnitTestAdapter.1.2\lib\nunit.util.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="NUnit.VisualStudio.TestAdapter">
+      <HintPath>..\packages\NUnitTestAdapter.1.2\lib\NUnit.VisualStudio.TestAdapter.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -60,11 +76,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataBase\DataBaseConnectionProxy.cs" />
-    <Compile Include="DataBase\IDataBaseConncection.cs" />
-    <Compile Include="DataBase\IDataBaseConnector.cs" />
-    <Compile Include="DataBase\LinqDataBaseConnector.cs" />
-    <Compile Include="Test\DataBaseConnectionProxyTests.cs" />
+    <Compile Include="Classes\DataBase\DataBaseConnectionProxy.cs" />
+    <Compile Include="Classes\DataBase\IDataBaseConncection.cs" />
+    <Compile Include="Classes\DataBase\IDataBaseConnector.cs" />
+    <Compile Include="Classes\DataBase\LinqDataBaseConnector.cs" />
+    <Compile Include="Classes\Loger\Loger.cs" />
+    <Compile Include="Classes\Loger\LogerDataBase.cs" />
+    <Compile Include="Test\DataBase\DataBaseConnectionProxyTests.cs" />
+    <Compile Include="Test\Loger\LogerDataBaseTests.cs" />
     <Compile Include="Windows\LoginWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -106,7 +125,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Classes\" />
     <Folder Include="Controls\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

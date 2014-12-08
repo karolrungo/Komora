@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Komora.DataBase
+namespace Komora.Classes.DataBase
+
 {
     public interface IDataBaseConnector
     {
