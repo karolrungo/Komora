@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Komora
+namespace Komora.Windows
 {
-    public partial class Form1 : Form
+    public partial class MainMenuForm : Form
     {
-        public Form1()
+        public MainMenuForm()
         {
             InitializeComponent();
         }
