@@ -8,26 +8,31 @@ namespace Komora.Classes.Loger
 {
     public abstract class Loger
     {
-        #region Private Variables
-        protected bool validationOK;
-        #endregion
-
-        #region Constructor
-        public Loger()
-        {
-            validationOK = false;
-        }
+        #region Events & Delegates
+        public delegate void LoginStatus(object sender, EventArgs e);
+        public event LoginStatus loginSucces;
+        public event LoginStatus loginFailed;
         #endregion
 
         #region Public Methods
         public abstract void validateUser(string login, string password) ;
-        public bool canLogIn()
+        #endregion
+
+        #region Protected Moetods
+        protected void RaiseLoginSuccesEvent(EventArgs eventArgs)
         {
-            return validationOK;
+            if (loginSucces != null)
+            {
+                loginSucces(this, eventArgs);
+            }
         }
-        public void resetLogIn()
+
+        protected void RaiseLoginFailedEvent(EventArgs eventArgs)
         {
-            validationOK = false;
+            if (loginFailed != null)
+            {
+                loginFailed(this, eventArgs);
+            }
         }
         #endregion
     }

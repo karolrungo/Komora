@@ -7,20 +7,60 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Komora.Classes;
 
 namespace Komora.Windows
 {
     public partial class LoginWindow : Form
     {
         #region Private Variables
-        Komora.Classes.DataBase.IDataBaseConnector dataBaseConnector;
+        Classes.DataBase.IDataBaseConnector dataBaseConnector;
+        Classes.DataBase.IDataBaseConncection dataBaseConnection;
+        Classes.Loger.Loger loger;
+        Windows.MainMenuForm mainMenuWindow;
         #endregion
 
+        #region Constructor
         public LoginWindow()
         {
-            dataBaseConnector = new Komora.Classes.DataBase.LinqDataBaseConnector();
+            dataBaseConnector = new Classes.DataBase.LinqDataBaseConnector();
+            dataBaseConnection = new Classes.DataBase.DataBaseConnectionProxy(dataBaseConnector);
+            //loger = new Classes.Loger.LogerDataBase(dataBaseConnection);
+            loger = new Classes.Loger.LogerFake();
+            loger.loginSucces += ShowMainMenu;
+            loger.loginFailed += DisplayLoginFailedMessage;
+
             InitializeComponent();
+        }     
+        #endregion
+
+        #region Private Methods
+        private void ShowMainMenu (object sender, EventArgs e)
+        {
+            mainMenuWindow = new MainMenuForm(this);
+            mainMenuWindow.showWindow += ShowLoginWindow;
+            mainMenuWindow.Show();
+            this.Hide();
         }
+        private void DisplayLoginFailedMessage(object sender, EventArgs e)
+        {
+            MessageBox.Show("Login failed!");
+        }
+        private void ShowLoginWindow(object sender, EventArgs e)
+        {
+            this.Show();
+        }
+        #endregion
+
+        #region Button Events
+        private void btnLogIn_Click(object sender, EventArgs e)
+        {
+            string userLogin = tbLogin.Text;
+            string userPassword = tbPassword.Text;
+            loger.validateUser(userLogin, userPassword);
+        }
+        #endregion
+
 
     }
 }

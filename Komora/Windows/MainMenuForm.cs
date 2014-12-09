@@ -12,9 +12,29 @@ namespace Komora.Windows
 {
     public partial class MainMenuForm : Form
     {
-        public MainMenuForm()
+        private LoginWindow loginWindow;
+
+        public MainMenuForm(LoginWindow loginWindow)
         {
             InitializeComponent();
+        }
+
+        private void MainMenuForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            RaiseShowLoginWindowEvent(EventArgs.Empty);
+        }
+
+        #region Events & Delegates
+        public delegate void LoginWindowVisibility(object sender, EventArgs e);
+        public event LoginWindowVisibility showWindow;
+        #endregion
+
+        public void RaiseShowLoginWindowEvent(EventArgs e)
+        {
+            if (showWindow != null)
+            {
+                showWindow(this, EventArgs.Empty);
+            }
         }
     }
 }

@@ -20,12 +20,12 @@ namespace Komora.Classes.Loger
         }
         #endregion
 
-        #region Public Methods
+        #region Derived Methods
         public override void validateUser(string login, string password)
         {
             if (LogInSuccess(login, password))
             {
-                this.validationOK = true;
+                RaiseLoginSuccesEvent(EventArgs.Empty);
             }
         }
         #endregion
