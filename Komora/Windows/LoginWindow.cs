@@ -27,7 +27,7 @@ namespace Komora.Windows
             dataBaseConnection = new Classes.DataBase.DataBaseConnectionProxy(dataBaseConnector);
             //loger = new Classes.Loger.LogerDataBase(dataBaseConnection);
             loger = new Classes.Loger.LogerFake();
-            loger.loginSucces += ShowMainMenu;
+            loger.loginSucces += ShowMainMenuWindow;
             loger.loginFailed += DisplayLoginFailedMessage;
 
             InitializeComponent();
@@ -35,9 +35,9 @@ namespace Komora.Windows
         #endregion
 
         #region Private Methods
-        private void ShowMainMenu (object sender, EventArgs e)
+        private void ShowMainMenuWindow (object sender, EventArgs e)
         {
-            mainMenuWindow = new MainMenuForm(this);
+            mainMenuWindow = new MainMenuForm();
             mainMenuWindow.showWindow += ShowLoginWindow;
             mainMenuWindow.Show();
             this.Hide();
@@ -60,7 +60,5 @@ namespace Komora.Windows
             loger.validateUser(userLogin, userPassword);
         }
         #endregion
-
-
     }
 }

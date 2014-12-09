@@ -12,9 +12,7 @@ namespace Komora.Windows
 {
     public partial class MainMenuForm : Form
     {
-        private LoginWindow loginWindow;
-
-        public MainMenuForm(LoginWindow loginWindow)
+        public MainMenuForm()
         {
             InitializeComponent();
         }
