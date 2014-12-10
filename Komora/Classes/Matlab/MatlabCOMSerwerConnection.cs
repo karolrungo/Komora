@@ -4,12 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Komora.Classes.DataBase
-
+namespace Komora.Classes.Matlab
 {
-    public interface IDataBaseConnector
+    public class MatlabCOMSerwerConnection
     {
-        bool connect();
-        bool disconnect();
+
     }
 }

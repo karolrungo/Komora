@@ -27,6 +27,10 @@ namespace Komora.Classes.Loger
             {
                 RaiseLoginSuccesEvent(EventArgs.Empty);
             }
+            else
+            {
+                RaiseLoginFailedEvent(EventArgs.Empty);
+            }
         }
         #endregion
 

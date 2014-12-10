@@ -14,11 +14,11 @@ namespace Komora.Classes.DataBase
         #endregion
 
         #region Public Methods
-        bool IDataBaseConnector.Connect()
+        bool IDataBaseConnector.connect()
         {
             throw new NotImplementedException();
         }
-        bool IDataBaseConnector.Disconnect()
+        bool IDataBaseConnector.disconnect()
         {
             throw new NotImplementedException();
         }

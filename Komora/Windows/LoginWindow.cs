@@ -30,8 +30,13 @@ namespace Komora.Windows
             loger.loginSucces += ShowMainMenuWindow;
             loger.loginFailed += DisplayLoginFailedMessage;
 
+            //proba
+            Classes.File.Csv.CsvReader<double> reader = new Classes.File.Csv.CsvReader<double>();
+            reader.readSamplesFromFile(@"D:\userdata\rungo\My Documents\Visual Studio 2013\Projects\Komora\dioda385.csv");
+            //Classes.File.Csv.CsvReader<double>.readSamplesFromFile(@"D:\userdata\rungo\My Documents\Visual Studio 2013\Projects\Komora\dioda385.csv");
+
             InitializeComponent();
-        }     
+        }
         #endregion
 
         #region Private Methods

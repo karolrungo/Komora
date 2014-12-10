@@ -4,12 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Komora.Classes.DataBase
-
+namespace Komora.Classes.File
 {
-    public interface IDataBaseConnector
+    public interface IFileReader
     {
-        bool connect();
-        bool disconnect();
+        string[] getFileContent(string filename);
     }
 }

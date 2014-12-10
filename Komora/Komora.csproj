@@ -76,15 +76,24 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\File\Csv\CsvReader.cs" />
     <Compile Include="Classes\DataBase\DataBaseConnectionProxy.cs" />
     <Compile Include="Classes\DataBase\IDataBaseConncection.cs" />
     <Compile Include="Classes\DataBase\IDataBaseConnector.cs" />
     <Compile Include="Classes\DataBase\LinqDataBaseConnector.cs" />
+    <Compile Include="Classes\File\IFileReader.cs" />
     <Compile Include="Classes\Loger\Loger.cs" />
     <Compile Include="Classes\Loger\LogerDataBase.cs" />
+    <Compile Include="Classes\Loger\LogerFake.cs" />
+    <Compile Include="Classes\Matlab\IMatlabConnection.cs" />
+    <Compile Include="Classes\Matlab\IMatlabConnector.cs" />
+    <Compile Include="Classes\Matlab\MatlabCOMSerwerConnection.cs" />
+    <Compile Include="Classes\Matlab\MatlabConnectionProxy.cs" />
+    <Compile Include="DataTypes\MeasurementSamples.cs" />
+    <Compile Include="Test\DataTypes\MeasurementSamplesTests.cs" />
     <Compile Include="Test\DataBase\DataBaseConnectionProxyTests.cs" />
     <Compile Include="Test\Loger\LogerDataBaseTests.cs" />
-    <Compile Include="Test\Windows\LoginWindowTests.cs" />
+    <Compile Include="Test\Matlab\MatlabConnectionProxyTests.cs" />
     <Compile Include="Windows\LoginWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -127,6 +136,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controls\" />
+    <Folder Include="Test\Csv\" />
+    <Folder Include="Test\Windows\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

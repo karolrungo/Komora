@@ -10,19 +10,37 @@ using Komora;
 
 namespace Komora.Test.Loger
 {
+    [TestFixture]
     public class LogerDataBaseTests
     {
-        [TestCase]
-        public void ValidateUserCalledWithGoodUserCredentialsSetsValidationOkFlagONShouldPass()
+        private Mock<Classes.DataBase.IDataBaseConncection> dataBaseConnectionMock;
+        private Classes.Loger.LogerDataBase logerDatabase;
+
+        [SetUp]
+        public void Init()
         {
-            var dataBaseConnectionMock = new Mock<Classes.DataBase.IDataBaseConncection>();
+            dataBaseConnectionMock = new Mock<Classes.DataBase.IDataBaseConncection>();
+            logerDatabase = new Classes.Loger.LogerDataBase(dataBaseConnectionMock.Object);
+        }
+
+        [Test]
+        public void ValidateUserFunctionsCallsgetUserByCredentialsExactlyOnceShouldPass()
+        {
             dataBaseConnectionMock.Setup(m => m.getUserByCredentials(It.IsAny<string>(), It.IsAny<string>())).Returns(new object());
 
-            var loger = new Classes.Loger.LogerDataBase(dataBaseConnectionMock.Object);
-            loger.validateUser("user", "pass");
+            logerDatabase.validateUser("user", "pass");
 
-            //Moq.
-            //Assert.AreEqual(true, loger.canLogIn());
+            dataBaseConnectionMock.Verify(m => m.getUserByCredentials(It.IsAny<string>(), It.IsAny<string>()), Times.Exactly(1));
+        }
+
+        [Test]
+        public void ValidateUserCalledWithGoodUserCredentialsRaisesLoginSuccesEventShouldPass()
+        {
+            dataBaseConnectionMock.Setup(m => m.getUserByCredentials(It.IsAny<string>(), It.IsAny<string>())).Returns(new object());
+            logerDatabase = new Classes.Loger.LogerDataBase(dataBaseConnectionMock.Object);
+
+            logerDatabase.validateUser("user", "pass"); //czy ta metoda wywola eventa - jak to sprawdzic
+
         }
     }
 }
