@@ -82,9 +82,9 @@
     <Compile Include="Classes\DataBase\LinqDataBaseConnector.cs" />
     <Compile Include="Classes\Loger\Loger.cs" />
     <Compile Include="Classes\Loger\LogerDataBase.cs" />
-    <Compile Include="Classes\Loger\LogerFake.cs" />
     <Compile Include="Test\DataBase\DataBaseConnectionProxyTests.cs" />
     <Compile Include="Test\Loger\LogerDataBaseTests.cs" />
+    <Compile Include="Test\Windows\LoginWindowTests.cs" />
     <Compile Include="Windows\LoginWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -111,9 +111,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Windows\MainMenuForm.resx">
-      <DependentUpon>MainMenuForm.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
