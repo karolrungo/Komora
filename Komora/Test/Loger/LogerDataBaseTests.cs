@@ -37,10 +37,26 @@ namespace Komora.Test.Loger
         public void ValidateUserCalledWithGoodUserCredentialsRaisesLoginSuccesEventShouldPass()
         {
             dataBaseConnectionMock.Setup(m => m.getUserByCredentials(It.IsAny<string>(), It.IsAny<string>())).Returns(new object());
-            logerDatabase = new Classes.Loger.LogerDataBase(dataBaseConnectionMock.Object);
 
-            logerDatabase.validateUser("user", "pass"); //czy ta metoda wywola eventa - jak to sprawdzic
+            var wasRaised = false;
+            logerDatabase.loginSucces += (object sender, EventArgs e) => wasRaised = true;
 
+            logerDatabase.validateUser("user", "pass"); 
+
+            Assert.IsTrue(wasRaised);
+        }
+
+        [Test]
+        public void ValidateUserCalledWithWrongUserCredentialsRaisesLoginFailedEventShouldPass()
+        {
+            dataBaseConnectionMock.Setup(m => m.getUserByCredentials(It.IsAny<string>(), It.IsAny<string>())).Returns(null);
+
+            var wasRaised = false;
+            logerDatabase.loginFailed += (object sender, EventArgs e) => wasRaised = true;
+
+            logerDatabase.validateUser("user", "pass");
+
+            Assert.IsTrue(wasRaised);
         }
     }
 }

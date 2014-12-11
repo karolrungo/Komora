@@ -93,6 +93,7 @@
     <Compile Include="Test\DataTypes\MeasurementSamplesTests.cs" />
     <Compile Include="Test\DataBase\DataBaseConnectionProxyTests.cs" />
     <Compile Include="Test\Loger\LogerDataBaseTests.cs" />
+    <Compile Include="Test\Loger\LogerFakeTests.cs" />
     <Compile Include="Test\Matlab\MatlabConnectionProxyTests.cs" />
     <Compile Include="Windows\LoginWindow.cs">
       <SubType>Form</SubType>
