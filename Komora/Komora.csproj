@@ -76,12 +76,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\File\Csv\CsvReader.cs" />
+    <Compile Include="Classes\Calibration\DeviceCalibrator.cs" />
+    <Compile Include="Classes\File\MeasurementSamplesReader.cs" />
     <Compile Include="Classes\DataBase\DataBaseConnectionProxy.cs" />
     <Compile Include="Classes\DataBase\IDataBaseConncection.cs" />
     <Compile Include="Classes\DataBase\IDataBaseConnector.cs" />
     <Compile Include="Classes\DataBase\LinqDataBaseConnector.cs" />
-    <Compile Include="Classes\File\IFileReader.cs" />
     <Compile Include="Classes\Loger\Loger.cs" />
     <Compile Include="Classes\Loger\LogerDataBase.cs" />
     <Compile Include="Classes\Loger\LogerFake.cs" />
@@ -137,7 +137,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controls\" />
-    <Folder Include="Test\Csv\" />
+    <Folder Include="Test\File\" />
     <Folder Include="Test\Windows\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

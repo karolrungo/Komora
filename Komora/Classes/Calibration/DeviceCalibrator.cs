@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Komora.Classes.File
+namespace Komora.Classes.Calibration
 {
-    public interface IFileReader
+    public class DeviceCalibrator
     {
-        string[] getFileContent(string filename);
     }
 }
