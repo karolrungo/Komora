@@ -7,18 +7,22 @@ using System.Windows.Forms;
 
 namespace Komora.DataTypes
 {
-    public class LedPolynomials
+    public class LedPolynomial
     {
         PolynomialCoefficients<double> lowerCurrent;
         PolynomialCoefficients<double> higherCurrent;
         DataTypes.MeasurementSamples<double>[] dividedSamples;
-        enum CurrentType {Lower = 0, Higher };
+        enum CurrentType {Lower = 0, Higher = 1};
 
-        public LedPolynomials()
+        public LedPolynomial()
         {
             this.lowerCurrent  = new PolynomialCoefficients<double>();
             this.higherCurrent = new PolynomialCoefficients<double>();
-            dividedSamples = new MeasurementSamples<double>[2];
+            dividedSamples = new DataTypes.MeasurementSamples<double>[2];
+            ;
+            //do poprawy
+            //dividedSamples[0] = new MeasurementSamples<double>();
+            //dividedSamples[1] = new MeasurementSamples<double>();
         }
 
         public void setCoefficients(PolynomialCoefficients<double> lowerCurrent, PolynomialCoefficients<double> higherCurrent)
@@ -34,6 +38,7 @@ namespace Komora.DataTypes
             {
                 lowerCurrent  = Classes.Calibration.DeviceCalibrator<double>.calculatePolynomialCoefficients(dividedSamples[(int)CurrentType.Lower], lowerCurrentPolyOrder);
                 higherCurrent = Classes.Calibration.DeviceCalibrator<double>.calculatePolynomialCoefficients(dividedSamples[(int)CurrentType.Higher], higherCurrentPolyOrder);
+                ;
             }
             catch (Exception e)
             {
@@ -54,6 +59,16 @@ namespace Komora.DataTypes
                     dividedSamples[(int)CurrentType.Higher].samples.Add(sample);
                 }
             }
+        }
+
+        public PolynomialCoefficients<double> getLowerCurrentPolynomialCoefficients()
+        {
+            return lowerCurrent;
+        }
+
+        public PolynomialCoefficients<double> getHigherCurrentPolynomialCoefficients()
+        {
+            return higherCurrent;
         }
     }
 }

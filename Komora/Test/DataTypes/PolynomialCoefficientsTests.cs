@@ -33,6 +33,5 @@ namespace Komora.Test.DataTypes
             Assert.AreEqual(new List<double>() { 1, 2, 3, 4, 5 }, polynomial.getCoefficients());
             Assert.AreEqual(4, polynomial.Degree);
         }
-
     }
 }
