@@ -8,7 +8,7 @@ namespace Komora.DataTypes
 {
     public class MeasurementSamples<T>
     {
-        List<Tuple<T, T>> samples;
+        public List<Tuple<T, T>> samples;
 
         public MeasurementSamples()
         {
@@ -33,14 +33,5 @@ namespace Komora.DataTypes
             this.samples = list;
         }
 
-        public List<Tuple<T, T>> getSamples()
-        {
-            return samples;
-        }
-
-        public int getCount()
-        {
-            return samples.Count;
-        }
     }
 }

@@ -23,7 +23,7 @@ namespace Komora.Test.Calibration
             var result = new Komora.DataTypes.PolynomialCoefficients<double>(new List<double>() { 0.0, 0.0, 1.0 });
             int order = 2;
 
-            coefficients = Classes.Calibration.DeviceCalibrator.calculatePolynomialCoefficients(samples, order);
+            coefficients = Classes.Calibration.DeviceCalibrator<double>.calculatePolynomialCoefficients(samples, order);
 
             Assert.That( result, Is.EqualTo( coefficients ).Within( .001 ));
         }

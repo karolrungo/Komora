@@ -17,7 +17,7 @@ namespace Komora.Test.DataBase
         public void getUserGetsUserByIDFromDataBaseAfterEstablishingConnectionToDatabase()
         {
             var dataBaseConnectorMock = new Mock<IDataBaseConnector>();
-            //dataBaseConnectorMock.Setup(m => m.connect()).Returns(true);
+            dataBaseConnectorMock.Setup(m => m.connect()).Returns(true);
 
             IDataBaseConncection dataBaseConnection = new DataBaseConnectionProxy(dataBaseConnectorMock.Object);
             Assert.AreEqual(new Object(), dataBaseConnection.getUser(5));

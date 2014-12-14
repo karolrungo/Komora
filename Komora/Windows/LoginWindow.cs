@@ -30,7 +30,7 @@ namespace Komora.Windows
             loger.loginSucces += ShowMainMenuWindow;
             loger.loginFailed += DisplayLoginFailedMessage;
 
-            Komora.DataTypes.Pt100Polynomial<double> aaa = new DataTypes.Pt100Polynomial<double>();
+            Komora.DataTypes.Pt100Polynomial pt100poly = new DataTypes.Pt100Polynomial();
 
             InitializeComponent();
         }
