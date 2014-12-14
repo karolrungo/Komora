@@ -89,9 +89,14 @@
     <Compile Include="Classes\Matlab\IMatlabConnector.cs" />
     <Compile Include="Classes\Matlab\MatlabCOMSerwerConnection.cs" />
     <Compile Include="Classes\Matlab\MatlabConnectionProxy.cs" />
+    <Compile Include="DataTypes\LedPolynomials.cs" />
     <Compile Include="DataTypes\MeasurementSamples.cs" />
+    <Compile Include="DataTypes\PolynomialCoefficients.cs" />
+    <Compile Include="DataTypes\Pt100Polynomial.cs" />
+    <Compile Include="Test\Calibration\DeviceCalibratorTests.cs" />
     <Compile Include="Test\DataTypes\MeasurementSamplesTests.cs" />
     <Compile Include="Test\DataBase\DataBaseConnectionProxyTests.cs" />
+    <Compile Include="Test\DataTypes\PolynomialCoefficientsTests.cs" />
     <Compile Include="Test\Loger\LogerDataBaseTests.cs" />
     <Compile Include="Test\Loger\LogerFakeTests.cs" />
     <Compile Include="Test\Matlab\MatlabConnectionProxyTests.cs" />
