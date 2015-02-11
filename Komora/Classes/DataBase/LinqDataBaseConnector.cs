@@ -10,17 +10,41 @@ namespace Komora.Classes.DataBase
     public class LinqDataBaseConnector : IDataBaseConnector
     {
         #region Private Variables
-        //databaseconteext - trzeba utworzyc baze danych
+        LinqDatabaseDataContext dataContext;
         #endregion
 
         #region Public Methods
-        bool IDataBaseConnector.connect()
+        public bool connect()
         {
-            throw new NotImplementedException();
+            dataContext = new LinqDatabaseDataContext();
+            if (dataContext.DatabaseExists())
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
-        bool IDataBaseConnector.disconnect()
+        public bool disconnect()
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (dataContext.DatabaseExists())
+                {
+                    dataContext.Dispose();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (NullReferenceException)
+            { 
+                return false;
+            }
+
         }
         #endregion
     }

@@ -62,6 +62,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Numerics" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -77,6 +78,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\Calibration\DeviceCalibrator.cs" />
+    <Compile Include="Classes\DataBase\LinqDatabase.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LinqDatabase.dbml</DependentUpon>
+    </Compile>
     <Compile Include="Classes\File\MeasurementSamplesReader.cs" />
     <Compile Include="Classes\DataBase\DataBaseConnectionProxy.cs" />
     <Compile Include="Classes\DataBase\IDataBaseConncection.cs" />
@@ -95,6 +101,7 @@
     <Compile Include="DataTypes\Pt100Polynomial.cs" />
     <Compile Include="Test\Calibration\DeviceCalibratorTests.cs" />
     <Compile Include="Test\Calibration\LedPolynomialTests.cs" />
+    <Compile Include="Test\DataBase\LinqDataBaseConnectorTests.cs" />
     <Compile Include="Test\DataTypes\MeasurementSamplesTests.cs" />
     <Compile Include="Test\DataBase\DataBaseConnectionProxyTests.cs" />
     <Compile Include="Test\DataTypes\PolynomialCoefficientsTests.cs" />
@@ -115,6 +122,9 @@
     <Compile Include="Windows\MainMenuForm.Designer.cs">
       <DependentUpon>MainMenuForm.cs</DependentUpon>
     </Compile>
+    <None Include="Classes\DataBase\LinqDatabase.dbml.layout">
+      <DependentUpon>LinqDatabase.dbml</DependentUpon>
+    </None>
     <EmbeddedResource Include="Windows\LoginWindow.resx">
       <DependentUpon>LoginWindow.cs</DependentUpon>
     </EmbeddedResource>
@@ -127,6 +137,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="Classes\DataBase\LinqDatabase.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>LinqDatabase.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -145,6 +160,9 @@
     <Folder Include="Controls\" />
     <Folder Include="Test\File\" />
     <Folder Include="Test\Windows\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -11,18 +11,16 @@ namespace Komora.DataTypes
     {
         PolynomialCoefficients<double> lowerCurrent;
         PolynomialCoefficients<double> higherCurrent;
-        DataTypes.MeasurementSamples<double>[] dividedSamples;
+        List<DataTypes.MeasurementSamples<double>> dividedSamples;
         enum CurrentType {Lower = 0, Higher = 1};
 
         public LedPolynomial()
         {
             this.lowerCurrent  = new PolynomialCoefficients<double>();
             this.higherCurrent = new PolynomialCoefficients<double>();
-            dividedSamples = new DataTypes.MeasurementSamples<double>[2];
-            ;
-            //do poprawy
-            //dividedSamples[0] = new MeasurementSamples<double>();
-            //dividedSamples[1] = new MeasurementSamples<double>();
+            dividedSamples = new List<MeasurementSamples<double>>(2);
+            dividedSamples.Add( new MeasurementSamples<double>());
+            dividedSamples.Add(new MeasurementSamples<double>());
         }
 
         public void setCoefficients(PolynomialCoefficients<double> lowerCurrent, PolynomialCoefficients<double> higherCurrent)

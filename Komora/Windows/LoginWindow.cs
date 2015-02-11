@@ -30,27 +30,6 @@ namespace Komora.Windows
             loger.loginSucces += ShowMainMenuWindow;
             loger.loginFailed += DisplayLoginFailedMessage;
 
-            Komora.DataTypes.LedPolynomial ledPoly = new DataTypes.LedPolynomial();
-            ledPoly = new Komora.DataTypes.LedPolynomial();
-            Komora.DataTypes.MeasurementSamples<double> samples = new Komora.DataTypes.MeasurementSamples<double>(new List<Tuple<double, double>> 
-                                                               {
-                                                                   new Tuple<double,double>(0.0, 0.0),
-                                                                   new Tuple<double,double>(2.0, 4.0),
-                                                                   new Tuple<double,double>(3.0, 9.0),
-                                                                   new Tuple<double,double>(5.0, 125.0),
-                                                                   new Tuple<double,double>(6.0, 216.0),
-                                                                   new Tuple<double,double>(7.0, 343.0),
-                                                                   new Tuple<double,double>(10.0, 1000.0)
-                                                               });
-            var resultLowerCurrent = new Komora.DataTypes.PolynomialCoefficients<double>(new List<double>() { 0.0, 0.0, 1.0 });
-            var resultHigherCurrent = new Komora.DataTypes.PolynomialCoefficients<double>(new List<double>() { 0.0, 0.0, 0.0, 1.0 });
-            int lowerOrder = 2;
-            int higherOrder = 3;
-            int bound = 4;
-
-            ledPoly.calculateCoefficients(samples, bound, lowerOrder, higherOrder);
-
-
             InitializeComponent();
         }
         #endregion

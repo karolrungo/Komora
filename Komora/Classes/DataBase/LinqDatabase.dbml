@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Projekt_Inzynierski" Class="LinqDatabaseDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=KAROL-KOMPUTER;Initial Catalog=Projekt_Inzynierski;Integrated Security=True" SettingsObjectName="Komora.Properties.Settings" SettingsPropertyName="Projekt_InzynierskiConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.HardwareConfiguration" Member="HardwareConfigurations">
+    <Type Name="HardwareConfiguration">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="chamberName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="chamberNumber" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="serialPort" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="HardwareConfiguration_Pt100_Poly" Member="Pt100_Polies" ThisKey="ID" OtherKey="chamberID" Type="Pt100_Poly" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MeasurementTable" Member="MeasurementTables">
+    <Type Name="MeasurementTable">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Filename" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Weight" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Material" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Basic_AddInfo" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Synthesis_Laboratory" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Synthesis_Date" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Synthesis_Operator" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Rejuvenation_After" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Rejuvenation_Date" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Rejuvenation_DarkAged" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="RejuvenationSpecialAged" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Measurment" Member="Measurments">
+    <Type Name="Measurment">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="filename" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="Measurment_MeasurmentResult" Member="MeasurmentResults" ThisKey="ID" OtherKey="measurmentID" Type="MeasurmentResult" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MeasurmentResults" Member="MeasurmentResults">
+    <Type Name="MeasurmentResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="result" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="date" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="measurmentID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Measurment_MeasurmentResult" Member="Measurment" ThisKey="measurmentID" OtherKey="ID" Type="Measurment" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Pt100_Poly" Member="Pt100_Polies">
+    <Type Name="Pt100_Poly">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Coefficients" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="chamberID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="HardwareConfiguration_Pt100_Poly" Member="HardwareConfiguration" ThisKey="chamberID" OtherKey="ID" Type="HardwareConfiguration" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Users" Member="Users">
+    <Type Name="User">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="username" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="password" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

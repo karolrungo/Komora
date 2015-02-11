@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="LinqDatabase">
+  <DataContextMoniker Name="/LinqDatabaseDataContext" />
+  <nestedChildShapes>
+    <classShape Id="c447a933-91b1-4013-87aa-d1454fe8e8d0" absoluteBounds="4, 0.875, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/LinqDatabaseDataContext/HardwareConfiguration" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c1d86b3f-149a-4946-a16b-bf6d36b8df9d" absoluteBounds="4.015, 1.335, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="fe91266a-2a43-4eac-bee3-2a65678878e0" absoluteBounds="4, 2.75, 2, 3.3093082682291666">
+      <DataClassMoniker Name="/LinqDatabaseDataContext/MeasurementTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="8ff5c65d-0313-43a1-b8b3-0cdd9b8eaf78" absoluteBounds="4.015, 3.21, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="01f46b88-6306-49fe-a05f-649fe1b64391" absoluteBounds="1.75, 1.5, 2, 1.3862939453125">
+      <DataClassMoniker Name="/LinqDatabaseDataContext/Measurment" />
+      <nestedChildShapes>
+        <elementListCompartment Id="59827572-8c3c-4636-b55e-bb0f8d51e329" absoluteBounds="1.7650000000000001, 1.96, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="4f1d3a22-893e-428e-848d-3c82a72d28a2" absoluteBounds="1, 2.125, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/LinqDatabaseDataContext/MeasurmentResult" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ea80dd7e-ff60-4826-b6ec-f967a8c9db16" absoluteBounds="1.0150000000000001, 2.585, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(1.75 : 2.19314697265625); (0.75 : 2.19314697265625); (0.75 : 2.91429768880208); (1 : 2.91429768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/LinqDatabaseDataContext/Measurment/Measurment_MeasurmentResult" />
+      <nodes>
+        <classShapeMoniker Id="01f46b88-6306-49fe-a05f-649fe1b64391" />
+        <classShapeMoniker Id="4f1d3a22-893e-428e-848d-3c82a72d28a2" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="4ccc486b-58d4-4f32-bc03-b341dd745eb7" absoluteBounds="2, 4, 2, 1.3862939453125">
+      <DataClassMoniker Name="/LinqDatabaseDataContext/Pt100_Poly" />
+      <nestedChildShapes>
+        <elementListCompartment Id="bb8fef00-2f91-487d-b83b-3c034ef7b212" absoluteBounds="2.015, 4.46, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(4 : 1.66429768880208); (3.87712 : 1.66429768880208); (3.87712 : 3.87712); (2.9999995 : 3.87712); (2.9999995 : 4)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/LinqDatabaseDataContext/HardwareConfiguration/HardwareConfiguration_Pt100_Poly" />
+      <nodes>
+        <classShapeMoniker Id="c447a933-91b1-4013-87aa-d1454fe8e8d0" />
+        <classShapeMoniker Id="4ccc486b-58d4-4f32-bc03-b341dd745eb7" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="42dfe117-b006-4cfb-a6ba-3a6fe91aa53e" absoluteBounds="1.25, 1, 2, 1.3862939453125">
+      <DataClassMoniker Name="/LinqDatabaseDataContext/User" />
+      <nestedChildShapes>
+        <elementListCompartment Id="51ab7807-7d12-4ad9-a4f2-197507190d1a" absoluteBounds="1.2650000000000001, 1.46, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>
