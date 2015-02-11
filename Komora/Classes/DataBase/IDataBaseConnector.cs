@@ -11,5 +11,12 @@ namespace Komora.Classes.DataBase
     {
         bool connect();
         bool disconnect();
+
+        User getUser(string login, string password);
+        User getUser(int id);
+
+        HardwareConfiguration getHardwareConfiguration(int id);
+
+        
     }
 }

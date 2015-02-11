@@ -78,6 +78,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\Calibration\DeviceCalibrator.cs" />
+    <Compile Include="Classes\DataBase\DatabaseConnectionException.cs" />
     <Compile Include="Classes\DataBase\LinqDatabase.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

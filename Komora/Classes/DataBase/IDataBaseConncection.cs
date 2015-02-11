@@ -8,8 +8,9 @@ namespace Komora.Classes.DataBase
 {
     public interface IDataBaseConncection
     {
-        object getUser(int id);
+        User getUser(int id);
+        User getUserByCredentials(string login, string password);
 
-        object getUserByCredentials(string login, string password);
+        HardwareConfiguration getHardwareConfiguration(int id);
     }
 }

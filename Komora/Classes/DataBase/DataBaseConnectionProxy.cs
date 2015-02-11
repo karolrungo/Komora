@@ -8,28 +8,47 @@ namespace Komora.Classes.DataBase
 {
     public class DataBaseConnectionProxy : IDataBaseConncection
     {
-        #region Private Variables
-        private IDataBaseConnector dataBaseConnector;
-        #endregion
+        private IDataBaseConnector dbConnector;
 
-        #region Constructors
         public DataBaseConnectionProxy(IDataBaseConnector dataBaseConnector)
         {
-            this.dataBaseConnector = dataBaseConnector;
-        }
-        #endregion
+            this.dbConnector = dataBaseConnector;
 
-        #region IBdataBaseConnection Implementation
-        object IDataBaseConncection.getUser(int id)
+            if (false == dbConnector.connect())
+            {
+                throw new DatabaseConnectionException("Can't establish connection to database.");
+            }
+        }
+        ~DataBaseConnectionProxy()
         {
-            //var query = from c in ...
-            throw new NotImplementedException();
+            if (false == dbConnector.disconnect())
+            {
+                throw new DatabaseConnectionException("Can't disconnect from database.");
+            }
         }
 
-        object IDataBaseConncection.getUserByCredentials(string login, string password)
+        public bool connect()
         {
-            throw new NotImplementedException();
+            return dbConnector.connect();
         }
-        #endregion
+        public bool disconnect()
+        {
+            return dbConnector.disconnect();
+        }
+
+        public User getUser(int id)
+        {
+            return dbConnector.getUser(id);
+        }
+        public User getUserByCredentials(string login, string password)
+        {
+            //gdzie lapac wyjatek
+            return dbConnector.getUser(login, password);
+        }
+
+        public HardwareConfiguration getHardwareConfiguration(int id)
+        {
+            return dbConnector.getHardwareConfiguration(id);
+        }
     }
 }

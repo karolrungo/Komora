@@ -7,6 +7,7 @@ using NUnit.Framework;
 using NUnit;
 using Moq;
 using Komora;
+using Komora.Classes.DataBase;
 
 namespace Komora.Test.Loger
 {
@@ -26,8 +27,6 @@ namespace Komora.Test.Loger
         [Test]
         public void ValidateUserFunctionsCallsgetUserByCredentialsExactlyOnceShouldPass()
         {
-            dataBaseConnectionMock.Setup(m => m.getUserByCredentials(It.IsAny<string>(), It.IsAny<string>())).Returns(new object());
-
             logerDatabase.validateUser("user", "pass");
 
             dataBaseConnectionMock.Verify(m => m.getUserByCredentials(It.IsAny<string>(), It.IsAny<string>()), Times.Exactly(1));
@@ -36,7 +35,7 @@ namespace Komora.Test.Loger
         [Test]
         public void ValidateUserCalledWithGoodUserCredentialsRaisesLoginSuccesEventShouldPass()
         {
-            dataBaseConnectionMock.Setup(m => m.getUserByCredentials(It.IsAny<string>(), It.IsAny<string>())).Returns(new object());
+            dataBaseConnectionMock.Setup(m => m.getUserByCredentials(It.IsAny<string>(), It.IsAny<string>())).Returns(new User());
 
             var wasRaised = false;
             logerDatabase.loginSucces += (object sender, EventArgs e) => wasRaised = true;
@@ -49,7 +48,7 @@ namespace Komora.Test.Loger
         [Test]
         public void ValidateUserCalledWithWrongUserCredentialsRaisesLoginFailedEventShouldPass()
         {
-            dataBaseConnectionMock.Setup(m => m.getUserByCredentials(It.IsAny<string>(), It.IsAny<string>())).Returns(null);
+            dataBaseConnectionMock.Setup(m => m.getUserByCredentials("user", "pass")).Throws(new Exception());
 
             var wasRaised = false;
             logerDatabase.loginFailed += (object sender, EventArgs e) => wasRaised = true;
@@ -57,6 +56,25 @@ namespace Komora.Test.Loger
             logerDatabase.validateUser("user", "pass");
 
             Assert.IsTrue(wasRaised);
+        }
+
+        [Test]
+        public void ValidateUserCalledCallsProperEventForDifferentCredentials()
+        {
+            dataBaseConnectionMock.Setup(m => m.getUserByCredentials("user", "pass")).Returns(new User());
+            dataBaseConnectionMock.Setup(m => m.getUserByCredentials("wrong", "credentials")).Throws(new Exception());
+
+            var wasFailedRaised = false;
+            var wasSuccessRaised = false;
+
+            logerDatabase.loginFailed += (object sender, EventArgs e) => wasFailedRaised = true;
+            logerDatabase.loginSucces += (object sender, EventArgs e) => wasSuccessRaised = true;
+
+            logerDatabase.validateUser("wrong", "credentials");
+            Assert.That(wasFailedRaised == true && wasSuccessRaised == false);
+          
+            logerDatabase.validateUser("user", "pass");
+            Assert.True(wasSuccessRaised);
         }
     }
 }

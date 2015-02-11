@@ -15,7 +15,7 @@ namespace Komora.Classes.Loger
         #endregion
 
         #region Public Methods
-        public abstract void validateUser(string login, string password) ;
+        public abstract void validateUser(string login, string password);
         #endregion
 
         #region Protected Moetods

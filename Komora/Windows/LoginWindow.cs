@@ -25,8 +25,10 @@ namespace Komora.Windows
         {
             dataBaseConnector = new Classes.DataBase.LinqDataBaseConnector();
             dataBaseConnection = new Classes.DataBase.DataBaseConnectionProxy(dataBaseConnector);
-            //loger = new Classes.Loger.LogerDataBase(dataBaseConnection);
-            loger = new Classes.Loger.LogerFake();
+            loger = new Classes.Loger.LogerDataBase(dataBaseConnection);
+            //loger = new Classes.Loger.LogerFake();
+
+            //przypisz funkcje okna do zdarzen generowanych przez logera
             loger.loginSucces += ShowMainMenuWindow;
             loger.loginFailed += DisplayLoginFailedMessage;
 

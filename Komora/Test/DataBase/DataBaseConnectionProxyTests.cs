@@ -13,14 +13,50 @@ namespace Komora.Test.DataBase
     [TestFixture]
     public class DataBaseConnectionProxyTests
     {
-        [Test]
-        public void getUserGetsUserByIDFromDataBaseAfterEstablishingConnectionToDatabase()
-        {
-            var dataBaseConnectorMock = new Mock<IDataBaseConnector>();
-            dataBaseConnectorMock.Setup(m => m.connect()).Returns(true);
+        private Mock<IDataBaseConnector> dataBaseConnectorMock;
 
-            IDataBaseConncection dataBaseConnection = new DataBaseConnectionProxy(dataBaseConnectorMock.Object);
-            Assert.AreEqual(new Object(), dataBaseConnection.getUser(5));
+        [SetUp]
+        public void Init()
+        {
+            dataBaseConnectorMock = new Mock<IDataBaseConnector>();
+        }
+
+        [Test]
+        public void constructorTriesToEstablishConnectionToDatabaseOnlyOneTime()
+        {
+            dataBaseConnectorMock.Setup(x => x.connect()).Returns(true);
+
+            DataBaseConnectionProxy dbConnection = new DataBaseConnectionProxy(dataBaseConnectorMock.Object);
+
+            dataBaseConnectorMock.Verify(m => m.connect(), Times.Exactly(1));
+        }
+
+        [Test]
+        public void constructorThrowsExceptionWhenEstablishingConnectionFails()
+        {
+            dataBaseConnectorMock.Setup(x => x.connect()).Returns(false);
+
+            Assert.Throws(typeof(DatabaseConnectionException),
+                         delegate { new DataBaseConnectionProxy(dataBaseConnectorMock.Object); });
+        }
+
+        [Test]
+        public void destructorThrowsExceptionWhenDeletingConnectionFails()
+        {
+            dataBaseConnectorMock.Setup(x => x.disconnect()).Returns(false);
+
+            Assert.Throws(typeof(DatabaseConnectionException),
+                         delegate { new DataBaseConnectionProxy(dataBaseConnectorMock.Object); });
+        }
+
+        [Test]
+        public void destructorDoenNotThrowExceptionWhenDeletingConnectionSuccess()
+        {
+            dataBaseConnectorMock.Setup(x => x.connect()).Returns(true);
+            dataBaseConnectorMock.Setup(x => x.disconnect()).Returns(true);
+
+            Assert.DoesNotThrow(delegate { new DataBaseConnectionProxy(dataBaseConnectorMock.Object); });
+
         }
     }
 }

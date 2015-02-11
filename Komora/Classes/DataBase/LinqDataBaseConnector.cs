@@ -9,11 +9,8 @@ namespace Komora.Classes.DataBase
 {
     public class LinqDataBaseConnector : IDataBaseConnector
     {
-        #region Private Variables
-        LinqDatabaseDataContext dataContext;
-        #endregion
+        private LinqDatabaseDataContext dataContext;
 
-        #region Public Methods
         public bool connect()
         {
             dataContext = new LinqDatabaseDataContext();
@@ -30,22 +27,27 @@ namespace Komora.Classes.DataBase
         {
             try
             {
-                if (dataContext.DatabaseExists())
-                {
-                    dataContext.Dispose();
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                dataContext.Dispose();
+                return true;
             }
             catch (NullReferenceException)
             { 
                 return false;
             }
-
         }
-        #endregion
+
+        public User getUser(string login, string password)
+        {
+            return this.dataContext.Users.First(x => x.username == login && x.password == password);
+        }
+        public User getUser(int id)
+        {
+            return this.dataContext.Users.First(x => x.ID == id);
+        }
+
+        public HardwareConfiguration getHardwareConfiguration(int id)
+        {
+            return this.dataContext.HardwareConfigurations.First(x => x.ID == id);
+        }
     }
 }

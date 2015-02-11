@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Komora.Classes;
+using Komora.Classes.DataBase;
 
 namespace Komora.Classes.Loger
 {
@@ -23,26 +24,18 @@ namespace Komora.Classes.Loger
         #region Derived Methods
         public override void validateUser(string login, string password)
         {
-            if (LogInSuccess(login, password))
+            try
             {
-                RaiseLoginSuccesEvent(EventArgs.Empty);
+                dataBaseConnection.getUserByCredentials(login, password);
             }
-            else
+            catch
             {
                 RaiseLoginFailedEvent(EventArgs.Empty);
+                return;
             }
-        }
-        #endregion
 
-        #region Private Methods
-        private bool LogInSuccess(string login, string password)
-        {
-            if (null != dataBaseConnection.getUserByCredentials(login, password))
-                return true;
-            else
-                return false;
+            RaiseLoginSuccesEvent(EventArgs.Empty);
         }
-        #endregion
-         
+        #endregion      
     }
 }
