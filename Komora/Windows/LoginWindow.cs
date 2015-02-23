@@ -15,7 +15,6 @@ namespace Komora.Windows
     {
         #region Private Variables
         Classes.DataBase.IDataBaseConnector dataBaseConnector;
-        Classes.DataBase.IDataBaseConncection dataBaseConnection;
         Classes.Loger.Loger loger;
         Windows.MainMenuForm mainMenuWindow;
         #endregion
@@ -24,8 +23,9 @@ namespace Komora.Windows
         public LoginWindow()
         {
             dataBaseConnector = new Classes.DataBase.LinqDataBaseConnector();
-            dataBaseConnection = new Classes.DataBase.DataBaseConnectionProxy(dataBaseConnector);
-            loger = new Classes.Loger.LogerDataBase(dataBaseConnection);
+            //zlapac wyjatka trzeba 
+            dataBaseConnector.connect();
+            loger = new Classes.Loger.LogerDataBase(dataBaseConnector);
             //loger = new Classes.Loger.LogerFake();
 
             //przypisz funkcje okna do zdarzen generowanych przez logera

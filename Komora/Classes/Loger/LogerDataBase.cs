@@ -11,13 +11,13 @@ namespace Komora.Classes.Loger
     public class LogerDataBase : Loger
     {
         #region Private Variables
-        DataBase.IDataBaseConncection dataBaseConnection;
+        DataBase.IDataBaseConnector dataBaseConnector;
         #endregion
 
         #region Constructor
-        public LogerDataBase(DataBase.IDataBaseConncection dataBaseConnection)
+        public LogerDataBase(DataBase.IDataBaseConnector dataBaseConnector)
         {
-            this.dataBaseConnection = dataBaseConnection;
+            this.dataBaseConnector = dataBaseConnector;
         }
         #endregion
 
@@ -26,7 +26,7 @@ namespace Komora.Classes.Loger
         {
             try
             {
-                dataBaseConnection.getUserByCredentials(login, password);
+                dataBaseConnector.getUser(login, password);
             }
             catch
             {

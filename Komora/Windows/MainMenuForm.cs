@@ -12,21 +12,11 @@ namespace Komora.Windows
 {
     public partial class MainMenuForm : Form
     {
-        #region Constructor
         public MainMenuForm()
         {
             InitializeComponent();
         }
-        #endregion
 
-        #region Window and Controls Events
-        private void MainMenuForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            RaiseShowLoginWindowEvent(EventArgs.Empty);
-        }
-        #endregion
-
-        #region Events & Delegates
         public delegate void LoginWindowVisibility(object sender, EventArgs e);
         public event LoginWindowVisibility showWindow;
         public void RaiseShowLoginWindowEvent(EventArgs e)
@@ -36,6 +26,17 @@ namespace Komora.Windows
                 showWindow(this, EventArgs.Empty);
             }
         }
-        #endregion
+
+        private void btnMatlab_Click(object sender, EventArgs e)
+        {
+            MatlabWndow matlabWindow = new MatlabWndow();
+            matlabWindow.Show();
+        }
+
+        private void btnTools_Click(object sender, EventArgs e)
+        {
+            ToolsWindow toolsWindow = new ToolsWindow();
+            toolsWindow.Show();
+        }
     }
 }

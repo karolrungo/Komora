@@ -85,17 +85,26 @@
       <DependentUpon>LinqDatabase.dbml</DependentUpon>
     </Compile>
     <Compile Include="Classes\File\MeasurementSamplesReader.cs" />
-    <Compile Include="Classes\DataBase\DataBaseConnectionProxy.cs" />
-    <Compile Include="Classes\DataBase\IDataBaseConncection.cs" />
     <Compile Include="Classes\DataBase\IDataBaseConnector.cs" />
     <Compile Include="Classes\DataBase\LinqDataBaseConnector.cs" />
     <Compile Include="Classes\Loger\Loger.cs" />
     <Compile Include="Classes\Loger\LogerDataBase.cs" />
     <Compile Include="Classes\Loger\LogerFake.cs" />
-    <Compile Include="Classes\Matlab\IMatlabConnection.cs" />
     <Compile Include="Classes\Matlab\IMatlabConnector.cs" />
     <Compile Include="Classes\Matlab\MatlabCOMSerwerConnection.cs" />
-    <Compile Include="Classes\Matlab\MatlabConnectionProxy.cs" />
+    <Compile Include="Classes\Tools\DateCounter.cs" />
+    <Compile Include="Controls\DateAndTimeDifferenceCalculator.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\DateAndTimeDifferenceCalculator.Designer.cs">
+      <DependentUpon>DateAndTimeDifferenceCalculator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\DateAndTimePicker.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\DateAndTimePicker.Designer.cs">
+      <DependentUpon>DateAndTimePicker.cs</DependentUpon>
+    </Compile>
     <Compile Include="DataTypes\LedPolynomial.cs" />
     <Compile Include="DataTypes\MeasurementSamples.cs" />
     <Compile Include="DataTypes\PolynomialCoefficients.cs" />
@@ -104,11 +113,15 @@
     <Compile Include="Test\Calibration\LedPolynomialTests.cs" />
     <Compile Include="Test\DataBase\LinqDataBaseConnectorTests.cs" />
     <Compile Include="Test\DataTypes\MeasurementSamplesTests.cs" />
-    <Compile Include="Test\DataBase\DataBaseConnectionProxyTests.cs" />
     <Compile Include="Test\DataTypes\PolynomialCoefficientsTests.cs" />
     <Compile Include="Test\Loger\LogerDataBaseTests.cs" />
     <Compile Include="Test\Loger\LogerFakeTests.cs" />
-    <Compile Include="Test\Matlab\MatlabConnectionProxyTests.cs" />
+    <Compile Include="Windows\CalibrationWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\CalibrationWindow.Designer.cs">
+      <DependentUpon>CalibrationWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Windows\LoginWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -123,6 +136,33 @@
     <Compile Include="Windows\MainMenuForm.Designer.cs">
       <DependentUpon>MainMenuForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Windows\MatlabWndow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\MatlabWndow.Designer.cs">
+      <DependentUpon>MatlabWndow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ToolsWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\ToolsWindow.Designer.cs">
+      <DependentUpon>ToolsWindow.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Controls\DateAndTimeDifferenceCalculator.resx">
+      <DependentUpon>DateAndTimeDifferenceCalculator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\DateAndTimePicker.resx">
+      <DependentUpon>DateAndTimePicker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\MainMenuForm.resx">
+      <DependentUpon>MainMenuForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\MatlabWndow.resx">
+      <DependentUpon>MatlabWndow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\ToolsWindow.resx">
+      <DependentUpon>ToolsWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Classes\DataBase\LinqDatabase.dbml.layout">
       <DependentUpon>LinqDatabase.dbml</DependentUpon>
     </None>
@@ -158,12 +198,24 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Controls\" />
+    <Folder Include="Classes\WindowForms\" />
     <Folder Include="Test\File\" />
+    <Folder Include="Test\Matlab\" />
     <Folder Include="Test\Windows\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="MLApp">
+      <Guid>{C36E46AB-6A81-457B-9F91-A7719A06287F}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

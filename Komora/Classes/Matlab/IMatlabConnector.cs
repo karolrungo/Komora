@@ -10,5 +10,7 @@ namespace Komora.Classes.Matlab
     {
         bool connect();
         bool disconnect();
+
+        void exectuteStatement(string statement);
     }
 }
