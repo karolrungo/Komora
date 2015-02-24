@@ -15,13 +15,18 @@ namespace Komora.Classes.Chamber
         public ChamberData() { }
         public ChamberData(string name, string serialPort, int number)
         {
-            this._name = name;
-            this._serialPort = serialPort;
-            this._number = number;
+            setChamberData(name, serialPort, number);
         }
 
         public string Name { get{ return _name;} set{ _name = value.ToString();} }
         public string SerialPort { get { return _serialPort; } set { _serialPort = value.ToString(); } }
         public int Number { get { return _number; } set { _number = value; } }
+
+        public void setChamberData(string name, string serialPort, int number)
+        {
+            this._name = name;
+            this._serialPort = serialPort;
+            this._number = number;
+        }
     }
 }

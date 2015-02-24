@@ -54,5 +54,42 @@ namespace Komora.Classes.DataBase
         {
             return this.dataContext.HardwareConfigurations.Select(chamber => chamber);
         }
+
+
+
+        public void deleteChamber(Chamber.ChamberData chamberData)
+        {
+            //do refaktoru
+            //wybierz komore do usuniecia
+            var chamber = (from c in dataContext.HardwareConfigurations
+                           where c.chamberName == chamberData.Name &&
+                                 c.chamberNumber == chamberData.Number &&
+                                 c.serialPort == chamberData.SerialPort
+                           select c).First();
+
+            //wybierz ID komory do usuniecia
+            var chamberID = (from c in dataContext.HardwareConfigurations
+                             where c.chamberName == chamberData.Name &&
+                                 c.chamberNumber == chamberData.Number &&
+                                 c.serialPort == chamberData.SerialPort
+                             select c.ID).First();
+
+            //wybierz rekord ze wspolczynnimami do usuniecia
+            var Coefficient = from c in dataContext.Pt100_Polies
+                              where c.chamberID == chamberID
+                              select c;
+
+            //najpierw usuwany rekord ze wspolczynnikami
+            foreach (Pt100_Poly pt100_poly in Coefficient)
+            {
+                dataContext.Pt100_Polies.DeleteOnSubmit(pt100_poly);
+            }
+
+            //teraz usun komore
+            dataContext.HardwareConfigurations.DeleteOnSubmit(chamber);
+
+            //potwierdz zmiany
+            dataContext.SubmitChanges();
+        }
     }
 }

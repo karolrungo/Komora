@@ -18,6 +18,8 @@ namespace Komora.Classes.DataBase
         HardwareConfiguration selectChamber(int id);
         IQueryable<HardwareConfiguration> selectAllChambers();
 
-        
+
+
+        void deleteChamber(Chamber.ChamberData chamberData);
     }
 }
