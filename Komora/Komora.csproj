@@ -78,6 +78,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\Calibration\DeviceCalibrator.cs" />
+    <Compile Include="Classes\Chamber\ChamberData.cs" />
     <Compile Include="Classes\DataBase\DatabaseConnectionException.cs" />
     <Compile Include="Classes\DataBase\LinqDatabase.designer.cs">
       <AutoGen>True</AutoGen>
@@ -111,6 +112,7 @@
     <Compile Include="DataTypes\Pt100Polynomial.cs" />
     <Compile Include="Test\Calibration\DeviceCalibratorTests.cs" />
     <Compile Include="Test\Calibration\LedPolynomialTests.cs" />
+    <Compile Include="Test\Chamber\ChamberDataTests.cs" />
     <Compile Include="Test\DataBase\LinqDataBaseConnectorTests.cs" />
     <Compile Include="Test\DataTypes\MeasurementSamplesTests.cs" />
     <Compile Include="Test\DataTypes\PolynomialCoefficientsTests.cs" />
