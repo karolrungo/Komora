@@ -30,6 +30,8 @@
         {
             this.btnMatlab = new System.Windows.Forms.Button();
             this.btnTools = new System.Windows.Forms.Button();
+            this.buttonCalibration = new System.Windows.Forms.Button();
+            this.buttonSettings = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnMatlab
@@ -52,11 +54,33 @@
             this.btnTools.UseVisualStyleBackColor = true;
             this.btnTools.Click += new System.EventHandler(this.btnTools_Click);
             // 
+            // buttonCalibration
+            // 
+            this.buttonCalibration.Location = new System.Drawing.Point(91, 150);
+            this.buttonCalibration.Name = "buttonCalibration";
+            this.buttonCalibration.Size = new System.Drawing.Size(101, 39);
+            this.buttonCalibration.TabIndex = 2;
+            this.buttonCalibration.Text = "Calibration";
+            this.buttonCalibration.UseVisualStyleBackColor = true;
+            this.buttonCalibration.Click += new System.EventHandler(this.buttonCalibration_Click);
+            // 
+            // buttonSettings
+            // 
+            this.buttonSettings.Location = new System.Drawing.Point(209, 12);
+            this.buttonSettings.Name = "buttonSettings";
+            this.buttonSettings.Size = new System.Drawing.Size(111, 48);
+            this.buttonSettings.TabIndex = 3;
+            this.buttonSettings.Text = "Settings";
+            this.buttonSettings.UseVisualStyleBackColor = true;
+            this.buttonSettings.Click += new System.EventHandler(this.buttonSettings_Click);
+            // 
             // MainMenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 262);
+            this.ClientSize = new System.Drawing.Size(402, 262);
+            this.Controls.Add(this.buttonSettings);
+            this.Controls.Add(this.buttonCalibration);
             this.Controls.Add(this.btnTools);
             this.Controls.Add(this.btnMatlab);
             this.Name = "MainMenuForm";
@@ -69,5 +93,7 @@
 
         private System.Windows.Forms.Button btnMatlab;
         private System.Windows.Forms.Button btnTools;
+        private System.Windows.Forms.Button buttonCalibration;
+        private System.Windows.Forms.Button buttonSettings;
     }
 }

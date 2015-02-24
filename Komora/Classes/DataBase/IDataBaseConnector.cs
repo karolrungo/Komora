@@ -15,7 +15,8 @@ namespace Komora.Classes.DataBase
         User getUser(string login, string password);
         User getUser(int id);
 
-        HardwareConfiguration getHardwareConfiguration(int id);
+        HardwareConfiguration selectChamber(int id);
+        IQueryable<HardwareConfiguration> selectAllChambers();
 
         
     }

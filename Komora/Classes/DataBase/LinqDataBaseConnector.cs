@@ -45,9 +45,14 @@ namespace Komora.Classes.DataBase
             return this.dataContext.Users.First(x => x.ID == id);
         }
 
-        public HardwareConfiguration getHardwareConfiguration(int id)
+        public HardwareConfiguration selectChamber(int id)
         {
             return this.dataContext.HardwareConfigurations.First(x => x.ID == id);
+        }
+
+        public IQueryable<HardwareConfiguration> selectAllChambers()
+        {
+            return this.dataContext.HardwareConfigurations.Select(chamber => chamber);
         }
     }
 }

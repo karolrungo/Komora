@@ -11,17 +11,18 @@ using Komora.Classes.DataBase;
 
 namespace Komora.Windows
 {
-    public partial class CalibrationWindow : Form
+    public partial class SettingsWindow : Form
     {
         private IDataBaseConnector linqDatabaseConnector;
 
-        public CalibrationWindow()
+        public SettingsWindow()
         {
             linqDatabaseConnector = new LinqDataBaseConnector();
             linqDatabaseConnector.connect();
 
             InitializeComponent();
-            
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            dataGridView1.DataSource = linqDatabaseConnector.selectAllChambers();
         }
     }
 }

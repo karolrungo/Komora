@@ -38,5 +38,17 @@ namespace Komora.Windows
             ToolsWindow toolsWindow = new ToolsWindow();
             toolsWindow.Show();
         }
+
+        private void buttonCalibration_Click(object sender, EventArgs e)
+        {
+            CalibrationWindow calibrationWindow = new CalibrationWindow();
+            calibrationWindow.Show();
+        }
+
+        private void buttonSettings_Click(object sender, EventArgs e)
+        {
+            SettingsWindow settingsWindow = new SettingsWindow();
+            settingsWindow.Show();
+        }
     }
 }
