@@ -68,5 +68,15 @@ namespace Komora.DataTypes
         {
             return higherCurrent;
         }
+
+        public string lowerCurrentPolynmialString()
+        {
+            return lowerCurrent.ToString();
+        }
+
+        public string higherCurrentPolynmialString()
+        {
+            return higherCurrent.ToString();
+        }
     }
 }

@@ -27,6 +27,7 @@ namespace Komora.DataTypes
 
         public void setCoefficients(List<T> source)
         {
+            coefficients.Clear();
             foreach (T coefficient in source)
             {
                 coefficients.Add(coefficient);
@@ -51,6 +52,21 @@ namespace Komora.DataTypes
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
             return this.GetEnumerator();
+        }
+
+        public string coefficientString(string format)
+        {
+            StringBuilder polynomialString = new StringBuilder();
+            char separator = ':';
+
+            foreach (T coefficient in coefficients)
+            {
+                polynomialString.AppendFormat("{0}{1}", String.Format(format, coefficient), separator);
+            }
+            polynomialString.Remove(polynomialString.Length - 1, 1); //usuwa separator z konca stringa
+            return polynomialString.ToString();
+            //return string.Join(";", coefficients.Select(c => string.Format(format, c)));
+            
         }
     }
 }

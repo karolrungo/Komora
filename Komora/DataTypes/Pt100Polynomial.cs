@@ -35,7 +35,7 @@ namespace Komora.DataTypes
 
         public override string ToString()
         {
-            return this.ToString("G", CultureInfo.CurrentCulture);
+            return polynomial.coefficientString("{0:f4}");
         }
 
         public string ToString(string format)

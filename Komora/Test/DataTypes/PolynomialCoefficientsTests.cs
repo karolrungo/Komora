@@ -16,8 +16,8 @@ namespace Komora.Test.DataTypes
         public void canCreatePolynomialCoefficients()
         {
             polynomial = new Komora.DataTypes.PolynomialCoefficients<double>(
-                                                            new List<double>() { 1, 2, 3, 4, 5 }
-                                                            );
+                                               new List<double>() { 1, 2, 3, 4, 5 }
+                                               );
 
             Assert.AreEqual(new List<double>() { 1, 2, 3, 4, 5 }, polynomial.getCoefficients());
             Assert.AreEqual(4, polynomial.Degree);
@@ -26,12 +26,18 @@ namespace Komora.Test.DataTypes
         [Test]
         public void setCoefficientsSetsProperValueToList()
         {
-            polynomial = new Komora.DataTypes.PolynomialCoefficients<double>();
+            polynomial.setCoefficients(new List<double>() { 10, 20, 30, 40, 50 });
 
-            polynomial.setCoefficients(new List<double>() { 1, 2, 3, 4, 5 });
-
-            Assert.AreEqual(new List<double>() { 1, 2, 3, 4, 5 }, polynomial.getCoefficients());
+            Assert.AreEqual(new List<double>() { 10, 20, 30, 40, 50 }, polynomial.getCoefficients());
             Assert.AreEqual(4, polynomial.Degree);
+        }
+
+        [Test]
+        public void toStringReturnsPorperString()
+        {
+            polynomial = new Komora.DataTypes.PolynomialCoefficients<double>(new List<double>() { 1, 2, 3, 4, 5 });
+
+            Assert.AreEqual("1.0000:2.0000:3.0000:4.0000:5.0000", polynomial.coefficientString("{0:4f}"));
         }
     }
 }

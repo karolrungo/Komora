@@ -17,9 +17,11 @@ namespace Komora.Classes.DataBase
 
         HardwareConfiguration selectChamber(int id);
         IQueryable<HardwareConfiguration> selectAllChambers();
-
+        IQueryable<Pt100_Poly> selectAllPt100Polynomials();
 
 
         void deleteChamber(Chamber.ChamberData chamberData);
+
+        
     }
 }
