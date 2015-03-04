@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Komora.DataTypes
 {
@@ -54,8 +53,9 @@ namespace Komora.DataTypes
             return this.GetEnumerator();
         }
 
-        public string coefficientString(string format)
+        public string ToString()
         {
+            string format = "{0:f4}";
             StringBuilder polynomialString = new StringBuilder();
             char separator = ':';
 
@@ -65,7 +65,6 @@ namespace Komora.DataTypes
             }
             polynomialString.Remove(polynomialString.Length - 1, 1); //usuwa separator z konca stringa
             return polynomialString.ToString();
-            //return string.Join(";", coefficients.Select(c => string.Format(format, c)));
             
         }
     }

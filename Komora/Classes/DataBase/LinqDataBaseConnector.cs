@@ -58,7 +58,7 @@ namespace Komora.Classes.DataBase
         {
             return this.dataContext.HardwareConfigurations.Select(chamber => chamber);
         }
-        public IQueryable<Pt100_Poly> selectAllLedPolynomials()
+        public IQueryable<Pt100_Poly> selectAllPt100Polynomials()
         {
             return this.dataContext.Pt100_Polies.Select(pt100Poly => pt100Poly);
         }

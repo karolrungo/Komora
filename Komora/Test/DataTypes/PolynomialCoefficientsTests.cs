@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
+using System.Threading;
 
 namespace Komora.Test.DataTypes
 {
@@ -35,9 +36,10 @@ namespace Komora.Test.DataTypes
         [Test]
         public void toStringReturnsPorperString()
         {
-            polynomial = new Komora.DataTypes.PolynomialCoefficients<double>(new List<double>() { 1, 2, 3, 4, 5 });
+            Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.CreateSpecificCulture("en-GB");
+            polynomial = new Komora.DataTypes.PolynomialCoefficients<double>(new List<double>() { 1.0, 2.0, 3.0, 4.0, 5.0 });
 
-            Assert.AreEqual("1.0000:2.0000:3.0000:4.0000:5.0000", polynomial.coefficientString("{0:4f}"));
+            Assert.That("1.0000:2.0000:3.0000:4.0000:5.0000", Is.EqualTo(polynomial.ToString()));
         }
     }
 }

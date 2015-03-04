@@ -112,6 +112,7 @@
     <Compile Include="DataTypes\Pt100Polynomial.cs" />
     <Compile Include="Test\Calibration\DeviceCalibratorTests.cs" />
     <Compile Include="Test\Calibration\LedPolynomialTests.cs" />
+    <Compile Include="Test\Calibration\Pt100PolynomialTests.cs" />
     <Compile Include="Test\Chamber\ChamberDataTests.cs" />
     <Compile Include="Test\DataBase\LinqDataBaseConnectorTests.cs" />
     <Compile Include="Test\DataTypes\MeasurementSamplesTests.cs" />

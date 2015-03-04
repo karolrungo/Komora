@@ -19,7 +19,7 @@ namespace Komora.Windows
         private IDataBaseConnector linqDatabaseConnector;
         private Classes.File.MeasurementSamplesReader<double> csvReader;
         private DataTypes.MeasurementSamples<double> measurementSamples;
-        DataTypes.Pt100Polynomial pt100Polynomial;
+        private DataTypes.Pt100Polynomial pt100Polynomial;
 
         public CalibrationWindow()
         {
