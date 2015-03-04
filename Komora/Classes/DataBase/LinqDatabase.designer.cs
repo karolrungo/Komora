@@ -48,6 +48,9 @@ namespace Komora.Classes.DataBase
     partial void InsertUser(User instance);
     partial void UpdateUser(User instance);
     partial void DeleteUser(User instance);
+    partial void InsertLed_Poly(Led_Poly instance);
+    partial void UpdateLed_Poly(Led_Poly instance);
+    partial void DeleteLed_Poly(Led_Poly instance);
     #endregion
 		
 		public LinqDatabaseDataContext() : 
@@ -127,6 +130,14 @@ namespace Komora.Classes.DataBase
 				return this.GetTable<User>();
 			}
 		}
+		
+		public System.Data.Linq.Table<Led_Poly> Led_Polies
+		{
+			get
+			{
+				return this.GetTable<Led_Poly>();
+			}
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.HardwareConfiguration")]
@@ -145,6 +156,8 @@ namespace Komora.Classes.DataBase
 		
 		private EntitySet<Pt100_Poly> _Pt100_Polies;
 		
+		private EntitySet<Led_Poly> _Led_Polies;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -162,6 +175,7 @@ namespace Komora.Classes.DataBase
 		public HardwareConfiguration()
 		{
 			this._Pt100_Polies = new EntitySet<Pt100_Poly>(new Action<Pt100_Poly>(this.attach_Pt100_Polies), new Action<Pt100_Poly>(this.detach_Pt100_Polies));
+			this._Led_Polies = new EntitySet<Led_Poly>(new Action<Led_Poly>(this.attach_Led_Polies), new Action<Led_Poly>(this.detach_Led_Polies));
 			OnCreated();
 		}
 		
@@ -258,6 +272,19 @@ namespace Komora.Classes.DataBase
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="HardwareConfiguration_Led_Poly", Storage="_Led_Polies", ThisKey="ID", OtherKey="chamberID")]
+		public EntitySet<Led_Poly> Led_Polies
+		{
+			get
+			{
+				return this._Led_Polies;
+			}
+			set
+			{
+				this._Led_Polies.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -285,6 +312,18 @@ namespace Komora.Classes.DataBase
 		}
 		
 		private void detach_Pt100_Polies(Pt100_Poly entity)
+		{
+			this.SendPropertyChanging();
+			entity.HardwareConfiguration = null;
+		}
+		
+		private void attach_Led_Polies(Led_Poly entity)
+		{
+			this.SendPropertyChanging();
+			entity.HardwareConfiguration = this;
+		}
+		
+		private void detach_Led_Polies(Led_Poly entity)
 		{
 			this.SendPropertyChanging();
 			entity.HardwareConfiguration = null;
@@ -1190,6 +1229,181 @@ namespace Komora.Classes.DataBase
 					this._password = value;
 					this.SendPropertyChanged("password");
 					this.OnpasswordChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Led_Poly")]
+	public partial class Led_Poly : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private string _LowerCurrentCoefficients;
+		
+		private string _HigherCurrentCoefficients;
+		
+		private System.Nullable<int> _chamberID;
+		
+		private EntityRef<HardwareConfiguration> _HardwareConfiguration;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnLowerCurrentCoefficientsChanging(string value);
+    partial void OnLowerCurrentCoefficientsChanged();
+    partial void OnHigherCurrentCoefficientsChanging(string value);
+    partial void OnHigherCurrentCoefficientsChanged();
+    partial void OnchamberIDChanging(System.Nullable<int> value);
+    partial void OnchamberIDChanged();
+    #endregion
+		
+		public Led_Poly()
+		{
+			this._HardwareConfiguration = default(EntityRef<HardwareConfiguration>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LowerCurrentCoefficients", DbType="NVarChar(50)")]
+		public string LowerCurrentCoefficients
+		{
+			get
+			{
+				return this._LowerCurrentCoefficients;
+			}
+			set
+			{
+				if ((this._LowerCurrentCoefficients != value))
+				{
+					this.OnLowerCurrentCoefficientsChanging(value);
+					this.SendPropertyChanging();
+					this._LowerCurrentCoefficients = value;
+					this.SendPropertyChanged("LowerCurrentCoefficients");
+					this.OnLowerCurrentCoefficientsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HigherCurrentCoefficients", DbType="NVarChar(50)")]
+		public string HigherCurrentCoefficients
+		{
+			get
+			{
+				return this._HigherCurrentCoefficients;
+			}
+			set
+			{
+				if ((this._HigherCurrentCoefficients != value))
+				{
+					this.OnHigherCurrentCoefficientsChanging(value);
+					this.SendPropertyChanging();
+					this._HigherCurrentCoefficients = value;
+					this.SendPropertyChanged("HigherCurrentCoefficients");
+					this.OnHigherCurrentCoefficientsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_chamberID", DbType="Int")]
+		public System.Nullable<int> chamberID
+		{
+			get
+			{
+				return this._chamberID;
+			}
+			set
+			{
+				if ((this._chamberID != value))
+				{
+					if (this._HardwareConfiguration.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnchamberIDChanging(value);
+					this.SendPropertyChanging();
+					this._chamberID = value;
+					this.SendPropertyChanged("chamberID");
+					this.OnchamberIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="HardwareConfiguration_Led_Poly", Storage="_HardwareConfiguration", ThisKey="chamberID", OtherKey="ID", IsForeignKey=true)]
+		public HardwareConfiguration HardwareConfiguration
+		{
+			get
+			{
+				return this._HardwareConfiguration.Entity;
+			}
+			set
+			{
+				HardwareConfiguration previousValue = this._HardwareConfiguration.Entity;
+				if (((previousValue != value) 
+							|| (this._HardwareConfiguration.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._HardwareConfiguration.Entity = null;
+						previousValue.Led_Polies.Remove(this);
+					}
+					this._HardwareConfiguration.Entity = value;
+					if ((value != null))
+					{
+						value.Led_Polies.Add(this);
+						this._chamberID = value.ID;
+					}
+					else
+					{
+						this._chamberID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("HardwareConfiguration");
 				}
 			}
 		}

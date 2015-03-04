@@ -7,6 +7,7 @@
       <Column Name="chamberNumber" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="serialPort" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Association Name="HardwareConfiguration_Pt100_Poly" Member="Pt100_Polies" ThisKey="ID" OtherKey="chamberID" Type="Pt100_Poly" />
+      <Association Name="HardwareConfiguration_Led_Poly" Member="Led_Polies" ThisKey="ID" OtherKey="chamberID" Type="Led_Poly" />
     </Type>
   </Table>
   <Table Name="dbo.MeasurementTable" Member="MeasurementTables">
@@ -56,6 +57,15 @@
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="username" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="password" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Led_Poly" Member="Led_Polies">
+    <Type Name="Led_Poly">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="LowerCurrentCoefficients" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="HigherCurrentCoefficients" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="chamberID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="HardwareConfiguration_Led_Poly" Member="HardwareConfiguration" ThisKey="chamberID" OtherKey="ID" Type="HardwareConfiguration" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

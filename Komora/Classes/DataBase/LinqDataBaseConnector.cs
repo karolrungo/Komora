@@ -50,14 +50,21 @@ namespace Komora.Classes.DataBase
             return this.dataContext.HardwareConfigurations.First(x => x.ID == id);
         }
 
+        public IQueryable<User> selectAllUsers()
+        {
+            return this.dataContext.Users.Select(user => user);
+        }
         public IQueryable<HardwareConfiguration> selectAllChambers()
         {
             return this.dataContext.HardwareConfigurations.Select(chamber => chamber);
         }
-
-        public IQueryable<Pt100_Poly> selectAllPt100Polynomials()
+        public IQueryable<Pt100_Poly> selectAllLedPolynomials()
         {
             return this.dataContext.Pt100_Polies.Select(pt100Poly => pt100Poly);
+        }
+        public IQueryable<Led_Poly> selectAllLedPolynomials()
+        {
+            return this.dataContext.Led_Polies.Select(ledPoly => ledPoly);
         }
 
         public void deleteChamber(Chamber.ChamberData chamberData)
