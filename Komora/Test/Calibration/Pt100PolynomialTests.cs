@@ -27,6 +27,7 @@ namespace Komora.Test.Calibration
         }
 
         [Test]
+        [Ignore]
         public void calculateCoefficientsCallsDeviceCalibratorCalculateCoefficientsJustOnce()
         {
             pt100poly = new Pt100Polynomial();
