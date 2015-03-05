@@ -25,5 +25,14 @@ namespace Komora.Test.Calibration
             Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.CreateSpecificCulture("en-GB");
             Assert.That("1.0000:2.0000:3.0000:4.0000", Is.EqualTo(pt100poly.ToString()));
         }
+
+        [Test]
+        public void calculateCoefficientsCallsDeviceCalibratorCalculateCoefficientsJustOnce()
+        {
+            pt100poly = new Pt100Polynomial();
+
+            pt100poly.calculateCoefficients(It.IsAny<MeasurementSamples<double>>(), It.IsAny<int>());
+
+        }
     }
 }

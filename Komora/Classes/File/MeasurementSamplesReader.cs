@@ -8,7 +8,7 @@ using System.Threading;
 
 namespace Komora.Classes.File
 {
-    public class MeasurementSamplesReader<T>
+    public class MeasurementSamplesReader<T> : ISamplesReader<T>
     {
         List<T> x, y;
 

@@ -85,6 +85,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>LinqDatabase.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Classes\File\ISamplesReader.cs" />
     <Compile Include="Classes\File\MeasurementSamplesReader.cs" />
     <Compile Include="Classes\DataBase\IDataBaseConnector.cs" />
     <Compile Include="Classes\DataBase\LinqDataBaseConnector.cs" />
@@ -94,6 +95,12 @@
     <Compile Include="Classes\Matlab\IMatlabConnector.cs" />
     <Compile Include="Classes\Matlab\MatlabCOMSerwerConnection.cs" />
     <Compile Include="Classes\Tools\DateCounter.cs" />
+    <Compile Include="Controls\CalibrationControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\CalibrationControl.Designer.cs">
+      <DependentUpon>CalibrationControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\DateAndTimeDifferenceCalculator.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -157,6 +164,9 @@
     <Compile Include="Windows\ToolsWindow.Designer.cs">
       <DependentUpon>ToolsWindow.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Controls\CalibrationControl.resx">
+      <DependentUpon>CalibrationControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\DateAndTimeDifferenceCalculator.resx">
       <DependentUpon>DateAndTimeDifferenceCalculator.cs</DependentUpon>
     </EmbeddedResource>
@@ -214,6 +224,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Classes\WindowForms\" />
+    <Folder Include="Test\Controls\" />
     <Folder Include="Test\File\" />
     <Folder Include="Test\Matlab\" />
     <Folder Include="Test\Windows\" />
