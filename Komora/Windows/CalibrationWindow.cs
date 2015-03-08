@@ -47,36 +47,17 @@ namespace Komora.Windows
 
         private void calibrationControl1_deleteCoefficientsButtonClicked(object sender, Utilities.DeleteCoefficientsEventArgs e)
         {
-            ;
             if (e.coefficientsType == Utilities.CoefficientsType.PT100)
             {
-                MessageBox.Show("pt100");
                 databaseConnector.deletePt100Coefficients(e.coefficientsID);
                 calibrationControl1.fillPolynomialDgv<Pt100_Poly>(databaseConnector.selectAllPt100Polynomials());
             }
-            else
+            else if (e.coefficientsType == Utilities.CoefficientsType.LED)
             {
-                MessageBox.Show("led");
+                databaseConnector.deleteLedCoefficients(e.coefficientsID);
+                calibrationControl1.fillPolynomialDgv<Led_Poly>(databaseConnector.selectAllLedPolynomials());
             }
             
         }
-
-        
-
- 
-
-            //    try
-            //{
-            //    measurementSamples = csvReader.readSamplesFromFile(textBoxFilePt100.Text);                
-            //    pt100Polynomial.calculateCoefficients(measurementSamples, 2);
-            //    MessageBox.Show(pt100Polynomial.ToString());
-
-            //}
-            //catch (Exception)
-            //{
-            //    throw new NotImplementedException();
-            //}
-
-
     }
 }
