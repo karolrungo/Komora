@@ -25,6 +25,8 @@ namespace Komora.Classes.DataBase
 
         void deleteChamber(Chamber.ChamberData chamberData);
 
-        
+
+
+        void deletePt100Coefficients(int coefficientsID);
     }
 }

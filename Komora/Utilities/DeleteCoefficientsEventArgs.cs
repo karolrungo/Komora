@@ -8,10 +8,10 @@ namespace Komora.Utilities
 {
     public class DeleteCoefficientsEventArgs : EventArgs
     {
-        public string coefficientsID;
+        public int coefficientsID;
         public CoefficientsType coefficientsType;
 
-        public DeleteCoefficientsEventArgs(string ID, CoefficientsType coefficientsType)
+        public DeleteCoefficientsEventArgs(int ID, CoefficientsType coefficientsType)
         {
             this.coefficientsID = ID;
             this.coefficientsType = coefficientsType;

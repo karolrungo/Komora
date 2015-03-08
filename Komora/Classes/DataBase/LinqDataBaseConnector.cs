@@ -102,6 +102,14 @@ namespace Komora.Classes.DataBase
             dataContext.SubmitChanges();
         }
 
-        
+        public void deletePt100Coefficients(int coefficientsID)
+        {
+            var query = (from c in dataContext.Pt100_Polies
+                        where c.ID == coefficientsID
+                        select c).First();
+
+            dataContext.Pt100_Polies.DeleteOnSubmit(query);
+            dataContext.SubmitChanges();
+        }
     }
 }

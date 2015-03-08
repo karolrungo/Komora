@@ -51,11 +51,14 @@ namespace Komora.Windows
             if (e.coefficientsType == Utilities.CoefficientsType.PT100)
             {
                 MessageBox.Show("pt100");
+                databaseConnector.deletePt100Coefficients(e.coefficientsID);
+                calibrationControl1.fillPolynomialDgv<Pt100_Poly>(databaseConnector.selectAllPt100Polynomials());
             }
             else
             {
                 MessageBox.Show("led");
             }
+            
         }
 
         
