@@ -32,7 +32,7 @@
             this.tabControlCalibration = new System.Windows.Forms.TabControl();
             this.tabPagePt100 = new System.Windows.Forms.TabPage();
             this.tabPageLED = new System.Windows.Forms.TabPage();
-            this.calibrationControl1 = new Komora.Controls.CalibrationControl();
+            
             this.tabControlCalibration.SuspendLayout();
             this.tabPagePt100.SuspendLayout();
             this.SuspendLayout();

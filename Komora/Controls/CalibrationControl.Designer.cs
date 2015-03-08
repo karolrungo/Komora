@@ -28,122 +28,123 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.labelPt100Coefficients = new System.Windows.Forms.Label();
-            this.labelPt100Chambers = new System.Windows.Forms.Label();
-            this.dataGridViewPt100Polynomial = new System.Windows.Forms.DataGridView();
-            this.dataGridViewPt100Chambers = new System.Windows.Forms.DataGridView();
-            this.calibrationPlotPt100 = new ZedGraph.ZedGraphControl();
-            this.buttonBeginCalibrationPt100 = new System.Windows.Forms.Button();
-            this.buttonBrowseFilePt100 = new System.Windows.Forms.Button();
-            this.textBoxFilePt100 = new System.Windows.Forms.TextBox();
+            this.labelCoefficients = new System.Windows.Forms.Label();
+            this.labelChambers = new System.Windows.Forms.Label();
+            this.dataGridViewPolynomial = new System.Windows.Forms.DataGridView();
+            this.dataGridViewChambers = new System.Windows.Forms.DataGridView();
+            this.calibrationPlot = new ZedGraph.ZedGraphControl();
+            this.buttonBeginCalibration = new System.Windows.Forms.Button();
+            this.buttonBrowseFile = new System.Windows.Forms.Button();
+            this.textBoxFile = new System.Windows.Forms.TextBox();
             this.labelFilePathPt100 = new System.Windows.Forms.Label();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPt100Polynomial)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPt100Chambers)).BeginInit();
+            this.buttonDeleteCoefficients = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPolynomial)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewChambers)).BeginInit();
             this.SuspendLayout();
             // 
-            // labelPt100Coefficients
+            // labelCoefficients
             // 
-            this.labelPt100Coefficients.AutoSize = true;
-            this.labelPt100Coefficients.Location = new System.Drawing.Point(780, 239);
-            this.labelPt100Coefficients.Name = "labelPt100Coefficients";
-            this.labelPt100Coefficients.Size = new System.Drawing.Size(65, 13);
-            this.labelPt100Coefficients.TabIndex = 22;
-            this.labelPt100Coefficients.Text = "Coefficients:";
+            this.labelCoefficients.AutoSize = true;
+            this.labelCoefficients.Location = new System.Drawing.Point(780, 239);
+            this.labelCoefficients.Name = "labelCoefficients";
+            this.labelCoefficients.Size = new System.Drawing.Size(65, 13);
+            this.labelCoefficients.TabIndex = 22;
+            this.labelCoefficients.Text = "Coefficients:";
             // 
-            // labelPt100Chambers
+            // labelChambers
             // 
-            this.labelPt100Chambers.AutoSize = true;
-            this.labelPt100Chambers.Location = new System.Drawing.Point(780, 95);
-            this.labelPt100Chambers.Name = "labelPt100Chambers";
-            this.labelPt100Chambers.Size = new System.Drawing.Size(57, 13);
-            this.labelPt100Chambers.TabIndex = 21;
-            this.labelPt100Chambers.Text = "Chambers:";
+            this.labelChambers.AutoSize = true;
+            this.labelChambers.Location = new System.Drawing.Point(780, 95);
+            this.labelChambers.Name = "labelChambers";
+            this.labelChambers.Size = new System.Drawing.Size(57, 13);
+            this.labelChambers.TabIndex = 21;
+            this.labelChambers.Text = "Chambers:";
             // 
-            // dataGridViewPt100Polynomial
+            // dataGridViewPolynomial
             // 
-            this.dataGridViewPt100Polynomial.AllowUserToAddRows = false;
-            this.dataGridViewPt100Polynomial.AllowUserToDeleteRows = false;
-            this.dataGridViewPt100Polynomial.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewPt100Polynomial.Location = new System.Drawing.Point(780, 259);
-            this.dataGridViewPt100Polynomial.Name = "dataGridViewPt100Polynomial";
-            this.dataGridViewPt100Polynomial.ReadOnly = true;
-            this.dataGridViewPt100Polynomial.Size = new System.Drawing.Size(507, 135);
-            this.dataGridViewPt100Polynomial.TabIndex = 20;
+            this.dataGridViewPolynomial.AllowUserToAddRows = false;
+            this.dataGridViewPolynomial.AllowUserToDeleteRows = false;
+            this.dataGridViewPolynomial.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewPolynomial.Location = new System.Drawing.Point(780, 259);
+            this.dataGridViewPolynomial.Name = "dataGridViewPolynomial";
+            this.dataGridViewPolynomial.ReadOnly = true;
+            this.dataGridViewPolynomial.Size = new System.Drawing.Size(507, 135);
+            this.dataGridViewPolynomial.TabIndex = 20;
             // 
-            // dataGridViewPt100Chambers
+            // dataGridViewChambers
             // 
-            this.dataGridViewPt100Chambers.AllowUserToAddRows = false;
-            this.dataGridViewPt100Chambers.AllowUserToDeleteRows = false;
-            this.dataGridViewPt100Chambers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewPt100Chambers.Location = new System.Drawing.Point(780, 114);
-            this.dataGridViewPt100Chambers.Name = "dataGridViewPt100Chambers";
-            this.dataGridViewPt100Chambers.ReadOnly = true;
-            this.dataGridViewPt100Chambers.Size = new System.Drawing.Size(507, 118);
-            this.dataGridViewPt100Chambers.TabIndex = 19;
+            this.dataGridViewChambers.AllowUserToAddRows = false;
+            this.dataGridViewChambers.AllowUserToDeleteRows = false;
+            this.dataGridViewChambers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewChambers.Location = new System.Drawing.Point(780, 114);
+            this.dataGridViewChambers.Name = "dataGridViewChambers";
+            this.dataGridViewChambers.ReadOnly = true;
+            this.dataGridViewChambers.Size = new System.Drawing.Size(507, 118);
+            this.dataGridViewChambers.TabIndex = 19;
             // 
-            // calibrationPlotPt100
+            // calibrationPlot
             // 
-            this.calibrationPlotPt100.IsAutoScrollRange = false;
-            this.calibrationPlotPt100.IsEnableHPan = true;
-            this.calibrationPlotPt100.IsEnableHZoom = true;
-            this.calibrationPlotPt100.IsEnableVPan = true;
-            this.calibrationPlotPt100.IsEnableVZoom = true;
-            this.calibrationPlotPt100.IsScrollY2 = false;
-            this.calibrationPlotPt100.IsShowContextMenu = true;
-            this.calibrationPlotPt100.IsShowCursorValues = false;
-            this.calibrationPlotPt100.IsShowHScrollBar = false;
-            this.calibrationPlotPt100.IsShowPointValues = false;
-            this.calibrationPlotPt100.IsShowVScrollBar = false;
-            this.calibrationPlotPt100.IsZoomOnMouseCenter = false;
-            this.calibrationPlotPt100.Location = new System.Drawing.Point(7, 67);
-            this.calibrationPlotPt100.Name = "calibrationPlotPt100";
-            this.calibrationPlotPt100.PanButtons = System.Windows.Forms.MouseButtons.Left;
-            this.calibrationPlotPt100.PanButtons2 = System.Windows.Forms.MouseButtons.Middle;
-            this.calibrationPlotPt100.PanModifierKeys2 = System.Windows.Forms.Keys.None;
-            this.calibrationPlotPt100.PointDateFormat = "g";
-            this.calibrationPlotPt100.PointValueFormat = "G";
-            this.calibrationPlotPt100.ScrollMaxX = 0D;
-            this.calibrationPlotPt100.ScrollMaxY = 0D;
-            this.calibrationPlotPt100.ScrollMaxY2 = 0D;
-            this.calibrationPlotPt100.ScrollMinX = 0D;
-            this.calibrationPlotPt100.ScrollMinY = 0D;
-            this.calibrationPlotPt100.ScrollMinY2 = 0D;
-            this.calibrationPlotPt100.Size = new System.Drawing.Size(729, 419);
-            this.calibrationPlotPt100.TabIndex = 18;
-            this.calibrationPlotPt100.ZoomButtons = System.Windows.Forms.MouseButtons.Left;
-            this.calibrationPlotPt100.ZoomButtons2 = System.Windows.Forms.MouseButtons.None;
-            this.calibrationPlotPt100.ZoomModifierKeys = System.Windows.Forms.Keys.None;
-            this.calibrationPlotPt100.ZoomModifierKeys2 = System.Windows.Forms.Keys.None;
-            this.calibrationPlotPt100.ZoomStepFraction = 0.1D;
+            this.calibrationPlot.IsAutoScrollRange = false;
+            this.calibrationPlot.IsEnableHPan = true;
+            this.calibrationPlot.IsEnableHZoom = true;
+            this.calibrationPlot.IsEnableVPan = true;
+            this.calibrationPlot.IsEnableVZoom = true;
+            this.calibrationPlot.IsScrollY2 = false;
+            this.calibrationPlot.IsShowContextMenu = true;
+            this.calibrationPlot.IsShowCursorValues = false;
+            this.calibrationPlot.IsShowHScrollBar = false;
+            this.calibrationPlot.IsShowPointValues = false;
+            this.calibrationPlot.IsShowVScrollBar = false;
+            this.calibrationPlot.IsZoomOnMouseCenter = false;
+            this.calibrationPlot.Location = new System.Drawing.Point(7, 67);
+            this.calibrationPlot.Name = "calibrationPlot";
+            this.calibrationPlot.PanButtons = System.Windows.Forms.MouseButtons.Left;
+            this.calibrationPlot.PanButtons2 = System.Windows.Forms.MouseButtons.Middle;
+            this.calibrationPlot.PanModifierKeys2 = System.Windows.Forms.Keys.None;
+            this.calibrationPlot.PointDateFormat = "g";
+            this.calibrationPlot.PointValueFormat = "G";
+            this.calibrationPlot.ScrollMaxX = 0D;
+            this.calibrationPlot.ScrollMaxY = 0D;
+            this.calibrationPlot.ScrollMaxY2 = 0D;
+            this.calibrationPlot.ScrollMinX = 0D;
+            this.calibrationPlot.ScrollMinY = 0D;
+            this.calibrationPlot.ScrollMinY2 = 0D;
+            this.calibrationPlot.Size = new System.Drawing.Size(729, 419);
+            this.calibrationPlot.TabIndex = 18;
+            this.calibrationPlot.ZoomButtons = System.Windows.Forms.MouseButtons.Left;
+            this.calibrationPlot.ZoomButtons2 = System.Windows.Forms.MouseButtons.None;
+            this.calibrationPlot.ZoomModifierKeys = System.Windows.Forms.Keys.None;
+            this.calibrationPlot.ZoomModifierKeys2 = System.Windows.Forms.Keys.None;
+            this.calibrationPlot.ZoomStepFraction = 0.1D;
             // 
-            // buttonBeginCalibrationPt100
+            // buttonBeginCalibration
             // 
-            this.buttonBeginCalibrationPt100.Location = new System.Drawing.Point(984, 15);
-            this.buttonBeginCalibrationPt100.Name = "buttonBeginCalibrationPt100";
-            this.buttonBeginCalibrationPt100.Size = new System.Drawing.Size(147, 45);
-            this.buttonBeginCalibrationPt100.TabIndex = 17;
-            this.buttonBeginCalibrationPt100.Text = "Begin Calibration";
-            this.buttonBeginCalibrationPt100.UseVisualStyleBackColor = true;
-            this.buttonBeginCalibrationPt100.Click += new System.EventHandler(this.buttonBeginCalibrationPt100_Click);
+            this.buttonBeginCalibration.Location = new System.Drawing.Point(984, 15);
+            this.buttonBeginCalibration.Name = "buttonBeginCalibration";
+            this.buttonBeginCalibration.Size = new System.Drawing.Size(147, 45);
+            this.buttonBeginCalibration.TabIndex = 17;
+            this.buttonBeginCalibration.Text = "Begin Calibration";
+            this.buttonBeginCalibration.UseVisualStyleBackColor = true;
+            this.buttonBeginCalibration.Click += new System.EventHandler(this.buttonBeginCalibrationPt100_Click);
             // 
-            // buttonBrowseFilePt100
+            // buttonBrowseFile
             // 
-            this.buttonBrowseFilePt100.Location = new System.Drawing.Point(627, 12);
-            this.buttonBrowseFilePt100.Name = "buttonBrowseFilePt100";
-            this.buttonBrowseFilePt100.Size = new System.Drawing.Size(109, 20);
-            this.buttonBrowseFilePt100.TabIndex = 16;
-            this.buttonBrowseFilePt100.Text = "Browse file";
-            this.buttonBrowseFilePt100.UseVisualStyleBackColor = true;
-            this.buttonBrowseFilePt100.Click += new System.EventHandler(this.buttonBrowseFilePt100_Click);
+            this.buttonBrowseFile.Location = new System.Drawing.Point(627, 12);
+            this.buttonBrowseFile.Name = "buttonBrowseFile";
+            this.buttonBrowseFile.Size = new System.Drawing.Size(109, 20);
+            this.buttonBrowseFile.TabIndex = 16;
+            this.buttonBrowseFile.Text = "Browse file";
+            this.buttonBrowseFile.UseVisualStyleBackColor = true;
+            this.buttonBrowseFile.Click += new System.EventHandler(this.buttonBrowseFilePt100_Click);
             // 
-            // textBoxFilePt100
+            // textBoxFile
             // 
-            this.textBoxFilePt100.Enabled = false;
-            this.textBoxFilePt100.Location = new System.Drawing.Point(88, 12);
-            this.textBoxFilePt100.Name = "textBoxFilePt100";
-            this.textBoxFilePt100.Size = new System.Drawing.Size(533, 20);
-            this.textBoxFilePt100.TabIndex = 15;
+            this.textBoxFile.Enabled = false;
+            this.textBoxFile.Location = new System.Drawing.Point(88, 12);
+            this.textBoxFile.Name = "textBoxFile";
+            this.textBoxFile.Size = new System.Drawing.Size(533, 20);
+            this.textBoxFile.TabIndex = 15;
             // 
             // labelFilePathPt100
             // 
@@ -158,23 +159,34 @@
             // 
             this.openFileDialog.FileName = "openFileDialog";
             // 
+            // buttonDeleteCoefficients
+            // 
+            this.buttonDeleteCoefficients.Location = new System.Drawing.Point(783, 412);
+            this.buttonDeleteCoefficients.Name = "buttonDeleteCoefficients";
+            this.buttonDeleteCoefficients.Size = new System.Drawing.Size(105, 38);
+            this.buttonDeleteCoefficients.TabIndex = 23;
+            this.buttonDeleteCoefficients.Text = "Delete coefficients ";
+            this.buttonDeleteCoefficients.UseVisualStyleBackColor = true;
+            this.buttonDeleteCoefficients.Click += new System.EventHandler(this.buttonDeleteCoefficients_Click);
+            // 
             // CalibrationControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.labelPt100Coefficients);
-            this.Controls.Add(this.labelPt100Chambers);
-            this.Controls.Add(this.dataGridViewPt100Polynomial);
-            this.Controls.Add(this.dataGridViewPt100Chambers);
-            this.Controls.Add(this.calibrationPlotPt100);
-            this.Controls.Add(this.buttonBeginCalibrationPt100);
-            this.Controls.Add(this.buttonBrowseFilePt100);
-            this.Controls.Add(this.textBoxFilePt100);
+            this.Controls.Add(this.buttonDeleteCoefficients);
+            this.Controls.Add(this.labelCoefficients);
+            this.Controls.Add(this.labelChambers);
+            this.Controls.Add(this.dataGridViewPolynomial);
+            this.Controls.Add(this.dataGridViewChambers);
+            this.Controls.Add(this.calibrationPlot);
+            this.Controls.Add(this.buttonBeginCalibration);
+            this.Controls.Add(this.buttonBrowseFile);
+            this.Controls.Add(this.textBoxFile);
             this.Controls.Add(this.labelFilePathPt100);
             this.Name = "CalibrationControl";
             this.Size = new System.Drawing.Size(1323, 529);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPt100Polynomial)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPt100Chambers)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPolynomial)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewChambers)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -182,16 +194,17 @@
 
         #endregion
 
-        private System.Windows.Forms.Label labelPt100Coefficients;
-        private System.Windows.Forms.Label labelPt100Chambers;
-        private System.Windows.Forms.DataGridView dataGridViewPt100Polynomial;
-        private System.Windows.Forms.DataGridView dataGridViewPt100Chambers;
-        private ZedGraph.ZedGraphControl calibrationPlotPt100;
-        private System.Windows.Forms.Button buttonBeginCalibrationPt100;
-        private System.Windows.Forms.Button buttonBrowseFilePt100;
-        private System.Windows.Forms.TextBox textBoxFilePt100;
+        private System.Windows.Forms.Label labelCoefficients;
+        private System.Windows.Forms.Label labelChambers;
+        private System.Windows.Forms.DataGridView dataGridViewPolynomial;
+        private System.Windows.Forms.DataGridView dataGridViewChambers;
+        private ZedGraph.ZedGraphControl calibrationPlot;
+        private System.Windows.Forms.Button buttonBeginCalibration;
+        private System.Windows.Forms.Button buttonBrowseFile;
+        private System.Windows.Forms.TextBox textBoxFile;
         private System.Windows.Forms.Label labelFilePathPt100;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
+        private System.Windows.Forms.Button buttonDeleteCoefficients;
 
     }
 }

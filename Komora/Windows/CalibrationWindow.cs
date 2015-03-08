@@ -22,6 +22,9 @@ namespace Komora.Windows
         private DataTypes.Pt100Polynomial pt100Polynomial;
         private DataTypes.LedPolynomial ledPolynomial;
 
+        public CalibrationWindow()
+        { }
+
         public CalibrationWindow(IDataBaseConnector databaseConnector, Classes.File.ISamplesReader<double> csvReader)
         {
             this.databaseConnector = databaseConnector;
@@ -31,16 +34,31 @@ namespace Komora.Windows
 
             measurementSamples = new DataTypes.MeasurementSamples<double>();
 
+            calibrationControl1 = new Komora.Controls.CalibrationControl(Utilities.CoefficientsType.PT100);
             InitializeComponent();
 
             calibrationControl1.setFilename("D:\\INŻYNIERKA\\IZNYNIERKA- wszystko\\pt100.csv");
             calibrationControl1.setPlotTitles("PT100 Calibration", "resistance?", "temperature?");
-            //dataGridViewPt100Chambers.DataSource = linqDatabaseConnector.selectAllChambers();
-            //dataGridViewPt100Polynomial.DataSource = linqDatabaseConnector.selectAllPt100Polynomials();
+            calibrationControl1.fillChamberDgv(databaseConnector.selectAllChambers());
+            calibrationControl1.fillPolynomialDgv<Pt100_Poly>(databaseConnector.selectAllPt100Polynomials());
+
+            calibrationControl1.DeleteCoefficientsButtonClicked += calibrationControl1_deleteCoefficientsButtonClicked;
         }
 
-        public CalibrationWindow()
-        { }
+        private void calibrationControl1_deleteCoefficientsButtonClicked(object sender, Utilities.DeleteCoefficientsEventArgs e)
+        {
+            ;
+            if (e.coefficientsType == Utilities.CoefficientsType.PT100)
+            {
+                MessageBox.Show("pt100");
+            }
+            else
+            {
+                MessageBox.Show("led");
+            }
+        }
+
+        
 
  
 

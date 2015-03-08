@@ -41,7 +41,8 @@ namespace Komora.Windows
 
         private void buttonCalibration_Click(object sender, EventArgs e)
         {
-            CalibrationWindow calibrationWindow = new CalibrationWindow();
+            CalibrationWindow calibrationWindow = new CalibrationWindow(new Komora.Classes.DataBase.LinqDataBaseConnector(),
+                                                                        new Komora.Classes.File.MeasurementSamplesReader<double>());
             calibrationWindow.Show();
         }
 
