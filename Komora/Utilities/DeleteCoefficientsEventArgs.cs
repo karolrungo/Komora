@@ -16,5 +16,10 @@ namespace Komora.Utilities
             this.coefficientsID = ID;
             this.coefficientsType = coefficientsType;
         }
+
+        public DeleteCoefficientsEventArgs(CoefficientsType coefficientsType)
+        {
+            this.coefficientsType = coefficientsType;
+        }
     }
 }

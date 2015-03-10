@@ -31,8 +31,8 @@
             this.fileDialog = new System.Windows.Forms.OpenFileDialog();
             this.tabControlCalibration = new System.Windows.Forms.TabControl();
             this.tabPagePt100 = new System.Windows.Forms.TabPage();
+            this.calibrationControlPt100 = new Komora.Controls.CalibrationControl();
             this.tabPageLED = new System.Windows.Forms.TabPage();
-            
             this.tabControlCalibration.SuspendLayout();
             this.tabPagePt100.SuspendLayout();
             this.SuspendLayout();
@@ -54,7 +54,7 @@
             // 
             // tabPagePt100
             // 
-            this.tabPagePt100.Controls.Add(this.calibrationControl1);
+            this.tabPagePt100.Controls.Add(this.calibrationControlPt100);
             this.tabPagePt100.Location = new System.Drawing.Point(4, 22);
             this.tabPagePt100.Name = "tabPagePt100";
             this.tabPagePt100.Padding = new System.Windows.Forms.Padding(3);
@@ -63,22 +63,22 @@
             this.tabPagePt100.Text = "Pt100";
             this.tabPagePt100.UseVisualStyleBackColor = true;
             // 
+            // calibrationControlPt100
+            // 
+            this.calibrationControlPt100.Location = new System.Drawing.Point(6, 6);
+            this.calibrationControlPt100.Name = "calibrationControlPt100";
+            this.calibrationControlPt100.Size = new System.Drawing.Size(1323, 529);
+            this.calibrationControlPt100.TabIndex = 0;
+            // 
             // tabPageLED
             // 
             this.tabPageLED.Location = new System.Drawing.Point(4, 22);
             this.tabPageLED.Name = "tabPageLED";
             this.tabPageLED.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageLED.Size = new System.Drawing.Size(1305, 503);
+            this.tabPageLED.Size = new System.Drawing.Size(1346, 533);
             this.tabPageLED.TabIndex = 1;
             this.tabPageLED.Text = "LED";
             this.tabPageLED.UseVisualStyleBackColor = true;
-            // 
-            // calibrationControl1
-            // 
-            this.calibrationControl1.Location = new System.Drawing.Point(6, 6);
-            this.calibrationControl1.Name = "calibrationControl1";
-            this.calibrationControl1.Size = new System.Drawing.Size(1323, 529);
-            this.calibrationControl1.TabIndex = 0;
             // 
             // CalibrationWindow
             // 
@@ -100,7 +100,7 @@
         private System.Windows.Forms.TabControl tabControlCalibration;
         private System.Windows.Forms.TabPage tabPagePt100;
         private System.Windows.Forms.TabPage tabPageLED;
-        private Controls.CalibrationControl calibrationControl1;
+        private Controls.CalibrationControl calibrationControlPt100;
 
     }
 }

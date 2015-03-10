@@ -44,20 +44,20 @@ namespace Komora.Classes.DataBase
         {
             return this.dataContext.Users.First(x => x.ID == id);
         }
-
-        public HardwareConfiguration selectChamber(int id)
-        {
-            return this.dataContext.HardwareConfigurations.First(x => x.ID == id);
-        }
-
-        public IQueryable<User> selectAllUsers()
+        public IQueryable<User> getAllUsers()
         {
             return this.dataContext.Users.Select(user => user);
+        }
+
+        public HardwareConfiguration getChamber(int id)
+        {
+            return this.dataContext.HardwareConfigurations.First(x => x.ID == id);
         }
         public IQueryable<HardwareConfiguration> selectAllChambers()
         {
             return this.dataContext.HardwareConfigurations.Select(chamber => chamber);
         }
+
         public IQueryable<Pt100_Poly> selectAllPt100Polynomials()
         {
             return this.dataContext.Pt100_Polies.Select(pt100Poly => pt100Poly);
@@ -110,6 +110,36 @@ namespace Komora.Classes.DataBase
 
             dataContext.Pt100_Polies.DeleteOnSubmit(query);
             dataContext.SubmitChanges();
+        }
+        public void deletePt100Coefficients()
+        {
+            var query = from c in dataContext.Pt100_Polies select c;
+
+            foreach (var item in query)
+            {
+                dataContext.Pt100_Polies.DeleteOnSubmit(item);
+            }  
+            dataContext.SubmitChanges(); 
+        }
+
+        public void deleteLedCoefficients(int coefficientsID) 
+        {
+            var query = (from c in dataContext.Led_Polies
+                         where c.ID == coefficientsID
+                         select c).First();
+
+            dataContext.Led_Polies.DeleteOnSubmit(query);
+            dataContext.SubmitChanges();
+        }
+        public void deleteLedCoefficients()
+        {
+            var query = from c in dataContext.Led_Polies select c;
+
+            foreach (var item in query)
+            {
+                dataContext.Led_Polies.DeleteOnSubmit(item);
+            }
+            dataContext.SubmitChanges(); 
         }
     }
 }

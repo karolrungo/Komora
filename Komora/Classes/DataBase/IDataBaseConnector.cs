@@ -15,9 +15,9 @@ namespace Komora.Classes.DataBase
         User getUser(string login, string password);
         User getUser(int id);
 
-        HardwareConfiguration selectChamber(int id);
+        HardwareConfiguration getChamber(int id);
 
-        IQueryable<User> selectAllUsers();
+        IQueryable<User> getAllUsers();
         IQueryable<HardwareConfiguration> selectAllChambers();
         IQueryable<Pt100_Poly> selectAllPt100Polynomials();
         IQueryable<Led_Poly> selectAllLedPolynomials();
@@ -28,5 +28,8 @@ namespace Komora.Classes.DataBase
 
 
         void deletePt100Coefficients(int coefficientsID);
+        void deletePt100Coefficients();
+        void deleteLedCoefficients(int coefficientsID); 
+        void deleteLedCoefficients();
     }
 }

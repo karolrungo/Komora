@@ -6,5 +6,5 @@ using System.Threading.Tasks;
 
 namespace Komora.Utilities
 {
-    public enum CoefficientsType {PT100, LED};
+    public enum CoefficientsType {PT100, LED, UNSET};
 }

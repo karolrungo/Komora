@@ -39,6 +39,7 @@
             this.labelFilePathPt100 = new System.Windows.Forms.Label();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.buttonDeleteCoefficients = new System.Windows.Forms.Button();
+            this.buttonDeleteAllCoefficients = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPolynomial)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewChambers)).BeginInit();
             this.SuspendLayout();
@@ -97,7 +98,7 @@
             this.calibrationPlot.IsShowPointValues = false;
             this.calibrationPlot.IsShowVScrollBar = false;
             this.calibrationPlot.IsZoomOnMouseCenter = false;
-            this.calibrationPlot.Location = new System.Drawing.Point(7, 67);
+            this.calibrationPlot.Location = new System.Drawing.Point(7, 64);
             this.calibrationPlot.Name = "calibrationPlot";
             this.calibrationPlot.PanButtons = System.Windows.Forms.MouseButtons.Left;
             this.calibrationPlot.PanButtons2 = System.Windows.Forms.MouseButtons.Middle;
@@ -165,14 +166,25 @@
             this.buttonDeleteCoefficients.Name = "buttonDeleteCoefficients";
             this.buttonDeleteCoefficients.Size = new System.Drawing.Size(105, 38);
             this.buttonDeleteCoefficients.TabIndex = 23;
-            this.buttonDeleteCoefficients.Text = "Delete coefficients ";
+            this.buttonDeleteCoefficients.Text = "Delete selected coefficients ";
             this.buttonDeleteCoefficients.UseVisualStyleBackColor = true;
-            this.buttonDeleteCoefficients.Click += new System.EventHandler(this.buttonDeleteCoefficients_Click);
+            this.buttonDeleteCoefficients.Click += new System.EventHandler(this.buttonDeleteSelectedCoefficients_Click);
+            // 
+            // buttonDeleteAllCoefficients
+            // 
+            this.buttonDeleteAllCoefficients.Location = new System.Drawing.Point(926, 412);
+            this.buttonDeleteAllCoefficients.Name = "buttonDeleteAllCoefficients";
+            this.buttonDeleteAllCoefficients.Size = new System.Drawing.Size(103, 38);
+            this.buttonDeleteAllCoefficients.TabIndex = 24;
+            this.buttonDeleteAllCoefficients.Text = "Delete all coefficients";
+            this.buttonDeleteAllCoefficients.UseVisualStyleBackColor = true;
+            this.buttonDeleteAllCoefficients.Click += new System.EventHandler(this.buttonDeleteAllCoefficients_Click);
             // 
             // CalibrationControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.buttonDeleteAllCoefficients);
             this.Controls.Add(this.buttonDeleteCoefficients);
             this.Controls.Add(this.labelCoefficients);
             this.Controls.Add(this.labelChambers);
@@ -205,6 +217,7 @@
         private System.Windows.Forms.Label labelFilePathPt100;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.Button buttonDeleteCoefficients;
+        private System.Windows.Forms.Button buttonDeleteAllCoefficients;
 
     }
 }

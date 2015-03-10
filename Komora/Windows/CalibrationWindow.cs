@@ -34,31 +34,59 @@ namespace Komora.Windows
 
             measurementSamples = new DataTypes.MeasurementSamples<double>();
 
-            calibrationControl1 = new Komora.Controls.CalibrationControl(Utilities.CoefficientsType.PT100);
+            
             InitializeComponent();
 
-            calibrationControl1.setFilename("D:\\INŻYNIERKA\\IZNYNIERKA- wszystko\\pt100.csv");
-            calibrationControl1.setPlotTitles("PT100 Calibration", "resistance?", "temperature?");
-            calibrationControl1.fillChamberDgv(databaseConnector.selectAllChambers());
-            calibrationControl1.fillPolynomialDgv<Pt100_Poly>(databaseConnector.selectAllPt100Polynomials());
+            calibrationControlPt100.setCoefficientsType(Utilities.CoefficientsType.PT100);
+            calibrationControlPt100.setFilename("D:\\INŻYNIERKA\\IZNYNIERKA- wszystko\\pt100.csv");
+            calibrationControlPt100.setPlotTitles("PT100 Calibration", "resistance?", "temperature?");
+            calibrationControlPt100.fillChamberDgv(databaseConnector.selectAllChambers());
+            calibrationControlPt100.fillPolynomialDgv<Pt100_Poly>(databaseConnector.selectAllPt100Polynomials());
 
-            calibrationControl1.DeleteCoefficientsButtonClicked += calibrationControl1_deleteCoefficientsButtonClicked;
+            calibrationControlPt100.DeleteSelectedCoefficientsButtonClicked += calibrationControl_deleteCoefficientsButtonClicked_PT100;
+            calibrationControlPt100.DeleteAllCoefficientsButtonClicked += calibrationControlDeleteAllCoefficientsButtonClicked;
         }
 
-        private void calibrationControl1_deleteCoefficientsButtonClicked(object sender, Utilities.DeleteCoefficientsEventArgs e)
+        private void calibrationControlDeleteAllCoefficientsButtonClicked(object sender, Utilities.DeleteCoefficientsEventArgs e)
         {
-            ;
             if (e.coefficientsType == Utilities.CoefficientsType.PT100)
             {
-                MessageBox.Show("pt100");
-                databaseConnector.deletePt100Coefficients(e.coefficientsID);
-                calibrationControl1.fillPolynomialDgv<Pt100_Poly>(databaseConnector.selectAllPt100Polynomials());
+                databaseConnector.deletePt100Coefficients();
+                calibrationControlPt100.fillPolynomialDgv<Pt100_Poly>(databaseConnector.selectAllPt100Polynomials());
+            }
+            else if (e.coefficientsType == Utilities.CoefficientsType.LED)
+            {
+                databaseConnector.deleteLedCoefficients();
+                calibrationControlPt100.fillPolynomialDgv<Led_Poly>(databaseConnector.selectAllLedPolynomials());
             }
             else
             {
-                MessageBox.Show("led");
+                MessageBox.Show("Error");
             }
-            
+        }
+        private void calibrationControl_deleteCoefficientsButtonClicked_PT100(object sender, Utilities.DeleteCoefficientsEventArgs e)
+        {
+            if (e.coefficientsType == Utilities.CoefficientsType.PT100)
+            {
+                databaseConnector.deletePt100Coefficients(e.coefficientsID);
+                calibrationControlPt100.fillPolynomialDgv<Pt100_Poly>(databaseConnector.selectAllPt100Polynomials());
+            }
+            else
+            {
+                MessageBox.Show("Error!");
+            } 
+        }
+        private void calibrationControl_deleteCoefficientsButtonClicked_LED(object sender, Utilities.DeleteCoefficientsEventArgs e)
+        {
+            if (e.coefficientsType == Utilities.CoefficientsType.LED)
+            {
+                databaseConnector.deleteLedCoefficients(e.coefficientsID);
+                calibrationControlPt100.fillPolynomialDgv<Led_Poly>(databaseConnector.selectAllLedPolynomials());
+            }
+            else
+            {
+                MessageBox.Show("Error!");
+            }
         }
 
         
