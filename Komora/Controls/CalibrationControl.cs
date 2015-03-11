@@ -15,7 +15,7 @@ namespace Komora.Controls
         public delegate void ButtonClickedEventHandler(object sender, EventArgs e);
         public delegate void CoefficientsButtonEventHandler(object sender, Utilities.DeleteCoefficientsEventArgs e);
         public event ButtonClickedEventHandler BrovseFileButtonClicked;
-        public event ButtonClickedEventHandler BeginCalibrationButtonClicked;
+        public event CoefficientsButtonEventHandler BeginCalibrationButtonClicked;
         public event CoefficientsButtonEventHandler DeleteAllCoefficientsButtonClicked;
         public event CoefficientsButtonEventHandler DeleteSelectedCoefficientsButtonClicked;
 
@@ -35,10 +35,11 @@ namespace Komora.Controls
 
             setFilenameFromOpenFileDialog();
         }
-        private void buttonBeginCalibrationPt100_Click(object sender, EventArgs e)
+        private void buttonBeginCalibration_Click(object sender, EventArgs e)
         {
             if (BeginCalibrationButtonClicked != null)
-                BeginCalibrationButtonClicked(this, EventArgs.Empty);
+                BeginCalibrationButtonClicked(this,
+                                              new Utilities.DeleteCoefficientsEventArgs(coefficientsType));
         }
         private void buttonDeleteSelectedCoefficients_Click(object sender, EventArgs e)
         {
@@ -87,6 +88,7 @@ namespace Komora.Controls
         public void setFilename(string filename) //to remove after deployment
         {
             this.filename = filename;
+            this.textBoxFile.Text = filename;
         }
         private void setFilenameFromOpenFileDialog()
         {
@@ -118,6 +120,14 @@ namespace Komora.Controls
             return (dgv.SelectedRows.Count == 1) ? true : false;
         }
 
+        internal int getPolynomialOrder()
+        {
+            return Int32.Parse(comboBoxPolyOrder.Text);
+        }
 
+        internal void showResults(string coefficientsString)
+        {
+            textBoxResults.Text = coefficientsString;
+        }
     }
 }

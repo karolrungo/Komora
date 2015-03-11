@@ -45,8 +45,38 @@ namespace Komora.Windows
 
             calibrationControlPt100.DeleteSelectedCoefficientsButtonClicked += calibrationControl_deleteCoefficientsButtonClicked_PT100;
             calibrationControlPt100.DeleteAllCoefficientsButtonClicked += calibrationControlDeleteAllCoefficientsButtonClicked;
+            calibrationControlPt100.BeginCalibrationButtonClicked += calibrationControlPt100_BeginCalibrationButtonClicked;
         }
 
+        void calibrationControlPt100_BeginCalibrationButtonClicked(object sender, Utilities.DeleteCoefficientsEventArgs e)
+        {
+            measurementSamples = new DataTypes.MeasurementSamples<double>();
+
+            try
+            {
+                if (e.coefficientsType == Utilities.CoefficientsType.PT100)
+                {
+                    pt100Polynomial = new DataTypes.Pt100Polynomial();
+                    measurementSamples = csvReader.readSamplesFromFile(calibrationControlPt100.getFilename());
+                    pt100Polynomial.calculateCoefficients(measurementSamples, calibrationControlPt100.getPolynomialOrder());
+                    calibrationControlPt100.showResults(pt100Polynomial.ToString());
+
+                }
+                else if (e.coefficientsType == Utilities.CoefficientsType.LED)
+                {
+
+                }
+                else
+                {
+                    MessageBox.Show("Error");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            
+        }
         private void calibrationControlDeleteAllCoefficientsButtonClicked(object sender, Utilities.DeleteCoefficientsEventArgs e)
         {
             if (e.coefficientsType == Utilities.CoefficientsType.PT100)

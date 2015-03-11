@@ -126,6 +126,8 @@
     <Compile Include="Test\DataTypes\PolynomialCoefficientsTests.cs" />
     <Compile Include="Test\Loger\LogerDataBaseTests.cs" />
     <Compile Include="Test\Loger\LogerFakeTests.cs" />
+    <Compile Include="Test\Utilities\CoefficientsStringFormatterTests.cs" />
+    <Compile Include="Utilities\CoefficientsStringFormatter.cs" />
     <Compile Include="Utilities\CoefficientsType.cs" />
     <Compile Include="Utilities\DeleteCoefficientsEventArgs.cs" />
     <Compile Include="Windows\CalibrationWindow.cs">
