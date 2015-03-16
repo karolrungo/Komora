@@ -24,12 +24,12 @@ namespace Komora.Classes.DataBase
 
 
         void deleteChamber(Chamber.ChamberData chamberData);
-
-
-
+        void deleteChamber(int chamberID);
         void deletePt100Coefficients(int coefficientsID);
         void deletePt100Coefficients();
         void deleteLedCoefficients(int coefficientsID); 
         void deleteLedCoefficients();
+        void savePt100Coefficients(int chamberID, string coefficients);
+        void saveLEDCoefficients(int chamberID, string coefficientsLower, string coefficientsHigher);
     }
 }

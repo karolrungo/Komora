@@ -41,9 +41,16 @@
             this.buttonDeleteCoefficients = new System.Windows.Forms.Button();
             this.buttonDeleteAllCoefficients = new System.Windows.Forms.Button();
             this.labelPolynomialOrder = new System.Windows.Forms.Label();
-            this.comboBoxPolyOrder = new System.Windows.Forms.ComboBox();
+            this.comboBoxPolyOrderLower = new System.Windows.Forms.ComboBox();
             this.labelResults = new System.Windows.Forms.Label();
-            this.textBoxResults = new System.Windows.Forms.TextBox();
+            this.textBoxResultsLower = new System.Windows.Forms.TextBox();
+            this.textBoxResultsHigher = new System.Windows.Forms.TextBox();
+            this.comboBoxPolyOrderHigher = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBoxCurrentBound = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.buttonSaveCoefficients = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPolynomial)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewChambers)).BeginInit();
             this.SuspendLayout();
@@ -60,7 +67,7 @@
             // labelChambers
             // 
             this.labelChambers.AutoSize = true;
-            this.labelChambers.Location = new System.Drawing.Point(757, 111);
+            this.labelChambers.Location = new System.Drawing.Point(757, 104);
             this.labelChambers.Name = "labelChambers";
             this.labelChambers.Size = new System.Drawing.Size(57, 13);
             this.labelChambers.TabIndex = 21;
@@ -125,7 +132,7 @@
             // 
             // buttonBeginCalibration
             // 
-            this.buttonBeginCalibration.Location = new System.Drawing.Point(993, 48);
+            this.buttonBeginCalibration.Location = new System.Drawing.Point(1061, 15);
             this.buttonBeginCalibration.Name = "buttonBeginCalibration";
             this.buttonBeginCalibration.Size = new System.Drawing.Size(147, 45);
             this.buttonBeginCalibration.TabIndex = 17;
@@ -166,7 +173,7 @@
             // 
             // buttonDeleteCoefficients
             // 
-            this.buttonDeleteCoefficients.Location = new System.Drawing.Point(757, 469);
+            this.buttonDeleteCoefficients.Location = new System.Drawing.Point(833, 495);
             this.buttonDeleteCoefficients.Name = "buttonDeleteCoefficients";
             this.buttonDeleteCoefficients.Size = new System.Drawing.Size(105, 38);
             this.buttonDeleteCoefficients.TabIndex = 23;
@@ -176,7 +183,7 @@
             // 
             // buttonDeleteAllCoefficients
             // 
-            this.buttonDeleteAllCoefficients.Location = new System.Drawing.Point(900, 469);
+            this.buttonDeleteAllCoefficients.Location = new System.Drawing.Point(957, 495);
             this.buttonDeleteAllCoefficients.Name = "buttonDeleteAllCoefficients";
             this.buttonDeleteAllCoefficients.Size = new System.Drawing.Size(103, 38);
             this.buttonDeleteAllCoefficients.TabIndex = 24;
@@ -187,25 +194,25 @@
             // labelPolynomialOrder
             // 
             this.labelPolynomialOrder.AutoSize = true;
-            this.labelPolynomialOrder.Location = new System.Drawing.Point(754, 64);
+            this.labelPolynomialOrder.Location = new System.Drawing.Point(757, 30);
             this.labelPolynomialOrder.Name = "labelPolynomialOrder";
             this.labelPolynomialOrder.Size = new System.Drawing.Size(87, 13);
             this.labelPolynomialOrder.TabIndex = 27;
             this.labelPolynomialOrder.Text = "Polynomial order:";
             // 
-            // comboBoxPolyOrder
+            // comboBoxPolyOrderLower
             // 
-            this.comboBoxPolyOrder.FormattingEnabled = true;
-            this.comboBoxPolyOrder.Items.AddRange(new object[] {
+            this.comboBoxPolyOrderLower.FormattingEnabled = true;
+            this.comboBoxPolyOrderLower.Items.AddRange(new object[] {
             "1",
             "2",
             "3",
             "4"});
-            this.comboBoxPolyOrder.Location = new System.Drawing.Point(848, 64);
-            this.comboBoxPolyOrder.Name = "comboBoxPolyOrder";
-            this.comboBoxPolyOrder.Size = new System.Drawing.Size(37, 21);
-            this.comboBoxPolyOrder.TabIndex = 28;
-            this.comboBoxPolyOrder.Text = "2";
+            this.comboBoxPolyOrderLower.Location = new System.Drawing.Point(851, 30);
+            this.comboBoxPolyOrderLower.Name = "comboBoxPolyOrderLower";
+            this.comboBoxPolyOrderLower.Size = new System.Drawing.Size(37, 21);
+            this.comboBoxPolyOrderLower.TabIndex = 28;
+            this.comboBoxPolyOrderLower.Text = "2";
             // 
             // labelResults
             // 
@@ -216,21 +223,94 @@
             this.labelResults.TabIndex = 25;
             this.labelResults.Text = "Results: ";
             // 
-            // textBoxResults
+            // textBoxResultsLower
             // 
-            this.textBoxResults.Enabled = false;
-            this.textBoxResults.Location = new System.Drawing.Point(802, 430);
-            this.textBoxResults.Name = "textBoxResults";
-            this.textBoxResults.Size = new System.Drawing.Size(224, 20);
-            this.textBoxResults.TabIndex = 26;
+            this.textBoxResultsLower.Enabled = false;
+            this.textBoxResultsLower.Location = new System.Drawing.Point(802, 430);
+            this.textBoxResultsLower.Name = "textBoxResultsLower";
+            this.textBoxResultsLower.Size = new System.Drawing.Size(462, 20);
+            this.textBoxResultsLower.TabIndex = 26;
+            // 
+            // textBoxResultsHigher
+            // 
+            this.textBoxResultsHigher.Enabled = false;
+            this.textBoxResultsHigher.Location = new System.Drawing.Point(802, 456);
+            this.textBoxResultsHigher.Name = "textBoxResultsHigher";
+            this.textBoxResultsHigher.Size = new System.Drawing.Size(462, 20);
+            this.textBoxResultsHigher.TabIndex = 29;
+            // 
+            // comboBoxPolyOrderHigher
+            // 
+            this.comboBoxPolyOrderHigher.FormattingEnabled = true;
+            this.comboBoxPolyOrderHigher.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4"});
+            this.comboBoxPolyOrderHigher.Location = new System.Drawing.Point(851, 57);
+            this.comboBoxPolyOrderHigher.Name = "comboBoxPolyOrderHigher";
+            this.comboBoxPolyOrderHigher.Size = new System.Drawing.Size(37, 21);
+            this.comboBoxPolyOrderHigher.TabIndex = 30;
+            this.comboBoxPolyOrderHigher.Text = "2";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(895, 37);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 31;
+            this.label1.Text = "label1";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(895, 64);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(35, 13);
+            this.label2.TabIndex = 32;
+            this.label2.Text = "label2";
+            // 
+            // textBoxCurrentBound
+            // 
+            this.textBoxCurrentBound.Location = new System.Drawing.Point(832, 84);
+            this.textBoxCurrentBound.Name = "textBoxCurrentBound";
+            this.textBoxCurrentBound.Size = new System.Drawing.Size(56, 20);
+            this.textBoxCurrentBound.TabIndex = 33;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(895, 90);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(141, 13);
+            this.label3.TabIndex = 34;
+            this.label3.Text = "Current bound (for LED only)";
+            // 
+            // buttonSaveCoefficients
+            // 
+            this.buttonSaveCoefficients.Location = new System.Drawing.Point(1079, 495);
+            this.buttonSaveCoefficients.Name = "buttonSaveCoefficients";
+            this.buttonSaveCoefficients.Size = new System.Drawing.Size(109, 38);
+            this.buttonSaveCoefficients.TabIndex = 35;
+            this.buttonSaveCoefficients.Text = "Save coefficients to database";
+            this.buttonSaveCoefficients.UseVisualStyleBackColor = true;
+            this.buttonSaveCoefficients.Click += new System.EventHandler(this.buttonSaveCoefficients_Click);
             // 
             // CalibrationControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.comboBoxPolyOrder);
+            this.Controls.Add(this.buttonSaveCoefficients);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.textBoxCurrentBound);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.comboBoxPolyOrderHigher);
+            this.Controls.Add(this.textBoxResultsHigher);
+            this.Controls.Add(this.comboBoxPolyOrderLower);
             this.Controls.Add(this.labelPolynomialOrder);
-            this.Controls.Add(this.textBoxResults);
+            this.Controls.Add(this.textBoxResultsLower);
             this.Controls.Add(this.labelResults);
             this.Controls.Add(this.buttonDeleteAllCoefficients);
             this.Controls.Add(this.buttonDeleteCoefficients);
@@ -244,7 +324,7 @@
             this.Controls.Add(this.textBoxFile);
             this.Controls.Add(this.labelFilePathPt100);
             this.Name = "CalibrationControl";
-            this.Size = new System.Drawing.Size(1323, 529);
+            this.Size = new System.Drawing.Size(1323, 625);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPolynomial)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewChambers)).EndInit();
             this.ResumeLayout(false);
@@ -267,9 +347,16 @@
         private System.Windows.Forms.Button buttonDeleteCoefficients;
         private System.Windows.Forms.Button buttonDeleteAllCoefficients;
         private System.Windows.Forms.Label labelPolynomialOrder;
-        private System.Windows.Forms.ComboBox comboBoxPolyOrder;
+        private System.Windows.Forms.ComboBox comboBoxPolyOrderLower;
         private System.Windows.Forms.Label labelResults;
-        private System.Windows.Forms.TextBox textBoxResults;
+        private System.Windows.Forms.TextBox textBoxResultsLower;
+        private System.Windows.Forms.TextBox textBoxResultsHigher;
+        private System.Windows.Forms.ComboBox comboBoxPolyOrderHigher;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox textBoxCurrentBound;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button buttonSaveCoefficients;
 
     }
 }

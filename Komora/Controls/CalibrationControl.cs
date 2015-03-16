@@ -13,14 +13,17 @@ namespace Komora.Controls
     public partial class CalibrationControl : UserControl
     {
         public delegate void ButtonClickedEventHandler(object sender, EventArgs e);
-        public delegate void CoefficientsButtonEventHandler(object sender, Utilities.DeleteCoefficientsEventArgs e);
+        public delegate void DeleteCoefficientsButtonEventHandler(object sender, Utilities.DeleteCoefficientsEventArgs e);
+        public delegate void SaveCoefficientsButtonEventHandler(object sender, Utilities.SaveCoefficientsEventArgs e);
         public event ButtonClickedEventHandler BrovseFileButtonClicked;
-        public event CoefficientsButtonEventHandler BeginCalibrationButtonClicked;
-        public event CoefficientsButtonEventHandler DeleteAllCoefficientsButtonClicked;
-        public event CoefficientsButtonEventHandler DeleteSelectedCoefficientsButtonClicked;
+        public event DeleteCoefficientsButtonEventHandler BeginCalibrationButtonClicked;
+        public event DeleteCoefficientsButtonEventHandler DeleteAllCoefficientsButtonClicked;
+        public event DeleteCoefficientsButtonEventHandler DeleteSelectedCoefficientsButtonClicked;
+        public event SaveCoefficientsButtonEventHandler SaveCoefficientsButtonClicked;
 
         private string filename;
         private Utilities.CoefficientsType coefficientsType;
+        private Utilities.CoefficientsStringFormatter formatter;
 
         public CalibrationControl()
         {
@@ -35,12 +38,14 @@ namespace Komora.Controls
 
             setFilenameFromOpenFileDialog();
         }
+
         private void buttonBeginCalibration_Click(object sender, EventArgs e)
         {
             if (BeginCalibrationButtonClicked != null)
                 BeginCalibrationButtonClicked(this,
                                               new Utilities.DeleteCoefficientsEventArgs(coefficientsType));
         }
+
         private void buttonDeleteSelectedCoefficients_Click(object sender, EventArgs e)
         {
             if(onlyOneRowSelected(dataGridViewPolynomial))
@@ -53,6 +58,7 @@ namespace Komora.Controls
                 }
             }
         }
+
         private void buttonDeleteAllCoefficients_Click(object sender, EventArgs e)
         {
             if (DeleteAllCoefficientsButtonClicked != null)
@@ -62,20 +68,36 @@ namespace Komora.Controls
             }
         }
 
+        private void buttonSaveCoefficients_Click(object sender, EventArgs e)
+        {
+            if (onlyOneRowSelected(dataGridViewChambers))
+            {
+                if (SaveCoefficientsButtonClicked != null)
+                {
+                    SaveCoefficientsButtonClicked(this,
+                                                  new Utilities.SaveCoefficientsEventArgs(Int32.Parse(dataGridViewChambers.SelectedRows[0].Cells["ID"].Value.ToString()),
+                                                                                          coefficientsType));
+                }
+            }
+        }
+
         public void setPlotTitles(string graphTitle, string xaxisTitle, string yaxisTitle)
         {
             setPlotTitle(graphTitle);
             setPlotXAxisTitle(xaxisTitle);
             setPlotYAxisTitle(yaxisTitle);
         }
+
         private void setPlotTitle(string graphTitle)
         {
             calibrationPlot.GraphPane.Title = graphTitle;
         }
+
         private void setPlotXAxisTitle(string xaxisTitle)
         {
             calibrationPlot.GraphPane.XAxis.Title = xaxisTitle;
         }
+
         private void setPlotYAxisTitle(string yaxisTitle)
         {
             calibrationPlot.GraphPane.YAxis.Title = yaxisTitle;
@@ -85,11 +107,13 @@ namespace Komora.Controls
         {
             return filename;
         }
+
         public void setFilename(string filename) //to remove after deployment
         {
             this.filename = filename;
             this.textBoxFile.Text = filename;
         }
+
         private void setFilenameFromOpenFileDialog()
         {
             openFileDialog = new OpenFileDialog();
@@ -110,6 +134,7 @@ namespace Komora.Controls
         {
             dataGridViewChambers.DataSource = chambers;
         }
+
         public void fillPolynomialDgv<T>(IQueryable<T> polynomials)
         {
             dataGridViewPolynomial.DataSource = polynomials;
@@ -120,14 +145,39 @@ namespace Komora.Controls
             return (dgv.SelectedRows.Count == 1) ? true : false;
         }
 
-        internal int getPolynomialOrder()
+        internal int getPolynomialOrderPt100()
         {
-            return Int32.Parse(comboBoxPolyOrder.Text);
+            return Int32.Parse(comboBoxPolyOrderLower.Text);
+        }
+
+        internal int getPolynomialOrderLower()
+        {
+            return Int32.Parse(comboBoxPolyOrderLower.Text);
+        }
+
+        internal int getPolynomialOrderHigher()
+        {
+            return Int32.Parse(comboBoxPolyOrderHigher.Text);
         }
 
         internal void showResults(string coefficientsString)
         {
-            textBoxResults.Text = coefficientsString;
+            formatter = new Utilities.CoefficientsStringFormatter(coefficientsString);
+            textBoxResultsLower.Text = formatter.formatString();
+        }
+
+        internal void showResults(string coefficientsStringLower, string coefficientsStringHigher)
+        {
+            formatter = new Utilities.CoefficientsStringFormatter(coefficientsStringLower);
+            textBoxResultsLower.Text = formatter.formatString();
+
+            formatter = new Utilities.CoefficientsStringFormatter(coefficientsStringHigher);
+            textBoxResultsHigher.Text = formatter.formatString();
+        }
+
+        internal int getCurrentBound()
+        {
+            return Int32.Parse(textBoxCurrentBound.Text);
         }
     }
 }

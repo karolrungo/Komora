@@ -79,6 +79,7 @@
   <ItemGroup>
     <Compile Include="Classes\Calibration\DeviceCalibrator.cs" />
     <Compile Include="Classes\Chamber\ChamberData.cs" />
+    <Compile Include="Classes\DataBase\ChamberAlreadyHasCoefficientsException.cs" />
     <Compile Include="Classes\DataBase\DatabaseConnectionException.cs" />
     <Compile Include="Classes\DataBase\LinqDatabase.designer.cs">
       <AutoGen>True</AutoGen>
@@ -156,6 +157,7 @@
     <Compile Include="Windows\MatlabWndow.Designer.cs">
       <DependentUpon>MatlabWndow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\SaveCoefficientsEventArgs.cs" />
     <Compile Include="Windows\SettingsWindow.cs">
       <SubType>Form</SubType>
     </Compile>

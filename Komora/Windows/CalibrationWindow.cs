@@ -33,8 +33,9 @@ namespace Komora.Windows
             this.databaseConnector.connect();
 
             measurementSamples = new DataTypes.MeasurementSamples<double>();
+            pt100Polynomial = new DataTypes.Pt100Polynomial();
+            ledPolynomial = new DataTypes.LedPolynomial();
 
-            
             InitializeComponent();
 
             calibrationControlPt100.setCoefficientsType(Utilities.CoefficientsType.PT100);
@@ -45,26 +46,60 @@ namespace Komora.Windows
 
             calibrationControlPt100.DeleteSelectedCoefficientsButtonClicked += calibrationControl_deleteCoefficientsButtonClicked_PT100;
             calibrationControlPt100.DeleteAllCoefficientsButtonClicked += calibrationControlDeleteAllCoefficientsButtonClicked;
-            calibrationControlPt100.BeginCalibrationButtonClicked += calibrationControlPt100_BeginCalibrationButtonClicked;
+            calibrationControlPt100.BeginCalibrationButtonClicked += calibrationControl_BeginCalibrationButtonClicked;
+            calibrationControlPt100.SaveCoefficientsButtonClicked +=calibrationControl_SaveCoefficientsButtonClicked;
+
+            calibrationControlLED.setCoefficientsType(Utilities.CoefficientsType.LED);
+            calibrationControlLED.setFilename("D:\\INŻYNIERKA\\IZNYNIERKA- wszystko\\led.csv");
+            calibrationControlLED.setPlotTitles("LED Calibration", "current?", "Power?");
+            calibrationControlLED.fillChamberDgv(databaseConnector.selectAllChambers());
+            calibrationControlLED.fillPolynomialDgv<Led_Poly>(databaseConnector.selectAllLedPolynomials());
+
+            calibrationControlLED.DeleteSelectedCoefficientsButtonClicked += calibrationControl_deleteCoefficientsButtonClicked_LED;
+            calibrationControlLED.DeleteAllCoefficientsButtonClicked += calibrationControlDeleteAllCoefficientsButtonClicked;
+            calibrationControlLED.BeginCalibrationButtonClicked += calibrationControl_BeginCalibrationButtonClicked;
         }
 
-        void calibrationControlPt100_BeginCalibrationButtonClicked(object sender, Utilities.DeleteCoefficientsEventArgs e)
+        private void calibrationControl_SaveCoefficientsButtonClicked(object sender, Utilities.SaveCoefficientsEventArgs e)
         {
-            measurementSamples = new DataTypes.MeasurementSamples<double>();
-
             try
             {
                 if (e.coefficientsType == Utilities.CoefficientsType.PT100)
                 {
-                    pt100Polynomial = new DataTypes.Pt100Polynomial();
-                    measurementSamples = csvReader.readSamplesFromFile(calibrationControlPt100.getFilename());
-                    pt100Polynomial.calculateCoefficients(measurementSamples, calibrationControlPt100.getPolynomialOrder());
-                    calibrationControlPt100.showResults(pt100Polynomial.ToString());
-
+                    databaseConnector.savePt100Coefficients(e.chamberID, pt100Polynomial.ToString());
+                    calibrationControlPt100.fillPolynomialDgv<Pt100_Poly>(databaseConnector.selectAllPt100Polynomials());
                 }
                 else if (e.coefficientsType == Utilities.CoefficientsType.LED)
                 {
 
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        void calibrationControl_BeginCalibrationButtonClicked(object sender, Utilities.DeleteCoefficientsEventArgs e)
+        {
+            try
+            {
+                if (e.coefficientsType == Utilities.CoefficientsType.PT100)
+                {    
+                    measurementSamples = csvReader.readSamplesFromFile(calibrationControlPt100.getFilename());
+                    pt100Polynomial.calculateCoefficients(measurementSamples, calibrationControlPt100.getPolynomialOrderPt100());
+                    calibrationControlPt100.showResults(pt100Polynomial.ToString());
+                }
+                else if (e.coefficientsType == Utilities.CoefficientsType.LED)
+                {
+                    int lowerPolyOrder = calibrationControlLED.getPolynomialOrderLower();
+                    int higherPolyOrder = calibrationControlLED.getPolynomialOrderHigher();
+                    int currentBound = calibrationControlLED.getCurrentBound();
+
+                    measurementSamples = csvReader.readSamplesFromFile(calibrationControlPt100.getFilename());
+                    ledPolynomial.calculateCoefficients(measurementSamples, currentBound, lowerPolyOrder, higherPolyOrder);
+                    calibrationControlLED.showResults(ledPolynomial.lowerCurrentPolynmialString().ToString(),
+                                                      ledPolynomial.higherCurrentPolynmialString().ToString());
                 }
                 else
                 {
@@ -118,23 +153,5 @@ namespace Komora.Windows
                 MessageBox.Show("Error!");
             }
         }
-
-        
-
- 
-
-            //    try
-            //{
-            //    measurementSamples = csvReader.readSamplesFromFile(textBoxFilePt100.Text);                
-            //    pt100Polynomial.calculateCoefficients(measurementSamples, 2);
-            //    MessageBox.Show(pt100Polynomial.ToString());
-
-            //}
-            //catch (Exception)
-            //{
-            //    throw new NotImplementedException();
-            //}
-
-
     }
 }

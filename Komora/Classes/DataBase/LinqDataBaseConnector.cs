@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Komora.Classes.DataBase
 
@@ -23,6 +24,7 @@ namespace Komora.Classes.DataBase
                 return false;
             }
         }
+
         public bool disconnect()
         {
             try
@@ -40,10 +42,12 @@ namespace Komora.Classes.DataBase
         {
             return this.dataContext.Users.First(x => x.username == login && x.password == password);
         }
+
         public User getUser(int id)
         {
             return this.dataContext.Users.First(x => x.ID == id);
         }
+
         public IQueryable<User> getAllUsers()
         {
             return this.dataContext.Users.Select(user => user);
@@ -53,6 +57,7 @@ namespace Komora.Classes.DataBase
         {
             return this.dataContext.HardwareConfigurations.First(x => x.ID == id);
         }
+
         public IQueryable<HardwareConfiguration> selectAllChambers()
         {
             return this.dataContext.HardwareConfigurations.Select(chamber => chamber);
@@ -62,6 +67,7 @@ namespace Komora.Classes.DataBase
         {
             return this.dataContext.Pt100_Polies.Select(pt100Poly => pt100Poly);
         }
+
         public IQueryable<Led_Poly> selectAllLedPolynomials()
         {
             return this.dataContext.Led_Polies.Select(ledPoly => ledPoly);
@@ -102,6 +108,37 @@ namespace Komora.Classes.DataBase
             dataContext.SubmitChanges();
         }
 
+        public void deleteChamber(int chamberID)
+        {
+            var chamber = (from c in dataContext.HardwareConfigurations
+                           where c.ID == chamberID
+                           select c).First();
+
+            //wybierz rekord ze wspolczynnimami do usuniecia PT100
+            var pt100Coefficients = from c in dataContext.Pt100_Polies
+                              where c.chamberID == chamberID
+                              select c;
+            foreach (Pt100_Poly pt100_poly in pt100Coefficients)
+            {
+                dataContext.Pt100_Polies.DeleteOnSubmit(pt100_poly);
+            }
+
+            //wybierz rekord ze wspolczynnimami do usuniecia LED
+            var ledCoefficients = from c in dataContext.Led_Polies
+                                  where c.chamberID == chamberID
+                                  select c;
+            foreach (Led_Poly led_poly in ledCoefficients)
+            {
+                dataContext.Led_Polies.DeleteOnSubmit(led_poly);
+            }
+
+            //teraz usun komore
+            dataContext.HardwareConfigurations.DeleteOnSubmit(chamber);
+
+            //potwierdz zmiany
+            dataContext.SubmitChanges();
+        }
+
         public void deletePt100Coefficients(int coefficientsID)
         {
             var query = (from c in dataContext.Pt100_Polies
@@ -111,6 +148,7 @@ namespace Komora.Classes.DataBase
             dataContext.Pt100_Polies.DeleteOnSubmit(query);
             dataContext.SubmitChanges();
         }
+
         public void deletePt100Coefficients()
         {
             var query = from c in dataContext.Pt100_Polies select c;
@@ -131,6 +169,7 @@ namespace Komora.Classes.DataBase
             dataContext.Led_Polies.DeleteOnSubmit(query);
             dataContext.SubmitChanges();
         }
+
         public void deleteLedCoefficients()
         {
             var query = from c in dataContext.Led_Polies select c;
@@ -140,6 +179,69 @@ namespace Komora.Classes.DataBase
                 dataContext.Led_Polies.DeleteOnSubmit(item);
             }
             dataContext.SubmitChanges(); 
+        }
+
+        public void savePt100Coefficients(int chamberID, string coefficients)
+        {
+            chamberHasPt100Coefficients(chamberID);
+
+            Pt100_Poly pt100Poly = new Pt100_Poly();
+            pt100Poly.chamberID = chamberID;
+            pt100Poly.Coefficients = coefficients;
+            
+            try
+            {
+                dataContext.Pt100_Polies.InsertOnSubmit(pt100Poly);
+                dataContext.SubmitChanges();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Error in savePt100Coefficient!");
+            }
+        }
+
+        public void saveLEDCoefficients(int chamberID, string coefficientsLower, string coefficientsHigher)
+        {
+            chamberHasLedCoefficients(chamberID);
+
+            Led_Poly ledPoly = new Led_Poly();
+            ledPoly.chamberID = chamberID;
+            ledPoly.LowerCurrentCoefficients = coefficientsLower;
+            ledPoly.HigherCurrentCoefficients = coefficientsHigher;
+            
+            try
+            {
+                dataContext.Led_Polies.InsertOnSubmit(ledPoly);
+                dataContext.SubmitChanges();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Error in saveLEDCoefficients!");
+            }
+        }
+
+        private void chamberHasPt100Coefficients(int chamberID)
+        {
+            var query = from c in dataContext.Pt100_Polies
+                        where c.chamberID == chamberID
+                        select c;
+
+            if (query.Any())
+            {
+                throw new ChamberAlreadyHasCoefficientsException("Selected chamber already has saved coefficients for Pt100");
+            }
+        }
+
+        private void chamberHasLedCoefficients(int chamberID)
+        {
+            var query = from c in dataContext.Led_Polies
+                        where c.chamberID == chamberID
+                        select c;
+
+            if (query.Any())
+            {
+                throw new ChamberAlreadyHasCoefficientsException("Selected hamber already has saved coefficients for LED");
+            }
         }
     }
 }
