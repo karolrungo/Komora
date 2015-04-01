@@ -68,6 +68,13 @@ namespace Komora.Classes.DataBase
             return this.dataContext.Pt100_Polies.Select(pt100Poly => pt100Poly);
         }
 
+        public Pt100_Poly selectPt100Polynomial(int chamberId)
+        {
+            return (from c in dataContext.Pt100_Polies
+                    where c.chamberID == chamberId
+                    select c).First();
+        }
+
         public IQueryable<Led_Poly> selectAllLedPolynomials()
         {
             return this.dataContext.Led_Polies.Select(ledPoly => ledPoly);

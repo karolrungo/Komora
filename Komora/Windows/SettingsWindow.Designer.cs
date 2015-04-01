@@ -30,8 +30,6 @@
         {
             this.tabControlSettings = new System.Windows.Forms.TabControl();
             this.tabPageChambers = new System.Windows.Forms.TabPage();
-            this.dataGridViewChambers = new System.Windows.Forms.DataGridView();
-            this.labelHardwareConfChamberName = new System.Windows.Forms.Label();
             this.btnDeleteChamber = new System.Windows.Forms.Button();
             this.btnEditChamber = new System.Windows.Forms.Button();
             this.btnAddChamber = new System.Windows.Forms.Button();
@@ -40,6 +38,9 @@
             this.textBoxHardwareConfChamberName = new System.Windows.Forms.TextBox();
             this.labelHardwareConfChamberNumber = new System.Windows.Forms.Label();
             this.labelHardwareConfSerialPortName = new System.Windows.Forms.Label();
+            this.labelHardwareConfChamberName = new System.Windows.Forms.Label();
+            this.dataGridViewChambers = new System.Windows.Forms.DataGridView();
+            this.textBoxAvaliblePorts = new System.Windows.Forms.TextBox();
             this.tabControlSettings.SuspendLayout();
             this.tabPageChambers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewChambers)).BeginInit();
@@ -57,6 +58,7 @@
             // 
             // tabPageChambers
             // 
+            this.tabPageChambers.Controls.Add(this.textBoxAvaliblePorts);
             this.tabPageChambers.Controls.Add(this.btnDeleteChamber);
             this.tabPageChambers.Controls.Add(this.btnEditChamber);
             this.tabPageChambers.Controls.Add(this.btnAddChamber);
@@ -74,25 +76,6 @@
             this.tabPageChambers.TabIndex = 0;
             this.tabPageChambers.Text = "Chambers";
             this.tabPageChambers.UseVisualStyleBackColor = true;
-            // 
-            // dataGridViewChambers
-            // 
-            this.dataGridViewChambers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewChambers.Dock = System.Windows.Forms.DockStyle.Left;
-            this.dataGridViewChambers.Location = new System.Drawing.Point(3, 3);
-            this.dataGridViewChambers.Name = "dataGridViewChambers";
-            this.dataGridViewChambers.Size = new System.Drawing.Size(383, 230);
-            this.dataGridViewChambers.TabIndex = 2;
-            this.dataGridViewChambers.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridViewChambers_RowHeaderMouseClick);
-            // 
-            // labelHardwareConfChamberName
-            // 
-            this.labelHardwareConfChamberName.AutoSize = true;
-            this.labelHardwareConfChamberName.Location = new System.Drawing.Point(392, 16);
-            this.labelHardwareConfChamberName.Name = "labelHardwareConfChamberName";
-            this.labelHardwareConfChamberName.Size = new System.Drawing.Size(80, 13);
-            this.labelHardwareConfChamberName.TabIndex = 4;
-            this.labelHardwareConfChamberName.Text = "Chamber Name";
             // 
             // btnDeleteChamber
             // 
@@ -162,6 +145,34 @@
             this.labelHardwareConfSerialPortName.TabIndex = 12;
             this.labelHardwareConfSerialPortName.Text = "Serial Port";
             // 
+            // labelHardwareConfChamberName
+            // 
+            this.labelHardwareConfChamberName.AutoSize = true;
+            this.labelHardwareConfChamberName.Location = new System.Drawing.Point(392, 16);
+            this.labelHardwareConfChamberName.Name = "labelHardwareConfChamberName";
+            this.labelHardwareConfChamberName.Size = new System.Drawing.Size(80, 13);
+            this.labelHardwareConfChamberName.TabIndex = 4;
+            this.labelHardwareConfChamberName.Text = "Chamber Name";
+            // 
+            // dataGridViewChambers
+            // 
+            this.dataGridViewChambers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewChambers.Dock = System.Windows.Forms.DockStyle.Left;
+            this.dataGridViewChambers.Location = new System.Drawing.Point(3, 3);
+            this.dataGridViewChambers.Name = "dataGridViewChambers";
+            this.dataGridViewChambers.Size = new System.Drawing.Size(383, 230);
+            this.dataGridViewChambers.TabIndex = 2;
+            this.dataGridViewChambers.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridViewChambers_RowHeaderMouseClick);
+            // 
+            // textBoxAvaliblePorts
+            // 
+            this.textBoxAvaliblePorts.Location = new System.Drawing.Point(405, 139);
+            this.textBoxAvaliblePorts.Multiline = true;
+            this.textBoxAvaliblePorts.Name = "textBoxAvaliblePorts";
+            this.textBoxAvaliblePorts.ReadOnly = true;
+            this.textBoxAvaliblePorts.Size = new System.Drawing.Size(100, 89);
+            this.textBoxAvaliblePorts.TabIndex = 20;
+            // 
             // SettingsWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -192,6 +203,7 @@
         private System.Windows.Forms.Label labelHardwareConfChamberNumber;
         private System.Windows.Forms.Label labelHardwareConfSerialPortName;
         private System.Windows.Forms.Label labelHardwareConfChamberName;
+        private System.Windows.Forms.TextBox textBoxAvaliblePorts;
 
     }
 }

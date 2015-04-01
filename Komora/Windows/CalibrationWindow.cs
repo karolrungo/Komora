@@ -45,7 +45,7 @@ namespace Komora.Windows
             calibrationControlPt100.fillPolynomialDgv<Pt100_Poly>(databaseConnector.selectAllPt100Polynomials());
 
             calibrationControlPt100.DeleteSelectedCoefficientsButtonClicked += calibrationControl_deleteCoefficientsButtonClicked_PT100;
-            calibrationControlPt100.DeleteAllCoefficientsButtonClicked += calibrationControlDeleteAllCoefficientsButtonClicked;
+            calibrationControlPt100.DeleteAllCoefficientsButtonClicked += calibrationControl_DeleteAllCoefficientsButtonClicked;
             calibrationControlPt100.BeginCalibrationButtonClicked += calibrationControl_BeginCalibrationButtonClicked;
             calibrationControlPt100.SaveCoefficientsButtonClicked +=calibrationControl_SaveCoefficientsButtonClicked;
 
@@ -56,7 +56,7 @@ namespace Komora.Windows
             calibrationControlLED.fillPolynomialDgv<Led_Poly>(databaseConnector.selectAllLedPolynomials());
 
             calibrationControlLED.DeleteSelectedCoefficientsButtonClicked += calibrationControl_deleteCoefficientsButtonClicked_LED;
-            calibrationControlLED.DeleteAllCoefficientsButtonClicked += calibrationControlDeleteAllCoefficientsButtonClicked;
+            calibrationControlLED.DeleteAllCoefficientsButtonClicked += calibrationControl_DeleteAllCoefficientsButtonClicked;
             calibrationControlLED.BeginCalibrationButtonClicked += calibrationControl_BeginCalibrationButtonClicked;
         }
 
@@ -79,8 +79,7 @@ namespace Komora.Windows
                 MessageBox.Show(ex.Message);
             }
         }
-
-        void calibrationControl_BeginCalibrationButtonClicked(object sender, Utilities.DeleteCoefficientsEventArgs e)
+        private void calibrationControl_BeginCalibrationButtonClicked(object sender, Utilities.DeleteCoefficientsEventArgs e)
         {
             try
             {
@@ -96,7 +95,7 @@ namespace Komora.Windows
                     int higherPolyOrder = calibrationControlLED.getPolynomialOrderHigher();
                     int currentBound = calibrationControlLED.getCurrentBound();
 
-                    measurementSamples = csvReader.readSamplesFromFile(calibrationControlPt100.getFilename());
+                    measurementSamples = csvReader.readSamplesFromFile(calibrationControlLED.getFilename());
                     ledPolynomial.calculateCoefficients(measurementSamples, currentBound, lowerPolyOrder, higherPolyOrder);
                     calibrationControlLED.showResults(ledPolynomial.lowerCurrentPolynmialString().ToString(),
                                                       ledPolynomial.higherCurrentPolynmialString().ToString());
@@ -112,7 +111,7 @@ namespace Komora.Windows
             }
             
         }
-        private void calibrationControlDeleteAllCoefficientsButtonClicked(object sender, Utilities.DeleteCoefficientsEventArgs e)
+        private void calibrationControl_DeleteAllCoefficientsButtonClicked(object sender, Utilities.DeleteCoefficientsEventArgs e)
         {
             if (e.coefficientsType == Utilities.CoefficientsType.PT100)
             {

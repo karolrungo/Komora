@@ -35,8 +35,9 @@
     <Reference Include="itextsharp">
       <HintPath>..\packages\iTextSharp.5.5.3\lib\itextsharp.dll</HintPath>
     </Reference>
-    <Reference Include="MathNet.Numerics">
-      <HintPath>..\packages\MathNet.Numerics.3.3.0\lib\net40\MathNet.Numerics.dll</HintPath>
+    <Reference Include="MathNet.Numerics, Version=3.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\MathNet.Numerics.3.3.0\lib\MathNet.Numerics.dll</HintPath>
     </Reference>
     <Reference Include="Moq">
       <HintPath>..\packages\Moq.4.2.1409.1722\lib\net40\Moq.dll</HintPath>
@@ -63,6 +64,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Numerics" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -79,6 +81,7 @@
   <ItemGroup>
     <Compile Include="Classes\Calibration\DeviceCalibrator.cs" />
     <Compile Include="Classes\Chamber\ChamberData.cs" />
+    <Compile Include="Classes\Communication\SerialPortWatcherEventArgs.cs" />
     <Compile Include="Classes\DataBase\ChamberAlreadyHasCoefficientsException.cs" />
     <Compile Include="Classes\DataBase\DatabaseConnectionException.cs" />
     <Compile Include="Classes\DataBase\LinqDatabase.designer.cs">
@@ -96,6 +99,7 @@
     <Compile Include="Classes\Matlab\IMatlabConnector.cs" />
     <Compile Include="Classes\Matlab\MatlabCOMSerwerConnection.cs" />
     <Compile Include="Classes\Tools\DateCounter.cs" />
+    <Compile Include="Classes\Communication\SerialPortWatcher.cs" />
     <Compile Include="Controls\CalibrationControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -128,9 +132,11 @@
     <Compile Include="Test\Loger\LogerDataBaseTests.cs" />
     <Compile Include="Test\Loger\LogerFakeTests.cs" />
     <Compile Include="Test\Utilities\CoefficientsStringFormatterTests.cs" />
+    <Compile Include="Test\Utilities\Pt100converterTests.cs" />
     <Compile Include="Utilities\CoefficientsStringFormatter.cs" />
     <Compile Include="Utilities\CoefficientsType.cs" />
     <Compile Include="Utilities\DeleteCoefficientsEventArgs.cs" />
+    <Compile Include="Utilities\Pt100converter.cs" />
     <Compile Include="Windows\CalibrationWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -158,6 +164,12 @@
       <DependentUpon>MatlabWndow.cs</DependentUpon>
     </Compile>
     <Compile Include="Utilities\SaveCoefficientsEventArgs.cs" />
+    <Compile Include="Windows\MeasurementConfigurationWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\MeasurementConfigurationWindow.Designer.cs">
+      <DependentUpon>MeasurementConfigurationWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Windows\SettingsWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -187,6 +199,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Windows\MatlabWndow.resx">
       <DependentUpon>MatlabWndow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\MeasurementConfigurationWindow.resx">
+      <DependentUpon>MeasurementConfigurationWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Windows\SettingsWindow.resx">
       <DependentUpon>SettingsWindow.cs</DependentUpon>
@@ -230,6 +245,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Classes\WindowForms\" />
+    <Folder Include="Test\Communication\" />
     <Folder Include="Test\Controls\" />
     <Folder Include="Test\File\" />
     <Folder Include="Test\Matlab\" />
