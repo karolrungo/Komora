@@ -59,7 +59,9 @@ namespace Komora.Test.Utilities
 
         [TestCase(113300, 35, 0.8)]
         [TestCase(115200, 40, 0.6)]
+        [TestCase(117100, 45, 0.3)]
         [TestCase(119000, 50, 0.01)]
+        [TestCase(128500, 75, 1.4)]
         [TestCase(138000, 100, 0.01)]
         public void resistanceToTemperatureReturnsProperValue(long resistance, double expectedResult, double accuracy)
         {
