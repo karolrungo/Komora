@@ -80,32 +80,48 @@ namespace Komora.Classes.DataBase
             return this.dataContext.Led_Polies.Select(ledPoly => ledPoly);
         }
 
-        public void deleteChamber(Chamber.ChamberData chamberData)
+        public void deleteChamber(string name, string serialPort, int number)
         {
+            HardwareConfiguration chamberData = new HardwareConfiguration();
+            chamberData.chamberName = name;
+            chamberData.serialPort = serialPort;
+            chamberData.chamberNumber = number;
+
             //do refaktoru
             //wybierz komore do usuniecia
             var chamber = (from c in dataContext.HardwareConfigurations
-                           where c.chamberName == chamberData.Name &&
-                                 c.chamberNumber == chamberData.Number &&
-                                 c.serialPort == chamberData.SerialPort
+                           where c.chamberName == chamberData.chamberName &&
+                                 c.chamberNumber == chamberData.chamberNumber &&
+                                 c.serialPort == chamberData.serialPort
                            select c).First();
 
             //wybierz ID komory do usuniecia
             var chamberID = (from c in dataContext.HardwareConfigurations
-                             where c.chamberName == chamberData.Name &&
-                                 c.chamberNumber == chamberData.Number &&
-                                 c.serialPort == chamberData.SerialPort
+                             where c.chamberName == chamberData.chamberName &&
+                                 c.chamberNumber == chamberData.chamberNumber &&
+                                 c.serialPort == chamberData.serialPort
                              select c.ID).First();
 
             //wybierz rekord ze wspolczynnimami do usuniecia
-            var Coefficient = from c in dataContext.Pt100_Polies
+            var CoefficientPt100 = from c in dataContext.Pt100_Polies
                               where c.chamberID == chamberID
                               select c;
 
+            //wybierz rekord ze wspolczynnimami do usuniecia
+            var CoefficientLed = from c in dataContext.Led_Polies
+                                 where c.chamberID == chamberID
+                                 select c;
+
             //najpierw usuwany rekord ze wspolczynnikami
-            foreach (Pt100_Poly pt100_poly in Coefficient)
+            foreach (Pt100_Poly pt100_poly in CoefficientPt100)
             {
                 dataContext.Pt100_Polies.DeleteOnSubmit(pt100_poly);
+            }
+
+            //najpierw usuwany rekord ze wspolczynnikami
+            foreach (Led_Poly ledPoly in CoefficientLed)
+            {
+                dataContext.Led_Polies.DeleteOnSubmit(ledPoly);
             }
 
             //teraz usun komore
@@ -190,7 +206,10 @@ namespace Komora.Classes.DataBase
 
         public void savePt100Coefficients(int chamberID, string coefficients)
         {
-            chamberHasPt100Coefficients(chamberID);
+            if (chamberAlreadyHasPt100Coefficients(chamberID))
+            {
+                throw new ChamberAlreadyHasCoefficientsException("Selected chamber already has saved coefficients for Pt100");
+            }
 
             Pt100_Poly pt100Poly = new Pt100_Poly();
             pt100Poly.chamberID = chamberID;
@@ -227,16 +246,13 @@ namespace Komora.Classes.DataBase
             }
         }
 
-        private void chamberHasPt100Coefficients(int chamberID)
+        private bool chamberAlreadyHasPt100Coefficients(int chamberID)
         {
             var query = from c in dataContext.Pt100_Polies
                         where c.chamberID == chamberID
                         select c;
 
-            if (query.Any())
-            {
-                throw new ChamberAlreadyHasCoefficientsException("Selected chamber already has saved coefficients for Pt100");
-            }
+            return query.Any();
         }
 
         private void chamberHasLedCoefficients(int chamberID)
@@ -249,6 +265,36 @@ namespace Komora.Classes.DataBase
             {
                 throw new ChamberAlreadyHasCoefficientsException("Selected hamber already has saved coefficients for LED");
             }
+        }
+
+        public void addChamber(string chamberName, string serialPort, int chamberNumber)
+        {
+            HardwareConfiguration hwConf = new HardwareConfiguration();
+            hwConf.chamberName = chamberName;
+            hwConf.serialPort = serialPort;
+            hwConf.chamberNumber = chamberNumber;
+
+            if (!chamberAlreadyInDatabase(hwConf))
+            {
+                dataContext.HardwareConfigurations.InsertOnSubmit(hwConf);
+                dataContext.SubmitChanges();
+            }
+            else
+            {
+                throw new Exception("Chamber already defined in database.");
+            }
+            
+        }
+
+        private bool chamberAlreadyInDatabase(HardwareConfiguration chamberData)
+        {
+            var query = from c in dataContext.HardwareConfigurations
+                        where c.chamberName == chamberData.chamberName ||
+                              c.serialPort == chamberData.serialPort ||
+                              c.chamberNumber == chamberData.chamberNumber
+                        select c;
+
+            return query.Any();
         }
     }
 }

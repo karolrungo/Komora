@@ -38,7 +38,6 @@ namespace Komora.Windows
             dataGridViewChambers.AllowUserToAddRows = false;
             dataGridViewChambers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
             dataGridViewChambers.DataSource = linqDatabaseConnector.selectAllChambers();
-
         }
 
         private void serialPortWatcher_comPortsUpdate(object sender, Classes.Communication.SerialPortWatcherEventArgs e)
@@ -62,33 +61,34 @@ namespace Komora.Windows
             return sb.ToString();
         }
 
+        private void btnAddChamber_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                linqDatabaseConnector.addChamber(textBoxHardwareConfChamberName.Text,
+                                                 textBoxHardwareConfSerialPortName.Text,
+                                                 Int32.Parse(comboBoxHardwareConfChamberNumber.Text));
+                dataGridViewChambers.DataSource = linqDatabaseConnector.selectAllChambers();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
 
         private void btnDeleteChamber_Click(object sender, EventArgs e)
         {
             try
             {
-                //walidator portu szeregowego
-                chamberData.setChamberData(textBoxHardwareConfChamberName.Text,
-                                           textBoxHardwareConfSerialPortName.Text,
-                                           Int32.Parse(comboBoxHardwareConfChamberNumber.Text));
+                linqDatabaseConnector.deleteChamber(textBoxHardwareConfChamberName.Text,
+                                                    textBoxHardwareConfSerialPortName.Text,
+                                                    Int32.Parse(comboBoxHardwareConfChamberNumber.Text));
+                dataGridViewChambers.DataSource = linqDatabaseConnector.selectAllChambers();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                MessageBox.Show("Wrong data! Correct yourself.");
+                MessageBox.Show(ex.Message);
             }
-
-            //czy tu try catch?
-            linqDatabaseConnector.deleteChamber(chamberData);
-        }
-
-        private void btnEditChamber_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnAddChamber_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void dataGridViewChambers_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -106,8 +106,8 @@ namespace Komora.Windows
             chamberData.Number = Int32.Parse(dataGridViewChambers.SelectedRows[0].Cells["chamberNumber"].Value.ToString());
 
             textBoxHardwareConfChamberName.Text = chamberData.Name;
-            comboBoxHardwareConfChamberNumber.Text = chamberData.SerialPort;
-            textBoxHardwareConfSerialPortName.Text = chamberData.Number.ToString();
+            comboBoxHardwareConfChamberNumber.Text = chamberData.Number.ToString();
+            textBoxHardwareConfSerialPortName.Text = chamberData.SerialPort;
         }
 
         private bool onlyOneRowSelected()
@@ -119,5 +119,7 @@ namespace Komora.Windows
         {
             serialPortWatcher.stopTimer();
         }
+
+
     }
 }

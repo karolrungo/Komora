@@ -58,6 +58,7 @@ namespace Komora.Windows
             calibrationControlLED.DeleteSelectedCoefficientsButtonClicked += calibrationControl_deleteCoefficientsButtonClicked_LED;
             calibrationControlLED.DeleteAllCoefficientsButtonClicked += calibrationControl_DeleteAllCoefficientsButtonClicked;
             calibrationControlLED.BeginCalibrationButtonClicked += calibrationControl_BeginCalibrationButtonClicked;
+            calibrationControlLED.SaveCoefficientsButtonClicked += calibrationControl_SaveCoefficientsButtonClicked;
         }
 
         private void calibrationControl_SaveCoefficientsButtonClicked(object sender, Utilities.SaveCoefficientsEventArgs e)
@@ -71,7 +72,10 @@ namespace Komora.Windows
                 }
                 else if (e.coefficientsType == Utilities.CoefficientsType.LED)
                 {
-
+                    databaseConnector.saveLEDCoefficients(e.chamberID,
+                                                          ledPolynomial.lowerCurrentPolynmialString(),
+                                                          ledPolynomial.higherCurrentPolynmialString());
+                    calibrationControlLED.fillPolynomialDgv<Led_Poly>(databaseConnector.selectAllLedPolynomials());
                 }
             }
             catch (Exception ex)

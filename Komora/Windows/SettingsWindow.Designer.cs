@@ -53,7 +53,7 @@
             this.tabControlSettings.Location = new System.Drawing.Point(0, 0);
             this.tabControlSettings.Name = "tabControlSettings";
             this.tabControlSettings.SelectedIndex = 0;
-            this.tabControlSettings.Size = new System.Drawing.Size(698, 262);
+            this.tabControlSettings.Size = new System.Drawing.Size(698, 281);
             this.tabControlSettings.TabIndex = 2;
             // 
             // tabPageChambers
@@ -72,7 +72,7 @@
             this.tabPageChambers.Location = new System.Drawing.Point(4, 22);
             this.tabPageChambers.Name = "tabPageChambers";
             this.tabPageChambers.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageChambers.Size = new System.Drawing.Size(690, 236);
+            this.tabPageChambers.Size = new System.Drawing.Size(690, 255);
             this.tabPageChambers.TabIndex = 0;
             this.tabPageChambers.Text = "Chambers";
             this.tabPageChambers.UseVisualStyleBackColor = true;
@@ -94,6 +94,7 @@
             this.btnDeleteChamber.TabIndex = 19;
             this.btnDeleteChamber.Text = "Delete chamber";
             this.btnDeleteChamber.UseVisualStyleBackColor = true;
+            this.btnDeleteChamber.Click += new System.EventHandler(this.btnDeleteChamber_Click);
             // 
             // btnEditChamber
             // 
@@ -169,7 +170,7 @@
             this.dataGridViewChambers.Dock = System.Windows.Forms.DockStyle.Left;
             this.dataGridViewChambers.Location = new System.Drawing.Point(3, 3);
             this.dataGridViewChambers.Name = "dataGridViewChambers";
-            this.dataGridViewChambers.Size = new System.Drawing.Size(383, 230);
+            this.dataGridViewChambers.Size = new System.Drawing.Size(383, 249);
             this.dataGridViewChambers.TabIndex = 2;
             this.dataGridViewChambers.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridViewChambers_RowHeaderMouseClick);
             // 
@@ -177,7 +178,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(698, 262);
+            this.ClientSize = new System.Drawing.Size(698, 281);
             this.Controls.Add(this.tabControlSettings);
             this.Name = "SettingsWindow";
             this.Text = "SettingsWindow";

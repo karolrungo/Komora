@@ -23,7 +23,7 @@ namespace Komora.Classes.DataBase
         IQueryable<Led_Poly> selectAllLedPolynomials();
 
 
-        void deleteChamber(Chamber.ChamberData chamberData);
+        void deleteChamber(string name, string serialPort, int number);
         void deleteChamber(int chamberID);
         void deletePt100Coefficients(int coefficientsID);
         void deletePt100Coefficients();
@@ -31,5 +31,6 @@ namespace Komora.Classes.DataBase
         void deleteLedCoefficients();
         void savePt100Coefficients(int chamberID, string coefficients);
         void saveLEDCoefficients(int chamberID, string coefficientsLower, string coefficientsHigher);
+        void addChamber(string chamberName, string serialPort, int chamberNumber);
     }
 }
