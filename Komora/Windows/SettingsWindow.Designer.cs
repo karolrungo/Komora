@@ -30,6 +30,7 @@
         {
             this.tabControlSettings = new System.Windows.Forms.TabControl();
             this.tabPageChambers = new System.Windows.Forms.TabPage();
+            this.textBoxAvaliblePorts = new System.Windows.Forms.TextBox();
             this.btnDeleteChamber = new System.Windows.Forms.Button();
             this.btnEditChamber = new System.Windows.Forms.Button();
             this.btnAddChamber = new System.Windows.Forms.Button();
@@ -40,7 +41,6 @@
             this.labelHardwareConfSerialPortName = new System.Windows.Forms.Label();
             this.labelHardwareConfChamberName = new System.Windows.Forms.Label();
             this.dataGridViewChambers = new System.Windows.Forms.DataGridView();
-            this.textBoxAvaliblePorts = new System.Windows.Forms.TextBox();
             this.tabControlSettings.SuspendLayout();
             this.tabPageChambers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewChambers)).BeginInit();
@@ -76,6 +76,15 @@
             this.tabPageChambers.TabIndex = 0;
             this.tabPageChambers.Text = "Chambers";
             this.tabPageChambers.UseVisualStyleBackColor = true;
+            // 
+            // textBoxAvaliblePorts
+            // 
+            this.textBoxAvaliblePorts.Location = new System.Drawing.Point(405, 139);
+            this.textBoxAvaliblePorts.Multiline = true;
+            this.textBoxAvaliblePorts.Name = "textBoxAvaliblePorts";
+            this.textBoxAvaliblePorts.ReadOnly = true;
+            this.textBoxAvaliblePorts.Size = new System.Drawing.Size(100, 89);
+            this.textBoxAvaliblePorts.TabIndex = 20;
             // 
             // btnDeleteChamber
             // 
@@ -164,15 +173,6 @@
             this.dataGridViewChambers.TabIndex = 2;
             this.dataGridViewChambers.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridViewChambers_RowHeaderMouseClick);
             // 
-            // textBoxAvaliblePorts
-            // 
-            this.textBoxAvaliblePorts.Location = new System.Drawing.Point(405, 139);
-            this.textBoxAvaliblePorts.Multiline = true;
-            this.textBoxAvaliblePorts.Name = "textBoxAvaliblePorts";
-            this.textBoxAvaliblePorts.ReadOnly = true;
-            this.textBoxAvaliblePorts.Size = new System.Drawing.Size(100, 89);
-            this.textBoxAvaliblePorts.TabIndex = 20;
-            // 
             // SettingsWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -181,6 +181,7 @@
             this.Controls.Add(this.tabControlSettings);
             this.Name = "SettingsWindow";
             this.Text = "SettingsWindow";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SettingsWindow_FormClosing);
             this.tabControlSettings.ResumeLayout(false);
             this.tabPageChambers.ResumeLayout(false);
             this.tabPageChambers.PerformLayout();

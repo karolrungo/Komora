@@ -11,7 +11,6 @@ namespace Komora.Test.Utilities
     [TestFixture]
     public class Pt100converterTests
     {
-
         Komora.Classes.DataBase.Pt100_Poly pt100Poly;
         Komora.Utilities.Pt100converter pt100Converter;
         const int scaler = 1000;

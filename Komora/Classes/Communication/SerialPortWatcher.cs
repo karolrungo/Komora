@@ -26,7 +26,7 @@ namespace Komora.Classes.Communication
             timer.Start();
         }
 
-        ~SerialPortWatcher()
+        public void stopTimer()
         {
             timer.Stop();
         }

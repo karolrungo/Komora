@@ -109,9 +109,15 @@ namespace Komora.Windows
             comboBoxHardwareConfChamberNumber.Text = chamberData.SerialPort;
             textBoxHardwareConfSerialPortName.Text = chamberData.Number.ToString();
         }
+
         private bool onlyOneRowSelected()
         {
             return (dataGridViewChambers.SelectedRows.Count == 1) ? true : false;
+        }
+
+        private void SettingsWindow_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            serialPortWatcher.stopTimer();
         }
     }
 }
