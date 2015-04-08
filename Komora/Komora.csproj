@@ -117,10 +117,15 @@
     <Compile Include="Controls\DateAndTimePicker.Designer.cs">
       <DependentUpon>DateAndTimePicker.cs</DependentUpon>
     </Compile>
+    <Compile Include="DataTypes\ControllerValues.cs" />
+    <Compile Include="DataTypes\Enum.cs" />
+    <Compile Include="DataTypes\Hardware_Conf.cs" />
     <Compile Include="DataTypes\LedPolynomial.cs" />
     <Compile Include="DataTypes\MeasurementSamples.cs" />
+    <Compile Include="DataTypes\RegulationParameters.cs" />
     <Compile Include="DataTypes\PolynomialCoefficients.cs" />
     <Compile Include="DataTypes\Pt100Polynomial.cs" />
+    <Compile Include="DataTypes\Tunes.cs" />
     <Compile Include="Test\Calibration\DeviceCalibratorTests.cs" />
     <Compile Include="Test\Calibration\LedPolynomialTests.cs" />
     <Compile Include="Test\Calibration\Pt100PolynomialTests.cs" />
