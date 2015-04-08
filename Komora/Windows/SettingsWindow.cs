@@ -8,13 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Komora.Classes.DataBase;
-using Komora.Classes.Chamber;
 
 namespace Komora.Windows
 {
     public partial class SettingsWindow : Form
     {
-        private ChamberData chamberData;
         private IDataBaseConnector linqDatabaseConnector;
         private Classes.Communication.SerialPortWatcher serialPortWatcher;
 
@@ -24,8 +22,7 @@ namespace Komora.Windows
 
         public SettingsWindow()
         {
-            chamberData = new ChamberData();
-            
+       
             linqDatabaseConnector = new LinqDataBaseConnector();
             linqDatabaseConnector.connect();
 
@@ -101,13 +98,9 @@ namespace Komora.Windows
 
         private void fillTextBoxesWithChamberDataFromDataGridViewRow()
         {
-            chamberData.Name = dataGridViewChambers.SelectedRows[0].Cells["chamberName"].Value.ToString();
-            chamberData.SerialPort = dataGridViewChambers.SelectedRows[0].Cells["serialPort"].Value.ToString();
-            chamberData.Number = Int32.Parse(dataGridViewChambers.SelectedRows[0].Cells["chamberNumber"].Value.ToString());
-
-            textBoxHardwareConfChamberName.Text = chamberData.Name;
-            comboBoxHardwareConfChamberNumber.Text = chamberData.Number.ToString();
-            textBoxHardwareConfSerialPortName.Text = chamberData.SerialPort;
+            textBoxHardwareConfChamberName.Text = dataGridViewChambers.SelectedRows[0].Cells["chamberName"].Value.ToString();
+            textBoxHardwareConfSerialPortName.Text = dataGridViewChambers.SelectedRows[0].Cells["serialPort"].Value.ToString();
+            comboBoxHardwareConfChamberNumber.Text = dataGridViewChambers.SelectedRows[0].Cells["chamberNumber"].Value.ToString();
         }
 
         private bool onlyOneRowSelected()
