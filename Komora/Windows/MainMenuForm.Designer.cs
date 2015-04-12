@@ -32,6 +32,7 @@
             this.btnTools = new System.Windows.Forms.Button();
             this.buttonCalibration = new System.Windows.Forms.Button();
             this.buttonSettings = new System.Windows.Forms.Button();
+            this.btnMeasurementConfiguration = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnMatlab
@@ -74,11 +75,22 @@
             this.buttonSettings.UseVisualStyleBackColor = true;
             this.buttonSettings.Click += new System.EventHandler(this.buttonSettings_Click);
             // 
+            // btnMeasurementConfiguration
+            // 
+            this.btnMeasurementConfiguration.Location = new System.Drawing.Point(209, 88);
+            this.btnMeasurementConfiguration.Name = "btnMeasurementConfiguration";
+            this.btnMeasurementConfiguration.Size = new System.Drawing.Size(111, 43);
+            this.btnMeasurementConfiguration.TabIndex = 4;
+            this.btnMeasurementConfiguration.Text = "Measurement configuration";
+            this.btnMeasurementConfiguration.UseVisualStyleBackColor = true;
+            this.btnMeasurementConfiguration.Click += new System.EventHandler(this.btnMeasurementConfiguration_Click);
+            // 
             // MainMenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(402, 262);
+            this.Controls.Add(this.btnMeasurementConfiguration);
             this.Controls.Add(this.buttonSettings);
             this.Controls.Add(this.buttonCalibration);
             this.Controls.Add(this.btnTools);
@@ -95,5 +107,6 @@
         private System.Windows.Forms.Button btnTools;
         private System.Windows.Forms.Button buttonCalibration;
         private System.Windows.Forms.Button buttonSettings;
+        private System.Windows.Forms.Button btnMeasurementConfiguration;
     }
 }

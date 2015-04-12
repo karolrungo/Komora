@@ -51,5 +51,11 @@ namespace Komora.Windows
             SettingsWindow settingsWindow = new SettingsWindow();
             settingsWindow.Show();
         }
+
+        private void btnMeasurementConfiguration_Click(object sender, EventArgs e)
+        {
+            MeasurementConfigurationWindow measConfigWindow = new MeasurementConfigurationWindow();
+            measConfigWindow.Show();
+        }
     }
 }

@@ -21,6 +21,7 @@ namespace Komora.Classes.DataBase
         IQueryable<HardwareConfiguration> selectAllChambers();
         IQueryable<Pt100_Poly> selectAllPt100Polynomials();
         IQueryable<Led_Poly> selectAllLedPolynomials();
+        IQueryable<HardwareConfiguration> selectCalibratedChambers();
 
 
         void deleteChamber(string name, string serialPort, int number);

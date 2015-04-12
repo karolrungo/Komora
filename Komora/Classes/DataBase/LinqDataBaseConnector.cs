@@ -60,7 +60,7 @@ namespace Komora.Classes.DataBase
 
         public IQueryable<HardwareConfiguration> selectAllChambers()
         {
-            return this.dataContext.HardwareConfigurations.Select(chamber => chamber);
+            return this.dataContext.HardwareConfigurations.AsQueryable();
         }
 
         public IQueryable<Pt100_Poly> selectAllPt100Polynomials()
@@ -295,6 +295,12 @@ namespace Komora.Classes.DataBase
                         select c;
 
             return query.Any();
+        }
+
+        public IQueryable<HardwareConfiguration> selectCalibratedChambers()
+        {
+            var allChambers = selectAllChambers();
+            return allChambers.Where(chamber => chamber.Pt100_Polies.Any() && chamber.Led_Polies.Any());
         }
     }
 }

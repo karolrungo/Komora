@@ -80,6 +80,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\Calibration\DeviceCalibrator.cs" />
+    <Compile Include="Classes\Communication\AT_Command.cs" />
+    <Compile Include="Classes\Communication\FrameParser.cs" />
     <Compile Include="Classes\Communication\SerialPortWatcherEventArgs.cs" />
     <Compile Include="Classes\DataBase\ChamberAlreadyHasCoefficientsException.cs" />
     <Compile Include="Classes\DataBase\DatabaseConnectionException.cs" />
@@ -129,6 +131,7 @@
     <Compile Include="Test\Calibration\DeviceCalibratorTests.cs" />
     <Compile Include="Test\Calibration\LedPolynomialTests.cs" />
     <Compile Include="Test\Calibration\Pt100PolynomialTests.cs" />
+    <Compile Include="Test\Communication\FrameParserTests.cs" />
     <Compile Include="Test\DataBase\LinqDataBaseConnectorTests.cs" />
     <Compile Include="Test\DataTypes\MeasurementSamplesTests.cs" />
     <Compile Include="Test\DataTypes\PolynomialCoefficientsTests.cs" />
@@ -250,7 +253,6 @@
     <Folder Include="Classes\Chamber\" />
     <Folder Include="Classes\WindowForms\" />
     <Folder Include="Test\Chamber\" />
-    <Folder Include="Test\Communication\" />
     <Folder Include="Test\Controls\" />
     <Folder Include="Test\File\" />
     <Folder Include="Test\Matlab\" />
