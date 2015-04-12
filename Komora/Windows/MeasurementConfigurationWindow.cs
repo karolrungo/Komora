@@ -23,5 +23,20 @@ namespace Komora.Windows
 
             dgvChambers.DataSource = databaseConnector.selectCalibratedChambers();
         }
+
+        private void btnStartMeasurement_Click(object sender, EventArgs e)
+        {
+            string serialPort = "COM3";
+
+            try
+            {
+                MeasurementForm measurementForm = new MeasurementForm(serialPort);
+                measurementForm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }

@@ -441,8 +441,8 @@ namespace Komora.Classes.Communication
                     {
                         while (port.BytesToRead > 0)
                         {
-
-                            RecivedStrings.Add(port.ReadLine());
+                            string frame = port.ReadLine();
+                            RecivedStrings.Add(frame);
                         }
                     }
                 }
