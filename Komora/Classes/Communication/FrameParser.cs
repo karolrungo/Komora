@@ -339,7 +339,6 @@ namespace Komora.Classes.Communication
         }
         private static int SetValueFromInputString(string p)
         {
-            Console.WriteLine("dupa");
             try
             {
                 int value = Int32.Parse(p);

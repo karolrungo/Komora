@@ -136,6 +136,7 @@
     <Compile Include="Test\DataBase\LinqDataBaseConnectorTests.cs" />
     <Compile Include="Test\DataTypes\MeasurementSamplesTests.cs" />
     <Compile Include="Test\DataTypes\PolynomialCoefficientsTests.cs" />
+    <Compile Include="Test\DataTypes\TunesTests.cs" />
     <Compile Include="Test\Loger\LogerDataBaseTests.cs" />
     <Compile Include="Test\Loger\LogerFakeTests.cs" />
     <Compile Include="Test\Utilities\CoefficientsStringFormatterTests.cs" />
@@ -270,6 +271,7 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="MLApp">
