@@ -105,5 +105,55 @@ namespace Komora.Test.Communication
             sut.ParseInputString(inputFrame, ref controllerValues);
             Assert.True(expectedResult == controllerValues.heater_Tunes);
         }
+
+        [TestCase("+PID_DIODE_TUNES=WrongValue")]
+        public void pidDiodeTunesFrameStetsProperValueForBadFrame(string inputFrame)
+        {
+            sut.ParseInputString(inputFrame, ref controllerValues);
+            Assert.True(new Tunes() == controllerValues.heater_Tunes);
+        }
+
+        [TestCase("+PID_DIODE_TUNES=1:2:3:100", 1, 2, 3, 100)]
+        public void pidDiodeTunesFrameStetsProperValueForGoodFrame(string inputFrame, int kp, int ki, int kd, int scal)
+        {
+            Tunes expectedResult = new Tunes();
+            expectedResult.kp = kp;
+            expectedResult.ki = ki;
+            expectedResult.kd = kd;
+            expectedResult.scal = scal;
+
+            sut.ParseInputString(inputFrame, ref controllerValues);
+            Assert.True(expectedResult == controllerValues.diode_Tunes);
+        }
+
+        [TestCase("+HEATER_CV=5", 5)]
+        public void heaterCVFrameSetsProperValue(string inputFrame, int expectedResult)
+        {
+            sut.ParseInputString(inputFrame, ref controllerValues);
+            Assert.True(expectedResult == controllerValues.heater_Params.cv);
+        }
+
+        [TestCase("+HEATER_AUTO_DATA=1:2", 1)]
+        public void heaterAutoDataSetsProperValueInOpenLoopMode(string inputFrame, int heaterPowerExpected)
+        {
+            sut.ParseInputString(inputFrame, ref controllerValues);
+            Assert.True(heaterPowerExpected == controllerValues.heater_Power);
+        }
+
+        [TestCase("+HEATER_AUTO_DATA=1:2:3:4:5:6", 1, 3 ,4, 5, 6)]
+        public void heaterAutoDataSetsProperValueInFeedbackMode(string inputFrame,
+                                                                int heaterPowerExpected,
+                                                                int spExpected,
+                                                                int cvExpected,
+                                                                int pvExpected,
+                                                                int errorExpected)
+        {
+            sut.ParseInputString(inputFrame, ref controllerValues);
+            Assert.True(heaterPowerExpected == controllerValues.heater_Power);
+            Assert.True(spExpected == controllerValues.heater_Params.sp);
+            Assert.True(cvExpected == controllerValues.heater_Params.cv);
+            Assert.True(pvExpected == controllerValues.heater_Params.pv);
+            Assert.True(errorExpected == controllerValues.heater_Params.err);
+        }
     }
 }
