@@ -24,5 +24,18 @@ namespace Komora.Controls
 
             return new DateTime(date.Year, date.Month, date.Day, time.Hour, time.Minute, time.Second);
         }
+
+        public void setDateAndTime(DateTime date)
+        {
+            dateTimePickerDate.Value = new DateTime(date.Year,
+                                                    date.Month,
+                                                    date.Day);
+            dateTimePickerTime.Value = new DateTime(date.Year,
+                                                    date.Month, 
+                                                    date.Day, 
+                                                    date.Hour,
+                                                    date.Minute,
+                                                    date.Second);
+        }
     }
 }

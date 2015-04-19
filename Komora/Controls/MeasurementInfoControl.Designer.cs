@@ -53,13 +53,9 @@
             this.labelInfo = new System.Windows.Forms.Label();
             this.checkBoxRejuventaion = new System.Windows.Forms.CheckBox();
             this.labelRejuvenation = new System.Windows.Forms.Label();
-            this.labelDate = new System.Windows.Forms.Label();
-            this.dtpRejuvenationTime = new System.Windows.Forms.DateTimePicker();
-            this.dtpRejuvenationDate = new System.Windows.Forms.DateTimePicker();
-            this.label3 = new System.Windows.Forms.Label();
-            this.dtpSynthesisTime = new System.Windows.Forms.DateTimePicker();
-            this.dtpSynthesisDate = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
+            this.dtpSytntesis = new Komora.Controls.DateAndTimePicker();
+            this.dtpRejuvenation = new Komora.Controls.DateAndTimePicker();
             this.SuspendLayout();
             // 
             // tbName
@@ -274,56 +270,6 @@
             this.labelRejuvenation.TabIndex = 60;
             this.labelRejuvenation.Text = "Rejuvenation:";
             // 
-            // labelDate
-            // 
-            this.labelDate.AutoSize = true;
-            this.labelDate.Location = new System.Drawing.Point(483, 90);
-            this.labelDate.Name = "labelDate";
-            this.labelDate.Size = new System.Drawing.Size(33, 13);
-            this.labelDate.TabIndex = 71;
-            this.labelDate.Text = "Date:";
-            // 
-            // dtpRejuvenationTime
-            // 
-            this.dtpRejuvenationTime.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dtpRejuvenationTime.Location = new System.Drawing.Point(541, 100);
-            this.dtpRejuvenationTime.Name = "dtpRejuvenationTime";
-            this.dtpRejuvenationTime.Size = new System.Drawing.Size(96, 20);
-            this.dtpRejuvenationTime.TabIndex = 70;
-            // 
-            // dtpRejuvenationDate
-            // 
-            this.dtpRejuvenationDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpRejuvenationDate.Location = new System.Drawing.Point(541, 74);
-            this.dtpRejuvenationDate.Name = "dtpRejuvenationDate";
-            this.dtpRejuvenationDate.Size = new System.Drawing.Size(96, 20);
-            this.dtpRejuvenationDate.TabIndex = 69;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(230, 120);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(33, 13);
-            this.label3.TabIndex = 74;
-            this.label3.Text = "Date:";
-            // 
-            // dtpSynthesisTime
-            // 
-            this.dtpSynthesisTime.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dtpSynthesisTime.Location = new System.Drawing.Point(288, 130);
-            this.dtpSynthesisTime.Name = "dtpSynthesisTime";
-            this.dtpSynthesisTime.Size = new System.Drawing.Size(96, 20);
-            this.dtpSynthesisTime.TabIndex = 73;
-            // 
-            // dtpSynthesisDate
-            // 
-            this.dtpSynthesisDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpSynthesisDate.Location = new System.Drawing.Point(288, 104);
-            this.dtpSynthesisDate.Name = "dtpSynthesisDate";
-            this.dtpSynthesisDate.Size = new System.Drawing.Size(96, 20);
-            this.dtpSynthesisDate.TabIndex = 72;
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -333,17 +279,27 @@
             this.label4.TabIndex = 75;
             this.label4.Text = "MEASUREMENT INFORMATION: ";
             // 
+            // dtpSytntesis
+            // 
+            this.dtpSytntesis.Location = new System.Drawing.Point(222, 102);
+            this.dtpSytntesis.Name = "dtpSytntesis";
+            this.dtpSytntesis.Size = new System.Drawing.Size(212, 53);
+            this.dtpSytntesis.TabIndex = 76;
+            // 
+            // dtpRejuvenation
+            // 
+            this.dtpRejuvenation.Location = new System.Drawing.Point(454, 70);
+            this.dtpRejuvenation.Name = "dtpRejuvenation";
+            this.dtpRejuvenation.Size = new System.Drawing.Size(212, 53);
+            this.dtpRejuvenation.TabIndex = 77;
+            // 
             // MeasurementInfoControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.dtpRejuvenation);
+            this.Controls.Add(this.dtpSytntesis);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.dtpSynthesisTime);
-            this.Controls.Add(this.dtpSynthesisDate);
-            this.Controls.Add(this.labelDate);
-            this.Controls.Add(this.dtpRejuvenationTime);
-            this.Controls.Add(this.dtpRejuvenationDate);
             this.Controls.Add(this.tbRejuvenationAdditionalInfo);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.tbSpecialAged);
@@ -403,12 +359,8 @@
         private System.Windows.Forms.Label labelInfo;
         private System.Windows.Forms.CheckBox checkBoxRejuventaion;
         private System.Windows.Forms.Label labelRejuvenation;
-        private System.Windows.Forms.Label labelDate;
-        private System.Windows.Forms.DateTimePicker dtpRejuvenationTime;
-        private System.Windows.Forms.DateTimePicker dtpRejuvenationDate;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DateTimePicker dtpSynthesisTime;
-        private System.Windows.Forms.DateTimePicker dtpSynthesisDate;
         private System.Windows.Forms.Label label4;
+        private DateAndTimePicker dtpSytntesis;
+        private DateAndTimePicker dtpRejuvenation;
     }
 }

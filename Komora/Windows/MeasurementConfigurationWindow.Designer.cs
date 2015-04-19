@@ -30,7 +30,7 @@
         {
             this.dgvChambers = new System.Windows.Forms.DataGridView();
             this.btnStartMeasurement = new System.Windows.Forms.Button();
-            this.measurementInfoControl1 = new Komora.Controls.MeasurementInfoControl();
+            this.measurementInfoControl = new Komora.Controls.MeasurementInfoControl();
             ((System.ComponentModel.ISupportInitialize)(this.dgvChambers)).BeginInit();
             this.SuspendLayout();
             // 
@@ -47,7 +47,7 @@
             // 
             // btnStartMeasurement
             // 
-            this.btnStartMeasurement.Location = new System.Drawing.Point(520, 13);
+            this.btnStartMeasurement.Location = new System.Drawing.Point(485, 46);
             this.btnStartMeasurement.Name = "btnStartMeasurement";
             this.btnStartMeasurement.Size = new System.Drawing.Size(150, 64);
             this.btnStartMeasurement.TabIndex = 1;
@@ -55,19 +55,19 @@
             this.btnStartMeasurement.UseVisualStyleBackColor = true;
             this.btnStartMeasurement.Click += new System.EventHandler(this.btnStartMeasurement_Click);
             // 
-            // measurementInfoControl1
+            // measurementInfoControl
             // 
-            this.measurementInfoControl1.Location = new System.Drawing.Point(13, 161);
-            this.measurementInfoControl1.Name = "measurementInfoControl1";
-            this.measurementInfoControl1.Size = new System.Drawing.Size(672, 256);
-            this.measurementInfoControl1.TabIndex = 2;
+            this.measurementInfoControl.Location = new System.Drawing.Point(13, 161);
+            this.measurementInfoControl.Name = "measurementInfoControl";
+            this.measurementInfoControl.Size = new System.Drawing.Size(672, 256);
+            this.measurementInfoControl.TabIndex = 2;
             // 
             // MeasurementConfigurationWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(764, 421);
-            this.Controls.Add(this.measurementInfoControl1);
+            this.ClientSize = new System.Drawing.Size(988, 421);
+            this.Controls.Add(this.measurementInfoControl);
             this.Controls.Add(this.btnStartMeasurement);
             this.Controls.Add(this.dgvChambers);
             this.Name = "MeasurementConfigurationWindow";
@@ -81,6 +81,6 @@
 
         private System.Windows.Forms.DataGridView dgvChambers;
         private System.Windows.Forms.Button btnStartMeasurement;
-        private Controls.MeasurementInfoControl measurementInfoControl1;
+        private Controls.MeasurementInfoControl measurementInfoControl;
     }
 }

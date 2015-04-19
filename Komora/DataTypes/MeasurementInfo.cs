@@ -17,7 +17,7 @@ namespace Komora.DataTypes
         public DateTime synthesisDate;
         public string _operator;
         public bool afterRejuvenation;
-        public DateTime rejuvenationTime;
+        public DateTime rejuvenationDate;
         public string rejuvenationAdditionalInfo;
         public string darkAged;
         public string specialAged;

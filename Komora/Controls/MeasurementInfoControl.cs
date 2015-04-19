@@ -17,6 +17,8 @@ namespace Komora.Controls
         public MeasurementInfoControl()
         {
             InitializeComponent();
+            afterRejuvenation = false;
+            SetEnableForTextBoxesWithRejuvenationInfo();
         }
 
         public DataTypes.MeasurementInfo getMeasurementInfo()
@@ -28,14 +30,34 @@ namespace Komora.Controls
             measInfo.material = tbMaterial.Text;
             measInfo.basicAdditionalInfo = tbAddInfo.Text;
             measInfo.laboratory = tbLaboratory.Text;
-            measInfo.synthesisDate = dtpSynthesisDate.Value.Date.AddHours(dtpSynthesisTime.Value.Hour)
-                                                                .AddMinutes(dtpSynthesisTime.Value.Minute)
-                                                                .AddSeconds(dtpSynthesisTime.Value.Second);
+            measInfo.synthesisDate = dtpSytntesis.getDateAndTime();
             measInfo._operator = tbOperator.Text;
             measInfo.afterRejuvenation = checkBoxRejuventaion.Checked;
-
+            measInfo.rejuvenationDate = dtpRejuvenation.getDateAndTime();
+            measInfo.rejuvenationAdditionalInfo = tbRejuvenationAdditionalInfo.Text;
+            measInfo.darkAged = tbDarkAged.Text;
+            measInfo.specialAged = tbSpecialAged.Text;
 
             return measInfo;
+        }
+
+        public void setMeasurementInfo(DataTypes.MeasurementInfo measInfo)
+        {
+            tbName.Text = measInfo.measurementName;
+            tbFilename.Text = measInfo.filename;
+            tbWeight.Text = measInfo.weight.ToString();
+            tbMaterial.Text = measInfo.material;
+            tbAddInfo.Text = measInfo.basicAdditionalInfo;
+            tbLaboratory.Text = measInfo.laboratory;
+            dtpSytntesis.setDateAndTime(measInfo.synthesisDate);
+            measInfo._operator = tbOperator.Text;
+            checkBoxRejuventaion.Checked = measInfo.afterRejuvenation;
+            dtpRejuvenation.setDateAndTime(measInfo.rejuvenationDate);
+            tbRejuvenationAdditionalInfo.Text = measInfo.rejuvenationAdditionalInfo;
+            tbDarkAged.Text = measInfo.darkAged;
+            tbSpecialAged.Text = measInfo.specialAged;
+
+            SetEnableForTextBoxesWithRejuvenationInfo();
         }
 
         private void checkBoxRejuventaion_CheckedChanged(object sender, EventArgs e)
@@ -49,18 +71,15 @@ namespace Komora.Controls
 
         private void SetEnableForTextBoxesWithRejuvenationInfo()
         {
-            bool state;
-
-            //jesli probka jest po rejuwenacji to nalezy "wylaczyc" textboxy
-            if (afterRejuvenation) state = false;
-            else state = true;
-
-            tbDarkAged.Text = null;
-            tbDarkAged.Enabled = state;
-            tbSpecialAged.Text = null;
-            tbSpecialAged.Enabled = state;
-            tbRejuvenationAdditionalInfo.Text = null;
-            tbRejuvenationAdditionalInfo.Enabled = state;
+            tbDarkAged.Enabled = afterRejuvenation;
+            tbSpecialAged.Enabled = afterRejuvenation;
+            tbRejuvenationAdditionalInfo.Enabled = afterRejuvenation;
+            if (!afterRejuvenation)
+            {
+                tbDarkAged.Text = null;
+                tbSpecialAged.Text = null;
+                tbRejuvenationAdditionalInfo.Text = null;
+            }
         }
     }
 }

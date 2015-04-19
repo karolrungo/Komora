@@ -30,11 +30,12 @@
         {
             this.tbCommand = new System.Windows.Forms.TextBox();
             this.btnSendCommand = new System.Windows.Forms.Button();
+            this.measurementInfoControl = new Komora.Controls.MeasurementInfoControl();
             this.SuspendLayout();
             // 
             // tbCommand
             // 
-            this.tbCommand.Location = new System.Drawing.Point(362, 30);
+            this.tbCommand.Location = new System.Drawing.Point(671, 89);
             this.tbCommand.Name = "tbCommand";
             this.tbCommand.Size = new System.Drawing.Size(270, 20);
             this.tbCommand.TabIndex = 0;
@@ -42,18 +43,26 @@
             // 
             // btnSendCommand
             // 
-            this.btnSendCommand.Location = new System.Drawing.Point(649, 30);
+            this.btnSendCommand.Location = new System.Drawing.Point(958, 89);
             this.btnSendCommand.Name = "btnSendCommand";
-            this.btnSendCommand.Size = new System.Drawing.Size(84, 23);
+            this.btnSendCommand.Size = new System.Drawing.Size(101, 23);
             this.btnSendCommand.TabIndex = 1;
             this.btnSendCommand.Text = "sendCommand";
             this.btnSendCommand.UseVisualStyleBackColor = true;
+            // 
+            // measurementInfoControl
+            // 
+            this.measurementInfoControl.Location = new System.Drawing.Point(12, 350);
+            this.measurementInfoControl.Name = "measurementInfoControl";
+            this.measurementInfoControl.Size = new System.Drawing.Size(672, 256);
+            this.measurementInfoControl.TabIndex = 2;
             // 
             // MeasurementForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(805, 307);
+            this.ClientSize = new System.Drawing.Size(1201, 618);
+            this.Controls.Add(this.measurementInfoControl);
             this.Controls.Add(this.btnSendCommand);
             this.Controls.Add(this.tbCommand);
             this.Name = "MeasurementForm";
@@ -68,5 +77,6 @@
 
         private System.Windows.Forms.TextBox tbCommand;
         private System.Windows.Forms.Button btnSendCommand;
+        private Controls.MeasurementInfoControl measurementInfoControl;
     }
 }
