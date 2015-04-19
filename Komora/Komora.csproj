@@ -120,10 +120,17 @@
     <Compile Include="Controls\DateAndTimePicker.Designer.cs">
       <DependentUpon>DateAndTimePicker.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\MeasurementInfoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\MeasurementInfoControl.Designer.cs">
+      <DependentUpon>MeasurementInfoControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="DataTypes\ControllerValues.cs" />
     <Compile Include="DataTypes\Enum.cs" />
     <Compile Include="DataTypes\Hardware_Conf.cs" />
     <Compile Include="DataTypes\LedPolynomial.cs" />
+    <Compile Include="DataTypes\MeasurementInfo.cs" />
     <Compile Include="DataTypes\MeasurementSamples.cs" />
     <Compile Include="DataTypes\RegulationParameters.cs" />
     <Compile Include="DataTypes\PolynomialCoefficients.cs" />
@@ -204,6 +211,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\DateAndTimePicker.resx">
       <DependentUpon>DateAndTimePicker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\MeasurementInfoControl.resx">
+      <DependentUpon>MeasurementInfoControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Windows\CalibrationWindow.resx">
       <DependentUpon>CalibrationWindow.cs</DependentUpon>

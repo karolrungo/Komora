@@ -30,6 +30,7 @@
         {
             this.dgvChambers = new System.Windows.Forms.DataGridView();
             this.btnStartMeasurement = new System.Windows.Forms.Button();
+            this.measurementInfoControl1 = new Komora.Controls.MeasurementInfoControl();
             ((System.ComponentModel.ISupportInitialize)(this.dgvChambers)).BeginInit();
             this.SuspendLayout();
             // 
@@ -54,11 +55,19 @@
             this.btnStartMeasurement.UseVisualStyleBackColor = true;
             this.btnStartMeasurement.Click += new System.EventHandler(this.btnStartMeasurement_Click);
             // 
+            // measurementInfoControl1
+            // 
+            this.measurementInfoControl1.Location = new System.Drawing.Point(13, 161);
+            this.measurementInfoControl1.Name = "measurementInfoControl1";
+            this.measurementInfoControl1.Size = new System.Drawing.Size(672, 256);
+            this.measurementInfoControl1.TabIndex = 2;
+            // 
             // MeasurementConfigurationWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(764, 262);
+            this.ClientSize = new System.Drawing.Size(764, 421);
+            this.Controls.Add(this.measurementInfoControl1);
             this.Controls.Add(this.btnStartMeasurement);
             this.Controls.Add(this.dgvChambers);
             this.Name = "MeasurementConfigurationWindow";
@@ -72,5 +81,6 @@
 
         private System.Windows.Forms.DataGridView dgvChambers;
         private System.Windows.Forms.Button btnStartMeasurement;
+        private Controls.MeasurementInfoControl measurementInfoControl1;
     }
 }
