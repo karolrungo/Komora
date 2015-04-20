@@ -10,40 +10,47 @@ namespace Komora.Classes.Plot
 {
     public class ZedGraphController
     {
-        public void ClearPlot(ref ZedGraphControl zg)
+        ZedGraphControl graph;
+
+        public ZedGraphController(ref ZedGraphControl zedGraph)
         {
-            zg.GraphPane.CurveList.Clear();
-            axisChangeZedGraph(zg);
+            graph = zedGraph;
         }
 
-        public void DrawPoints(ref ZedGraphControl zg, PointPairList points, string lineName)
+        public void ClearPlot()
+        {
+            graph.GraphPane.CurveList.Clear();
+            axisChangeZedGraph(graph);
+        }
+
+        public void DrawPoints(PointPairList points, string lineName)
         {
             LineItem curve = new LineItem(lineName);
-            curve = zg.GraphPane.AddCurve(lineName, points, Color.Blue, SymbolType.Circle);
+            curve = graph.GraphPane.AddCurve(lineName, points, Color.Blue, SymbolType.Circle);
             curve.Line.IsVisible = false;
-            axisChangeZedGraph(zg);
+            axisChangeZedGraph(graph);
         }
 
-        public void DrawLine(ref ZedGraphControl zg, PointPairList points, string lineName)
+        public void DrawLine(PointPairList points, string lineName)
         {
             LineItem curve = new LineItem(lineName);
-            curve = zg.GraphPane.AddCurve(lineName, points, Color.Red, SymbolType.None);
-            axisChangeZedGraph(zg);
+            curve = graph.GraphPane.AddCurve(lineName, points, Color.Red, SymbolType.None);
+            axisChangeZedGraph(graph);
         }
 
-        delegate void axisChangeZedGraphCallBack(ZedGraphControl zg);
-        private void axisChangeZedGraph(ZedGraphControl zg)
+        delegate void axisChangeZedGraphCallBack(ZedGraphControl graph);
+        private void axisChangeZedGraph(ZedGraphControl graph)
         {
-            if (zg.InvokeRequired)
+            if (graph.InvokeRequired)
             {
                 axisChangeZedGraphCallBack ad = new axisChangeZedGraphCallBack(axisChangeZedGraph);
-                zg.Invoke(ad, new object[] { zg });
+                graph.Invoke(ad, new object[] { graph });
             }
             else
             {
-                zg.AxisChange();
-                zg.Invalidate();
-                zg.Refresh();
+                graph.AxisChange();
+                graph.Invalidate();
+                graph.Refresh();
             }
         }
     }

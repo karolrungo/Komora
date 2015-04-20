@@ -31,6 +31,8 @@ namespace Komora.Classes.File
 
         private MeasurementSamples<T> convertFileContentToMeasurementSamples(string[] fileContent)
         {
+            x = new List<T>();
+            y = new List<T>();
             foreach (string row in fileContent)
             {
                 string[] rowElements = row.Split(',');

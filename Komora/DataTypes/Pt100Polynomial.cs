@@ -48,5 +48,10 @@ namespace Komora.DataTypes
         {
             return this.ToString(format, CultureInfo.CurrentCulture);
         }
+
+        internal List<double> getCoefficients()
+        {
+            return polynomial.getCoefficients();
+        }
     }
 }
