@@ -49,6 +49,7 @@
             this.btnSendCommand.TabIndex = 1;
             this.btnSendCommand.Text = "sendCommand";
             this.btnSendCommand.UseVisualStyleBackColor = true;
+            this.btnSendCommand.Click += new System.EventHandler(this.btnSendCommand_Click);
             // 
             // measurementInfoControl
             // 

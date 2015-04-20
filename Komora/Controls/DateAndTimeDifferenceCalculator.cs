@@ -22,7 +22,7 @@ namespace Komora.Controls
         {
             DateTime start = dateAndTimePickerStart.getDateAndTime();
             DateTime end = dateAndTimePickerEnd.getDateAndTime();
-            TimeSpan diff  = start.Subtract(end.Date);
+            TimeSpan diff  = start.Subtract(end.Date).Subtract(end.TimeOfDay);
 
             labelResult.Text = formatOutputString(diff);
         }

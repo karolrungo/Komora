@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Komora.Classes;
 using Komora;
+using Komora.DataTypes;
+using System.Threading;
 
 namespace Komora.Windows
 {
@@ -34,6 +36,17 @@ namespace Komora.Windows
             controllerValues = new DataTypes.ControllerValues();
 
             parserThread = new Classes.Communication.ParserThread(atCommand.RecivedStrings, ref controllerValues);
+
+            controllerValues.cont_Mode = CONT_MODE.FEEDBACK;
+            controllerValues.pwm_Mode = CONTROL_MODE.HEATER;
+
+            atCommand.AT_CONT_MODE(controllerValues.cont_Mode);
+            Thread.Sleep(300);
+            atCommand.AT_CONTROL_MODE(controllerValues.pwm_Mode);
+            Thread.Sleep(300);
+
+            atCommand.AT_DISPLAY_MODE(DISPLAY_MODE.HEATER_PARAMS);
+            atCommand.AT_HEATER_SP(11200);
         }
 
         private void MeasurementForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -41,6 +54,11 @@ namespace Komora.Windows
             parserThread.Stop();
             atCommand.CancelSerialPortDataRecivedHandler();
             atCommand.CloseSerialPort();
+        }
+
+        private void btnSendCommand_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }
