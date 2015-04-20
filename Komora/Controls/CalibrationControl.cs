@@ -179,5 +179,10 @@ namespace Komora.Controls
         {
             return Int32.Parse(textBoxCurrentBound.Text);
         }
+
+        internal void drawMeasurementSamplesOnGraph(List<Tuple<double, double>> list)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

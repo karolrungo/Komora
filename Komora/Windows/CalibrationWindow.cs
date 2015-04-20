@@ -92,6 +92,7 @@ namespace Komora.Windows
                     measurementSamples = csvReader.readSamplesFromFile(calibrationControlPt100.getFilename());
                     pt100Polynomial.calculateCoefficients(measurementSamples, calibrationControlPt100.getPolynomialOrderPt100());
                     calibrationControlPt100.showResults(pt100Polynomial.ToString());
+                    calibrationControlPt100.drawMeasurementSamplesOnGraph(measurementSamples.samples);
                 }
                 else if (e.coefficientsType == Utilities.CoefficientsType.LED)
                 {
