@@ -35,6 +35,8 @@ namespace Komora.Windows
                 string serialPort = getSerialPortFromDataGridView();
                 measInfo = measurementInfoControl.getMeasurementInfo();
 
+                databaseConnector.saveMeasurementInfo(measInfo);
+
                 MeasurementForm measurementForm = new MeasurementForm(serialPort, measInfo);
                 measurementForm.Show(); 
             }
@@ -52,7 +54,7 @@ namespace Komora.Windows
             }
             else
             {
-                return "dupa!";
+                return "nic!";
             }
         }
 

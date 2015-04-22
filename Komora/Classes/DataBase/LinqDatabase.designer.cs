@@ -33,9 +33,6 @@ namespace Komora.Classes.DataBase
     partial void InsertHardwareConfiguration(HardwareConfiguration instance);
     partial void UpdateHardwareConfiguration(HardwareConfiguration instance);
     partial void DeleteHardwareConfiguration(HardwareConfiguration instance);
-    partial void InsertMeasurementTable(MeasurementTable instance);
-    partial void UpdateMeasurementTable(MeasurementTable instance);
-    partial void DeleteMeasurementTable(MeasurementTable instance);
     partial void InsertMeasurment(Measurment instance);
     partial void UpdateMeasurment(Measurment instance);
     partial void DeleteMeasurment(Measurment instance);
@@ -51,6 +48,9 @@ namespace Komora.Classes.DataBase
     partial void InsertLed_Poly(Led_Poly instance);
     partial void UpdateLed_Poly(Led_Poly instance);
     partial void DeleteLed_Poly(Led_Poly instance);
+    partial void InsertMeasurementTable(MeasurementTable instance);
+    partial void UpdateMeasurementTable(MeasurementTable instance);
+    partial void DeleteMeasurementTable(MeasurementTable instance);
     #endregion
 		
 		public LinqDatabaseDataContext() : 
@@ -91,14 +91,6 @@ namespace Komora.Classes.DataBase
 			}
 		}
 		
-		public System.Data.Linq.Table<MeasurementTable> MeasurementTables
-		{
-			get
-			{
-				return this.GetTable<MeasurementTable>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Measurment> Measurments
 		{
 			get
@@ -136,6 +128,14 @@ namespace Komora.Classes.DataBase
 			get
 			{
 				return this.GetTable<Led_Poly>();
+			}
+		}
+		
+		public System.Data.Linq.Table<MeasurementTable> MeasurementTables
+		{
+			get
+			{
+				return this.GetTable<MeasurementTable>();
 			}
 		}
 	}
@@ -327,356 +327,6 @@ namespace Komora.Classes.DataBase
 		{
 			this.SendPropertyChanging();
 			entity.HardwareConfiguration = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.MeasurementTable")]
-	public partial class MeasurementTable : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _ID;
-		
-		private string _Name;
-		
-		private string _Filename;
-		
-		private double _Weight;
-		
-		private string _Material;
-		
-		private string _Basic_AddInfo;
-		
-		private string _Synthesis_Laboratory;
-		
-		private string _Synthesis_Date;
-		
-		private string _Synthesis_Operator;
-		
-		private bool _Rejuvenation_After;
-		
-		private string _Rejuvenation_Date;
-		
-		private string _Rejuvenation_DarkAged;
-		
-		private string _RejuvenationSpecialAged;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIDChanging(int value);
-    partial void OnIDChanged();
-    partial void OnNameChanging(string value);
-    partial void OnNameChanged();
-    partial void OnFilenameChanging(string value);
-    partial void OnFilenameChanged();
-    partial void OnWeightChanging(double value);
-    partial void OnWeightChanged();
-    partial void OnMaterialChanging(string value);
-    partial void OnMaterialChanged();
-    partial void OnBasic_AddInfoChanging(string value);
-    partial void OnBasic_AddInfoChanged();
-    partial void OnSynthesis_LaboratoryChanging(string value);
-    partial void OnSynthesis_LaboratoryChanged();
-    partial void OnSynthesis_DateChanging(string value);
-    partial void OnSynthesis_DateChanged();
-    partial void OnSynthesis_OperatorChanging(string value);
-    partial void OnSynthesis_OperatorChanged();
-    partial void OnRejuvenation_AfterChanging(bool value);
-    partial void OnRejuvenation_AfterChanged();
-    partial void OnRejuvenation_DateChanging(string value);
-    partial void OnRejuvenation_DateChanged();
-    partial void OnRejuvenation_DarkAgedChanging(string value);
-    partial void OnRejuvenation_DarkAgedChanged();
-    partial void OnRejuvenationSpecialAgedChanging(string value);
-    partial void OnRejuvenationSpecialAgedChanged();
-    #endregion
-		
-		public MeasurementTable()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int ID
-		{
-			get
-			{
-				return this._ID;
-			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this.OnIDChanging(value);
-					this.SendPropertyChanging();
-					this._ID = value;
-					this.SendPropertyChanged("ID");
-					this.OnIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string Name
-		{
-			get
-			{
-				return this._Name;
-			}
-			set
-			{
-				if ((this._Name != value))
-				{
-					this.OnNameChanging(value);
-					this.SendPropertyChanging();
-					this._Name = value;
-					this.SendPropertyChanged("Name");
-					this.OnNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Filename", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string Filename
-		{
-			get
-			{
-				return this._Filename;
-			}
-			set
-			{
-				if ((this._Filename != value))
-				{
-					this.OnFilenameChanging(value);
-					this.SendPropertyChanging();
-					this._Filename = value;
-					this.SendPropertyChanged("Filename");
-					this.OnFilenameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Weight", DbType="Float NOT NULL")]
-		public double Weight
-		{
-			get
-			{
-				return this._Weight;
-			}
-			set
-			{
-				if ((this._Weight != value))
-				{
-					this.OnWeightChanging(value);
-					this.SendPropertyChanging();
-					this._Weight = value;
-					this.SendPropertyChanged("Weight");
-					this.OnWeightChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Material", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string Material
-		{
-			get
-			{
-				return this._Material;
-			}
-			set
-			{
-				if ((this._Material != value))
-				{
-					this.OnMaterialChanging(value);
-					this.SendPropertyChanging();
-					this._Material = value;
-					this.SendPropertyChanged("Material");
-					this.OnMaterialChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Basic_AddInfo", DbType="NVarChar(100)")]
-		public string Basic_AddInfo
-		{
-			get
-			{
-				return this._Basic_AddInfo;
-			}
-			set
-			{
-				if ((this._Basic_AddInfo != value))
-				{
-					this.OnBasic_AddInfoChanging(value);
-					this.SendPropertyChanging();
-					this._Basic_AddInfo = value;
-					this.SendPropertyChanged("Basic_AddInfo");
-					this.OnBasic_AddInfoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Synthesis_Laboratory", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string Synthesis_Laboratory
-		{
-			get
-			{
-				return this._Synthesis_Laboratory;
-			}
-			set
-			{
-				if ((this._Synthesis_Laboratory != value))
-				{
-					this.OnSynthesis_LaboratoryChanging(value);
-					this.SendPropertyChanging();
-					this._Synthesis_Laboratory = value;
-					this.SendPropertyChanged("Synthesis_Laboratory");
-					this.OnSynthesis_LaboratoryChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Synthesis_Date", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string Synthesis_Date
-		{
-			get
-			{
-				return this._Synthesis_Date;
-			}
-			set
-			{
-				if ((this._Synthesis_Date != value))
-				{
-					this.OnSynthesis_DateChanging(value);
-					this.SendPropertyChanging();
-					this._Synthesis_Date = value;
-					this.SendPropertyChanged("Synthesis_Date");
-					this.OnSynthesis_DateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Synthesis_Operator", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string Synthesis_Operator
-		{
-			get
-			{
-				return this._Synthesis_Operator;
-			}
-			set
-			{
-				if ((this._Synthesis_Operator != value))
-				{
-					this.OnSynthesis_OperatorChanging(value);
-					this.SendPropertyChanging();
-					this._Synthesis_Operator = value;
-					this.SendPropertyChanged("Synthesis_Operator");
-					this.OnSynthesis_OperatorChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Rejuvenation_After", DbType="Bit NOT NULL")]
-		public bool Rejuvenation_After
-		{
-			get
-			{
-				return this._Rejuvenation_After;
-			}
-			set
-			{
-				if ((this._Rejuvenation_After != value))
-				{
-					this.OnRejuvenation_AfterChanging(value);
-					this.SendPropertyChanging();
-					this._Rejuvenation_After = value;
-					this.SendPropertyChanged("Rejuvenation_After");
-					this.OnRejuvenation_AfterChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Rejuvenation_Date", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string Rejuvenation_Date
-		{
-			get
-			{
-				return this._Rejuvenation_Date;
-			}
-			set
-			{
-				if ((this._Rejuvenation_Date != value))
-				{
-					this.OnRejuvenation_DateChanging(value);
-					this.SendPropertyChanging();
-					this._Rejuvenation_Date = value;
-					this.SendPropertyChanged("Rejuvenation_Date");
-					this.OnRejuvenation_DateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Rejuvenation_DarkAged", DbType="NVarChar(50)")]
-		public string Rejuvenation_DarkAged
-		{
-			get
-			{
-				return this._Rejuvenation_DarkAged;
-			}
-			set
-			{
-				if ((this._Rejuvenation_DarkAged != value))
-				{
-					this.OnRejuvenation_DarkAgedChanging(value);
-					this.SendPropertyChanging();
-					this._Rejuvenation_DarkAged = value;
-					this.SendPropertyChanged("Rejuvenation_DarkAged");
-					this.OnRejuvenation_DarkAgedChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RejuvenationSpecialAged", DbType="NVarChar(50)")]
-		public string RejuvenationSpecialAged
-		{
-			get
-			{
-				return this._RejuvenationSpecialAged;
-			}
-			set
-			{
-				if ((this._RejuvenationSpecialAged != value))
-				{
-					this.OnRejuvenationSpecialAgedChanging(value);
-					this.SendPropertyChanging();
-					this._RejuvenationSpecialAged = value;
-					this.SendPropertyChanged("RejuvenationSpecialAged");
-					this.OnRejuvenationSpecialAgedChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
 		}
 	}
 	
@@ -1404,6 +1054,380 @@ namespace Komora.Classes.DataBase
 						this._chamberID = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("HardwareConfiguration");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.MeasurementTable")]
+	public partial class MeasurementTable : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private string _Name;
+		
+		private string _Filename;
+		
+		private double _Weight;
+		
+		private string _Material;
+		
+		private string _Basic_AddInfo;
+		
+		private string _Synthesis_Laboratory;
+		
+		private System.DateTime _Synthesis_Date;
+		
+		private string _Synthesis_Operator;
+		
+		private bool _Rejuvenation_After;
+		
+		private string _Rejuvenation_AddInfo;
+		
+		private System.DateTime _Rejuvenation_Date;
+		
+		private string _Rejuvenation_DarkAged;
+		
+		private string _RejuvenationSpecialAged;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    partial void OnFilenameChanging(string value);
+    partial void OnFilenameChanged();
+    partial void OnWeightChanging(double value);
+    partial void OnWeightChanged();
+    partial void OnMaterialChanging(string value);
+    partial void OnMaterialChanged();
+    partial void OnBasic_AddInfoChanging(string value);
+    partial void OnBasic_AddInfoChanged();
+    partial void OnSynthesis_LaboratoryChanging(string value);
+    partial void OnSynthesis_LaboratoryChanged();
+    partial void OnSynthesis_DateChanging(System.DateTime value);
+    partial void OnSynthesis_DateChanged();
+    partial void OnSynthesis_OperatorChanging(string value);
+    partial void OnSynthesis_OperatorChanged();
+    partial void OnRejuvenation_AfterChanging(bool value);
+    partial void OnRejuvenation_AfterChanged();
+    partial void OnRejuvenation_AddInfoChanging(string value);
+    partial void OnRejuvenation_AddInfoChanged();
+    partial void OnRejuvenation_DateChanging(System.DateTime value);
+    partial void OnRejuvenation_DateChanged();
+    partial void OnRejuvenation_DarkAgedChanging(string value);
+    partial void OnRejuvenation_DarkAgedChanged();
+    partial void OnRejuvenationSpecialAgedChanging(string value);
+    partial void OnRejuvenationSpecialAgedChanged();
+    #endregion
+		
+		public MeasurementTable()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Filename", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Filename
+		{
+			get
+			{
+				return this._Filename;
+			}
+			set
+			{
+				if ((this._Filename != value))
+				{
+					this.OnFilenameChanging(value);
+					this.SendPropertyChanging();
+					this._Filename = value;
+					this.SendPropertyChanged("Filename");
+					this.OnFilenameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Weight", DbType="Float NOT NULL")]
+		public double Weight
+		{
+			get
+			{
+				return this._Weight;
+			}
+			set
+			{
+				if ((this._Weight != value))
+				{
+					this.OnWeightChanging(value);
+					this.SendPropertyChanging();
+					this._Weight = value;
+					this.SendPropertyChanged("Weight");
+					this.OnWeightChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Material", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Material
+		{
+			get
+			{
+				return this._Material;
+			}
+			set
+			{
+				if ((this._Material != value))
+				{
+					this.OnMaterialChanging(value);
+					this.SendPropertyChanging();
+					this._Material = value;
+					this.SendPropertyChanged("Material");
+					this.OnMaterialChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Basic_AddInfo", DbType="NVarChar(100)")]
+		public string Basic_AddInfo
+		{
+			get
+			{
+				return this._Basic_AddInfo;
+			}
+			set
+			{
+				if ((this._Basic_AddInfo != value))
+				{
+					this.OnBasic_AddInfoChanging(value);
+					this.SendPropertyChanging();
+					this._Basic_AddInfo = value;
+					this.SendPropertyChanged("Basic_AddInfo");
+					this.OnBasic_AddInfoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Synthesis_Laboratory", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Synthesis_Laboratory
+		{
+			get
+			{
+				return this._Synthesis_Laboratory;
+			}
+			set
+			{
+				if ((this._Synthesis_Laboratory != value))
+				{
+					this.OnSynthesis_LaboratoryChanging(value);
+					this.SendPropertyChanging();
+					this._Synthesis_Laboratory = value;
+					this.SendPropertyChanged("Synthesis_Laboratory");
+					this.OnSynthesis_LaboratoryChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Synthesis_Date", DbType="DateTime NOT NULL")]
+		public System.DateTime Synthesis_Date
+		{
+			get
+			{
+				return this._Synthesis_Date;
+			}
+			set
+			{
+				if ((this._Synthesis_Date != value))
+				{
+					this.OnSynthesis_DateChanging(value);
+					this.SendPropertyChanging();
+					this._Synthesis_Date = value;
+					this.SendPropertyChanged("Synthesis_Date");
+					this.OnSynthesis_DateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Synthesis_Operator", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Synthesis_Operator
+		{
+			get
+			{
+				return this._Synthesis_Operator;
+			}
+			set
+			{
+				if ((this._Synthesis_Operator != value))
+				{
+					this.OnSynthesis_OperatorChanging(value);
+					this.SendPropertyChanging();
+					this._Synthesis_Operator = value;
+					this.SendPropertyChanged("Synthesis_Operator");
+					this.OnSynthesis_OperatorChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Rejuvenation_After", DbType="Bit NOT NULL")]
+		public bool Rejuvenation_After
+		{
+			get
+			{
+				return this._Rejuvenation_After;
+			}
+			set
+			{
+				if ((this._Rejuvenation_After != value))
+				{
+					this.OnRejuvenation_AfterChanging(value);
+					this.SendPropertyChanging();
+					this._Rejuvenation_After = value;
+					this.SendPropertyChanged("Rejuvenation_After");
+					this.OnRejuvenation_AfterChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Rejuvenation_AddInfo", DbType="NVarChar(100)")]
+		public string Rejuvenation_AddInfo
+		{
+			get
+			{
+				return this._Rejuvenation_AddInfo;
+			}
+			set
+			{
+				if ((this._Rejuvenation_AddInfo != value))
+				{
+					this.OnRejuvenation_AddInfoChanging(value);
+					this.SendPropertyChanging();
+					this._Rejuvenation_AddInfo = value;
+					this.SendPropertyChanged("Rejuvenation_AddInfo");
+					this.OnRejuvenation_AddInfoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Rejuvenation_Date", DbType="DateTime NOT NULL")]
+		public System.DateTime Rejuvenation_Date
+		{
+			get
+			{
+				return this._Rejuvenation_Date;
+			}
+			set
+			{
+				if ((this._Rejuvenation_Date != value))
+				{
+					this.OnRejuvenation_DateChanging(value);
+					this.SendPropertyChanging();
+					this._Rejuvenation_Date = value;
+					this.SendPropertyChanged("Rejuvenation_Date");
+					this.OnRejuvenation_DateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Rejuvenation_DarkAged", DbType="NVarChar(50)")]
+		public string Rejuvenation_DarkAged
+		{
+			get
+			{
+				return this._Rejuvenation_DarkAged;
+			}
+			set
+			{
+				if ((this._Rejuvenation_DarkAged != value))
+				{
+					this.OnRejuvenation_DarkAgedChanging(value);
+					this.SendPropertyChanging();
+					this._Rejuvenation_DarkAged = value;
+					this.SendPropertyChanged("Rejuvenation_DarkAged");
+					this.OnRejuvenation_DarkAgedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RejuvenationSpecialAged", DbType="NVarChar(50)")]
+		public string RejuvenationSpecialAged
+		{
+			get
+			{
+				return this._RejuvenationSpecialAged;
+			}
+			set
+			{
+				if ((this._RejuvenationSpecialAged != value))
+				{
+					this.OnRejuvenationSpecialAgedChanging(value);
+					this.SendPropertyChanging();
+					this._RejuvenationSpecialAged = value;
+					this.SendPropertyChanged("RejuvenationSpecialAged");
+					this.OnRejuvenationSpecialAgedChanged();
 				}
 			}
 		}

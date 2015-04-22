@@ -302,5 +302,51 @@ namespace Komora.Classes.DataBase
             var allChambers = selectAllChambers();
             return allChambers.Where(chamber => chamber.Pt100_Polies.Any() && chamber.Led_Polies.Any());
         }
+
+        public void saveMeasurementInfo(DataTypes.MeasurementInfo measInfo)
+        {
+            DataBase.MeasurementTable info = new MeasurementTable();
+            info.Name = measInfo.measurementName;
+            info.Filename = measInfo.filename;
+            info.Weight = measInfo.weight;
+            info.Material = measInfo.material;
+            info.Synthesis_Laboratory = measInfo.laboratory;
+            info.Synthesis_Date = measInfo.synthesisDate;
+            info.Synthesis_Operator = measInfo._operator;
+            info.Rejuvenation_After = measInfo.afterRejuvenation;
+            info.Rejuvenation_Date = measInfo.rejuvenationDate;
+            info.Rejuvenation_AddInfo = measInfo.rejuvenationAdditionalInfo;
+            info.Rejuvenation_DarkAged = measInfo.darkAged;
+            info.RejuvenationSpecialAged = measInfo.specialAged;
+
+            dataContext.MeasurementTables.InsertOnSubmit(info);
+            dataContext.SubmitChanges();
+        }
+
+        public IQueryable<MeasurementTable> getAllMeasurementInfo()
+        {
+            return this.dataContext.MeasurementTables.Select(info => info);
+        }
+
+        public DataTypes.MeasurementInfo getMeasurementInfo(int measurementInfoID)
+        {
+            MeasurementTable info = dataContext.MeasurementTables.First(x => x.ID == measurementInfoID);
+
+            DataTypes.MeasurementInfo measInfo = new DataTypes.MeasurementInfo();
+            measInfo.measurementName = info.Name;
+            measInfo.filename = info.Filename;
+            measInfo.weight = info.Weight;
+            measInfo.material = info.Material;
+            measInfo.laboratory = info.Synthesis_Laboratory;
+            measInfo.synthesisDate = info.Synthesis_Date;
+            measInfo._operator = info.Synthesis_Operator;
+            measInfo.afterRejuvenation = info.Rejuvenation_After;
+            measInfo.rejuvenationDate = info.Rejuvenation_Date;
+            info.Rejuvenation_AddInfo = measInfo.rejuvenationAdditionalInfo;
+            measInfo.darkAged = info.Rejuvenation_DarkAged;
+            measInfo.specialAged = info.RejuvenationSpecialAged;
+
+            return measInfo;
+        }
     }
 }
