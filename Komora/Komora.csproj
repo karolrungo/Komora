@@ -102,6 +102,7 @@
     <Compile Include="Classes\Matlab\IMatlabConnector.cs" />
     <Compile Include="Classes\Matlab\MatlabCOMSerwerConnection.cs" />
     <Compile Include="Classes\Plot\ZedGraphController.cs" />
+    <Compile Include="Classes\Segment\Segment.cs" />
     <Compile Include="Classes\Tools\DateCounter.cs" />
     <Compile Include="Classes\Communication\SerialPortWatcher.cs" />
     <Compile Include="Controls\CalibrationControl.cs">

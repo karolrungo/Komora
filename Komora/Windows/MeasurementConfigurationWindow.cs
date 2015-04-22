@@ -14,7 +14,7 @@ namespace Komora.Windows
     public partial class MeasurementConfigurationWindow : Form
     {
         private Classes.DataBase.LinqDataBaseConnector databaseConnector;
-        private DataTypes.MeasurementInfo measInfo;
+        private DataTypes.MeasurementInfo measurementInfo;
         private Classes.Communication.SerialPortValidator serialPortValidator;
 
         public MeasurementConfigurationWindow()
@@ -24,8 +24,7 @@ namespace Komora.Windows
             serialPortValidator = new Classes.Communication.SerialPortValidator();
             databaseConnector = new Classes.DataBase.LinqDataBaseConnector();
             databaseConnector.connect();
-
-            measInfo = new DataTypes.MeasurementInfo();
+            measurementInfo = new DataTypes.MeasurementInfo();
 
             dgvChambers.DataSource = databaseConnector.selectCalibratedChambers();
         }
@@ -35,16 +34,10 @@ namespace Komora.Windows
             try
             {
                 string serialPort = getSerialPortFromDataGridView();
+                measurementInfo = measurementInfoControl.getMeasurementInfo();
+                databaseConnector.saveMeasurementInfo(measurementInfo);
 
-                if (!serialPortValidator.portExists(serialPort))
-                {
-                    throw new Exception("Port " + serialPort + " does not exists!");
-                }
-
-                measInfo = measurementInfoControl.getMeasurementInfo();
-                databaseConnector.saveMeasurementInfo(measInfo);
-
-                MeasurementForm measurementForm = new MeasurementForm(serialPort, measInfo);
+                MeasurementForm measurementForm = new MeasurementForm(serialPort, measurementInfo);
                 measurementForm.Show(); 
             }
             catch (Exception ex)
@@ -57,7 +50,12 @@ namespace Komora.Windows
         {
             if (onlyOneRowSelected(dgvChambers))
             {
-                return "COM3";
+                string serialPortName = dgvChambers.SelectedRows[0].Cells["serialPort"].Value.ToString();
+                if (!serialPortValidator.portExists(serialPortName))
+                {
+                    throw new Exception("Port " + serialPortName + " does not exists!");
+                }
+                return serialPortName;
             }
             else
             {
