@@ -21,6 +21,7 @@ namespace Komora.Windows
         private Classes.Communication.AT_Command atCommand; //komendy AT
         private Classes.Communication.ParserThread parserThread; //parser danych przychodzacych ze sterownika (osobny watek)
         private DataTypes.MeasurementInfo measInfo;
+        private Classes.DataBase.LinqDataBaseConnector databaseConnection;
 
         public MeasurementForm(string serialPort, DataTypes.MeasurementInfo measInfo)
         {
@@ -28,14 +29,13 @@ namespace Komora.Windows
             this.measInfo = measInfo;
 
             InitializeComponent();
-            measurementInfoControl.setMeasurementInfo(this.measInfo);
-
-      
+            //measurementInfoControl.setMeasurementInfo(this.measInfo);
 
             atCommand = new Classes.Communication.AT_Command(serialPort);
             controllerValues = new DataTypes.ControllerValues();
-
             parserThread = new Classes.Communication.ParserThread(atCommand.RecivedStrings, ref controllerValues);
+            databaseConnection = new Classes.DataBase.LinqDataBaseConnector();
+            databaseConnection.connect();
 
             controllerValues.cont_Mode = CONT_MODE.FEEDBACK;
             controllerValues.pwm_Mode = CONTROL_MODE.HEATER;
@@ -45,8 +45,7 @@ namespace Komora.Windows
             atCommand.AT_CONTROL_MODE(controllerValues.pwm_Mode);
             Thread.Sleep(300);
 
-            atCommand.AT_DISPLAY_MODE(DISPLAY_MODE.HEATER_PARAMS);
-            atCommand.AT_HEATER_SP(11200);
+            measurementInfoControl.setMeasurementInfo(databaseConnection.getMeasurementInfo(1));
         }
 
         private void MeasurementForm_FormClosing(object sender, FormClosingEventArgs e)

@@ -246,27 +246,6 @@ namespace Komora.Classes.DataBase
             }
         }
 
-        private bool chamberAlreadyHasPt100Coefficients(int chamberID)
-        {
-            var query = from c in dataContext.Pt100_Polies
-                        where c.chamberID == chamberID
-                        select c;
-
-            return query.Any();
-        }
-
-        private void chamberHasLedCoefficients(int chamberID)
-        {
-            var query = from c in dataContext.Led_Polies
-                        where c.chamberID == chamberID
-                        select c;
-
-            if (query.Any())
-            {
-                throw new ChamberAlreadyHasCoefficientsException("Selected hamber already has saved coefficients for LED");
-            }
-        }
-
         public void addChamber(string chamberName, string serialPort, int chamberNumber)
         {
             HardwareConfiguration hwConf = new HardwareConfiguration();
@@ -319,8 +298,11 @@ namespace Komora.Classes.DataBase
             info.Rejuvenation_DarkAged = measInfo.darkAged;
             info.RejuvenationSpecialAged = measInfo.specialAged;
 
-            dataContext.MeasurementTables.InsertOnSubmit(info);
-            dataContext.SubmitChanges();
+            if (!measurementAlreadyExists(info.Name))
+            {
+                dataContext.MeasurementTables.InsertOnSubmit(info);
+                dataContext.SubmitChanges();
+            }
         }
 
         public IQueryable<MeasurementTable> getAllMeasurementInfo()
@@ -347,6 +329,36 @@ namespace Komora.Classes.DataBase
             measInfo.specialAged = info.RejuvenationSpecialAged;
 
             return measInfo;
+        }
+
+        private bool measurementAlreadyExists(string measurementName)
+        {
+            var query = from c in dataContext.MeasurementTables
+                        where c.Name == measurementName
+                        select c;
+
+            return query.Any();
+        }
+
+        private bool chamberAlreadyHasPt100Coefficients(int chamberID)
+        {
+            var query = from c in dataContext.Pt100_Polies
+                        where c.chamberID == chamberID
+                        select c;
+
+            return query.Any();
+        }
+
+        private void chamberHasLedCoefficients(int chamberID)
+        {
+            var query = from c in dataContext.Led_Polies
+                        where c.chamberID == chamberID
+                        select c;
+
+            if (query.Any())
+            {
+                throw new ChamberAlreadyHasCoefficientsException("Selected hamber already has saved coefficients for LED");
+            }
         }
     }
 }

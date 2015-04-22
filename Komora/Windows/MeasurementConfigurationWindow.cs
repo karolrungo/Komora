@@ -15,11 +15,13 @@ namespace Komora.Windows
     {
         private Classes.DataBase.LinqDataBaseConnector databaseConnector;
         private DataTypes.MeasurementInfo measInfo;
+        private Classes.Communication.SerialPortValidator serialPortValidator;
 
         public MeasurementConfigurationWindow()
         {
             InitializeComponent();
 
+            serialPortValidator = new Classes.Communication.SerialPortValidator();
             databaseConnector = new Classes.DataBase.LinqDataBaseConnector();
             databaseConnector.connect();
 
@@ -33,8 +35,13 @@ namespace Komora.Windows
             try
             {
                 string serialPort = getSerialPortFromDataGridView();
-                measInfo = measurementInfoControl.getMeasurementInfo();
 
+                if (!serialPortValidator.portExists(serialPort))
+                {
+                    throw new Exception("Port " + serialPort + " does not exists!");
+                }
+
+                measInfo = measurementInfoControl.getMeasurementInfo();
                 databaseConnector.saveMeasurementInfo(measInfo);
 
                 MeasurementForm measurementForm = new MeasurementForm(serialPort, measInfo);
@@ -54,7 +61,7 @@ namespace Komora.Windows
             }
             else
             {
-                return "nic!";
+                throw new Exception("Select only one chamber!");
             }
         }
 

@@ -83,6 +83,7 @@
     <Compile Include="Classes\Communication\AT_Command.cs" />
     <Compile Include="Classes\Communication\FrameParser.cs" />
     <Compile Include="Classes\Communication\ParserThread.cs" />
+    <Compile Include="Classes\Communication\SerialPortValidator.cs" />
     <Compile Include="Classes\Communication\SerialPortWatcherEventArgs.cs" />
     <Compile Include="Classes\DataBase\ChamberAlreadyHasCoefficientsException.cs" />
     <Compile Include="Classes\DataBase\DatabaseConnectionException.cs" />
@@ -141,6 +142,7 @@
     <Compile Include="Test\Calibration\LedPolynomialTests.cs" />
     <Compile Include="Test\Calibration\Pt100PolynomialTests.cs" />
     <Compile Include="Test\Communication\FrameParserTests.cs" />
+    <Compile Include="Test\Communication\SerialPortValidatorTests.cs" />
     <Compile Include="Test\DataBase\LinqDataBaseConnectorTests.cs" />
     <Compile Include="Test\DataTypes\MeasurementSamplesTests.cs" />
     <Compile Include="Test\DataTypes\PolynomialCoefficientsTests.cs" />
