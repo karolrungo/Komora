@@ -41,6 +41,7 @@
             this.labelHardwareConfSerialPortName = new System.Windows.Forms.Label();
             this.labelHardwareConfChamberName = new System.Windows.Forms.Label();
             this.dataGridViewChambers = new System.Windows.Forms.DataGridView();
+            this.btnTunes = new System.Windows.Forms.Button();
             this.tabControlSettings.SuspendLayout();
             this.tabPageChambers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewChambers)).BeginInit();
@@ -58,6 +59,7 @@
             // 
             // tabPageChambers
             // 
+            this.tabPageChambers.Controls.Add(this.btnTunes);
             this.tabPageChambers.Controls.Add(this.textBoxAvaliblePorts);
             this.tabPageChambers.Controls.Add(this.btnDeleteChamber);
             this.tabPageChambers.Controls.Add(this.btnEditChamber);
@@ -104,6 +106,7 @@
             this.btnEditChamber.TabIndex = 18;
             this.btnEditChamber.Text = "Edit chamber";
             this.btnEditChamber.UseVisualStyleBackColor = true;
+            this.btnEditChamber.Click += new System.EventHandler(this.btnEditChamber_Click);
             // 
             // btnAddChamber
             // 
@@ -174,6 +177,16 @@
             this.dataGridViewChambers.TabIndex = 2;
             this.dataGridViewChambers.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridViewChambers_RowHeaderMouseClick);
             // 
+            // btnTunes
+            // 
+            this.btnTunes.Location = new System.Drawing.Point(550, 158);
+            this.btnTunes.Name = "btnTunes";
+            this.btnTunes.Size = new System.Drawing.Size(83, 36);
+            this.btnTunes.TabIndex = 21;
+            this.btnTunes.Text = "Change PID tunes";
+            this.btnTunes.UseVisualStyleBackColor = true;
+            this.btnTunes.Click += new System.EventHandler(this.btnTunes_Click);
+            // 
             // SettingsWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -206,6 +219,7 @@
         private System.Windows.Forms.Label labelHardwareConfSerialPortName;
         private System.Windows.Forms.Label labelHardwareConfChamberName;
         private System.Windows.Forms.TextBox textBoxAvaliblePorts;
+        private System.Windows.Forms.Button btnTunes;
 
     }
 }

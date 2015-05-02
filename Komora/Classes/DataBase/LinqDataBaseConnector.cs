@@ -261,8 +261,19 @@ namespace Komora.Classes.DataBase
             else
             {
                 throw new Exception("Chamber already defined in database.");
-            }
-            
+            }            
+        }
+
+        public void editChamber(string oldSerialPort, string newChamberName, string newSerialPort, int newChamberNumber)
+        {
+            HardwareConfiguration chamberToEdit = (from c in dataContext.HardwareConfigurations
+                                                   where c.serialPort == oldSerialPort
+                                                   select c).First();
+            chamberToEdit.chamberName = newChamberName;
+            chamberToEdit.serialPort = newSerialPort;
+            chamberToEdit.chamberNumber = newChamberNumber;
+
+            dataContext.SubmitChanges();
         }
 
         private bool chamberAlreadyInDatabase(HardwareConfiguration chamberData)

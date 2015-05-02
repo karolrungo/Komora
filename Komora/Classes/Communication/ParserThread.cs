@@ -10,18 +10,12 @@ namespace Komora.Classes.Communication
 {
     public class ParserThread
     {
-                #region Private Vriables and Constans
-
-        public Thread parserThread;
+        private Thread parserThread;
         private List<string> recivedStrings;
         private ControllerValues controllerValues;
         private int dataCounter;
         private List<string> copy;
         FrameParser frameParser = new FrameParser();
-
-
-        #endregion
-
 
         public ParserThread(List<string> recived, ref ControllerValues values)
         {

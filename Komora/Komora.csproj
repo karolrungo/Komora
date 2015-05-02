@@ -195,6 +195,12 @@
     <Compile Include="Windows\MeasurementForm.Designer.cs">
       <DependentUpon>MeasurementForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Windows\PidTunesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\PidTunesForm.Designer.cs">
+      <DependentUpon>PidTunesForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Windows\SettingsWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -233,6 +239,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Windows\MeasurementForm.resx">
       <DependentUpon>MeasurementForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\PidTunesForm.resx">
+      <DependentUpon>PidTunesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Windows\SettingsWindow.resx">
       <DependentUpon>SettingsWindow.cs</DependentUpon>

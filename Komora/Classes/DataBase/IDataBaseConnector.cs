@@ -34,6 +34,7 @@ namespace Komora.Classes.DataBase
         void saveMeasurementInfo(DataTypes.MeasurementInfo measInfo);
         void saveLEDCoefficients(int chamberID, string coefficientsLower, string coefficientsHigher);
         void addChamber(string chamberName, string serialPort, int chamberNumber);
+        void editChamber(string oldSerialPort, string newChamberName, string newSerialPort, int newChamberNumber);
         DataTypes.MeasurementInfo getMeasurementInfo(int measurementInfoID);
     }
 }

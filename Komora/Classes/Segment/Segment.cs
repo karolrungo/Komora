@@ -8,5 +8,12 @@ namespace Komora.Classes.Segment
 {
     public abstract class Segment
     {
+        private bool ledON;
+        private long ledSetPoint;
+
+        private long temperatureStart;
+        private long temperatureEnd;
+
+
     }
 }

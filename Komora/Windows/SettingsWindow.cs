@@ -88,6 +88,25 @@ namespace Komora.Windows
             }
         }
 
+        private void btnEditChamber_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string oldSerialPort = dataGridViewChambers.SelectedRows[0].Cells["serialPort"].Value.ToString();
+
+                linqDatabaseConnector.editChamber(oldSerialPort,
+                                                  textBoxHardwareConfChamberName.Text,
+                                                  textBoxHardwareConfSerialPortName.Text,
+                                                  Int32.Parse(comboBoxHardwareConfChamberNumber.Text));
+
+                dataGridViewChambers.DataSource = linqDatabaseConnector.selectAllChambers();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         private void dataGridViewChambers_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             if (onlyOneRowSelected())
@@ -113,6 +132,22 @@ namespace Komora.Windows
             serialPortWatcher.stopTimer();
         }
 
+        private void btnTunes_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (onlyOneRowSelected())
+                {
+                    string serialPort = dataGridViewChambers.SelectedRows[0].Cells["serialPort"].Value.ToString();
+                    PidTunesForm pidTunesForm = new PidTunesForm(serialPort);
+                    pidTunesForm.Show();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
 
+        }
     }
 }
