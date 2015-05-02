@@ -88,6 +88,8 @@ namespace Komora.Windows
         private void PidTunesForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             parserThread.Stop();
+            atCommand.CancelSerialPortDataRecivedHandler();
+            atCommand.CloseSerialPort();
         }
     }
 }

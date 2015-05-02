@@ -455,7 +455,10 @@ namespace Komora.Classes.Communication
         }
         internal void CloseSerialPort()
         {
-            port.Close();
+            if (port.IsOpen)
+            {
+                port.Close();
+            }
         }
         #endregion
     }
