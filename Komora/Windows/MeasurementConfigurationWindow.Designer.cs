@@ -31,6 +31,7 @@
             this.dgvChambers = new System.Windows.Forms.DataGridView();
             this.btnStartMeasurement = new System.Windows.Forms.Button();
             this.measurementInfoControl = new Komora.Controls.MeasurementInfoControl();
+            this.textBoxAvaliblePorts = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvChambers)).BeginInit();
             this.SuspendLayout();
             // 
@@ -39,15 +40,15 @@
             this.dgvChambers.AllowUserToAddRows = false;
             this.dgvChambers.AllowUserToDeleteRows = false;
             this.dgvChambers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvChambers.Location = new System.Drawing.Point(13, 13);
+            this.dgvChambers.Location = new System.Drawing.Point(13, 12);
             this.dgvChambers.Name = "dgvChambers";
             this.dgvChambers.ReadOnly = true;
-            this.dgvChambers.Size = new System.Drawing.Size(449, 142);
+            this.dgvChambers.Size = new System.Drawing.Size(449, 174);
             this.dgvChambers.TabIndex = 0;
             // 
             // btnStartMeasurement
             // 
-            this.btnStartMeasurement.Location = new System.Drawing.Point(485, 46);
+            this.btnStartMeasurement.Location = new System.Drawing.Point(483, 122);
             this.btnStartMeasurement.Name = "btnStartMeasurement";
             this.btnStartMeasurement.Size = new System.Drawing.Size(150, 64);
             this.btnStartMeasurement.TabIndex = 1;
@@ -57,16 +58,26 @@
             // 
             // measurementInfoControl
             // 
-            this.measurementInfoControl.Location = new System.Drawing.Point(13, 161);
+            this.measurementInfoControl.Location = new System.Drawing.Point(13, 192);
             this.measurementInfoControl.Name = "measurementInfoControl";
             this.measurementInfoControl.Size = new System.Drawing.Size(672, 256);
             this.measurementInfoControl.TabIndex = 2;
+            // 
+            // textBoxAvaliblePorts
+            // 
+            this.textBoxAvaliblePorts.Location = new System.Drawing.Point(483, 12);
+            this.textBoxAvaliblePorts.Multiline = true;
+            this.textBoxAvaliblePorts.Name = "textBoxAvaliblePorts";
+            this.textBoxAvaliblePorts.ReadOnly = true;
+            this.textBoxAvaliblePorts.Size = new System.Drawing.Size(150, 89);
+            this.textBoxAvaliblePorts.TabIndex = 21;
             // 
             // MeasurementConfigurationWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(988, 421);
+            this.ClientSize = new System.Drawing.Size(988, 449);
+            this.Controls.Add(this.textBoxAvaliblePorts);
             this.Controls.Add(this.measurementInfoControl);
             this.Controls.Add(this.btnStartMeasurement);
             this.Controls.Add(this.dgvChambers);
@@ -74,6 +85,7 @@
             this.Text = "MeasurementConfigurationWindow";
             ((System.ComponentModel.ISupportInitialize)(this.dgvChambers)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -82,5 +94,6 @@
         private System.Windows.Forms.DataGridView dgvChambers;
         private System.Windows.Forms.Button btnStartMeasurement;
         private Controls.MeasurementInfoControl measurementInfoControl;
+        private System.Windows.Forms.TextBox textBoxAvaliblePorts;
     }
 }

@@ -342,6 +342,27 @@ namespace Komora.Classes.DataBase
             return measInfo;
         }
 
+        public DataTypes.MeasurementInfo getMeasurementInfo(string measurementName)
+        {
+            MeasurementTable info = dataContext.MeasurementTables.First(x => x.Name == measurementName);
+
+            DataTypes.MeasurementInfo measInfo = new DataTypes.MeasurementInfo();
+            measInfo.measurementName = info.Name;
+            measInfo.filename = info.Filename;
+            measInfo.weight = info.Weight;
+            measInfo.material = info.Material;
+            measInfo.laboratory = info.Synthesis_Laboratory;
+            measInfo.synthesisDate = info.Synthesis_Date;
+            measInfo._operator = info.Synthesis_Operator;
+            measInfo.afterRejuvenation = info.Rejuvenation_After;
+            measInfo.rejuvenationDate = info.Rejuvenation_Date;
+            info.Rejuvenation_AddInfo = measInfo.rejuvenationAdditionalInfo;
+            measInfo.darkAged = info.Rejuvenation_DarkAged;
+            measInfo.specialAged = info.RejuvenationSpecialAged;
+
+            return measInfo;
+        }
+
         private bool measurementAlreadyExists(string measurementName)
         {
             var query = from c in dataContext.MeasurementTables

@@ -36,5 +36,6 @@ namespace Komora.Classes.DataBase
         void addChamber(string chamberName, string serialPort, int chamberNumber);
         void editChamber(string oldSerialPort, string newChamberName, string newSerialPort, int newChamberNumber);
         DataTypes.MeasurementInfo getMeasurementInfo(int measurementInfoID);
+        DataTypes.MeasurementInfo getMeasurementInfo(string measurementName);
     }
 }

@@ -16,12 +16,15 @@ namespace Komora.Windows
         private Classes.DataBase.LinqDataBaseConnector databaseConnector;
         private DataTypes.MeasurementInfo measurementInfo;
         private Classes.Communication.SerialPortValidator serialPortValidator;
+        private Classes.Communication.SerialPortWatcher serialPortWatcher;
 
         public MeasurementConfigurationWindow()
         {
             InitializeComponent();
 
             serialPortValidator = new Classes.Communication.SerialPortValidator();
+            serialPortWatcher = new Classes.Communication.SerialPortWatcher(1000);
+            serialPortWatcher.comPortsUpdate += serialPortWatcher_comPortsUpdate;
             databaseConnector = new Classes.DataBase.LinqDataBaseConnector();
             databaseConnector.connect();
             measurementInfo = new DataTypes.MeasurementInfo();
@@ -66,6 +69,27 @@ namespace Komora.Windows
         private bool onlyOneRowSelected(DataGridView dgv)
         {
             return (dgv.SelectedRows.Count == 1) ? true : false;
+        }
+
+        private void serialPortWatcher_comPortsUpdate(object sender, Classes.Communication.SerialPortWatcherEventArgs e)
+        {
+            textBoxAvaliblePorts.Multiline = true;
+            textBoxAvaliblePorts.Invoke((MethodInvoker)delegate { textBoxAvaliblePorts.Text = showAvalibleComPorts(e.comPorts); });
+        }
+
+        private void UpdateText(string text)
+        {
+            textBoxAvaliblePorts.Text = text;
+        }
+
+        private string showAvalibleComPorts(List<string> comPorts)
+        {
+            StringBuilder sb = new StringBuilder("Avalible ports");
+            foreach (string port in comPorts)
+            {
+                sb.Append(Environment.NewLine).Append(port);
+            }
+            return sb.ToString();
         }
     }
 }

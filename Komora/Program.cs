@@ -18,7 +18,7 @@ namespace Komora
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Windows.LoginWindow());
-            Application.Run(new Windows.MainMenuForm());
+            Application.Run(new Windows.MeasurementConfigurationWindow());
         }
     }
 }

@@ -20,7 +20,7 @@ namespace Komora.DataTypes
             cv = double.MinValue;
             pv = double.MinValue;
             err = double.MinValue;
-            dateTime = new DateTime();
+            dateTime = DateTime.Now;
         }
 
         public override string ToString()

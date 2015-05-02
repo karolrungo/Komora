@@ -29,7 +29,6 @@ namespace Komora.Windows
             this.measInfo = measInfo;
 
             InitializeComponent();
-            //measurementInfoControl.setMeasurementInfo(this.measInfo);
 
             atCommand = new Classes.Communication.AT_Command(serialPort);
             controllerValues = new DataTypes.ControllerValues();
@@ -45,7 +44,7 @@ namespace Komora.Windows
             atCommand.AT_CONTROL_MODE(controllerValues.pwm_Mode);
             Thread.Sleep(300);
 
-            measurementInfoControl.setMeasurementInfo(databaseConnection.getMeasurementInfo(1));
+            measurementInfoControl.setMeasurementInfo(databaseConnection.getMeasurementInfo(measInfo.measurementName));
         }
 
         private void MeasurementForm_FormClosing(object sender, FormClosingEventArgs e)
