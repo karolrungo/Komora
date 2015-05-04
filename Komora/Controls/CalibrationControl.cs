@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MathNet.Numerics;
+using ZedGraph;
 
 namespace Komora.Controls
 {
@@ -93,17 +94,17 @@ namespace Komora.Controls
 
         private void setPlotTitle(string graphTitle)
         {
-            calibrationPlot.GraphPane.Title = graphTitle;
+            calibrationPlot.GraphPane.Title.Text = graphTitle;
         }
 
         private void setPlotXAxisTitle(string xaxisTitle)
         {
-            calibrationPlot.GraphPane.XAxis.Title = xaxisTitle;
+            calibrationPlot.GraphPane.XAxis.Title.Text = xaxisTitle;
         }
 
         private void setPlotYAxisTitle(string yaxisTitle)
         {
-            calibrationPlot.GraphPane.YAxis.Title = yaxisTitle;
+            calibrationPlot.GraphPane.YAxis.Title.Text = yaxisTitle;
         }
 
         public string getFilename()

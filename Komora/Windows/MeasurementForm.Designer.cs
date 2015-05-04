@@ -28,14 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tbCommand = new System.Windows.Forms.TextBox();
             this.btnSendCommand = new System.Windows.Forms.Button();
             this.measurementInfoControl = new Komora.Controls.MeasurementInfoControl();
+            this.plot = new ZedGraph.ZedGraphControl();
             this.SuspendLayout();
             // 
             // tbCommand
             // 
-            this.tbCommand.Location = new System.Drawing.Point(671, 89);
+            this.tbCommand.Location = new System.Drawing.Point(46, 566);
             this.tbCommand.Name = "tbCommand";
             this.tbCommand.Size = new System.Drawing.Size(270, 20);
             this.tbCommand.TabIndex = 0;
@@ -43,7 +45,7 @@
             // 
             // btnSendCommand
             // 
-            this.btnSendCommand.Location = new System.Drawing.Point(958, 89);
+            this.btnSendCommand.Location = new System.Drawing.Point(333, 566);
             this.btnSendCommand.Name = "btnSendCommand";
             this.btnSendCommand.Size = new System.Drawing.Size(101, 23);
             this.btnSendCommand.TabIndex = 1;
@@ -53,16 +55,31 @@
             // 
             // measurementInfoControl
             // 
-            this.measurementInfoControl.Location = new System.Drawing.Point(12, 350);
+            this.measurementInfoControl.Location = new System.Drawing.Point(483, 350);
             this.measurementInfoControl.Name = "measurementInfoControl";
             this.measurementInfoControl.Size = new System.Drawing.Size(672, 256);
             this.measurementInfoControl.TabIndex = 2;
+            // 
+            // plot
+            // 
+            this.plot.Location = new System.Drawing.Point(21, 22);
+            this.plot.Name = "plot";
+            this.plot.ScrollGrace = 0D;
+            this.plot.ScrollMaxX = 0D;
+            this.plot.ScrollMaxY = 0D;
+            this.plot.ScrollMaxY2 = 0D;
+            this.plot.ScrollMinX = 0D;
+            this.plot.ScrollMinY = 0D;
+            this.plot.ScrollMinY2 = 0D;
+            this.plot.Size = new System.Drawing.Size(1152, 322);
+            this.plot.TabIndex = 19;
             // 
             // MeasurementForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1201, 618);
+            this.Controls.Add(this.plot);
             this.Controls.Add(this.measurementInfoControl);
             this.Controls.Add(this.btnSendCommand);
             this.Controls.Add(this.tbCommand);
@@ -79,5 +96,6 @@
         private System.Windows.Forms.TextBox tbCommand;
         private System.Windows.Forms.Button btnSendCommand;
         private Controls.MeasurementInfoControl measurementInfoControl;
+        private ZedGraph.ZedGraphControl plot;
     }
 }

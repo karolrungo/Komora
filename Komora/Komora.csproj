@@ -74,11 +74,13 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="ZedGraph">
-      <HintPath>..\packages\izenda.ZedGraph.4.2.4.2411\lib\net20\ZedGraph.dll</HintPath>
+    <Reference Include="ZedGraph, Version=4.2.4.2411, Culture=neutral, PublicKeyToken=02a83cbd123fcd60, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\zedgraph_dll_v515\zedgraph_dll_v5.1.5\ZedGraph.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\Algorithm\DerivativeCalculator.cs" />
     <Compile Include="Classes\Calibration\DeviceCalibrator.cs" />
     <Compile Include="Classes\Communication\AT_Command.cs" />
     <Compile Include="Classes\Communication\FrameParser.cs" />

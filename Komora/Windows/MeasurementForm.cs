@@ -11,6 +11,7 @@ using Komora.Classes;
 using Komora;
 using Komora.DataTypes;
 using System.Threading;
+using ZedGraph;
 
 namespace Komora.Windows
 {
@@ -22,6 +23,12 @@ namespace Komora.Windows
         private Classes.Communication.ParserThread parserThread; //parser danych przychodzacych ze sterownika (osobny watek)
         private DataTypes.MeasurementInfo measInfo;
         private Classes.DataBase.LinqDataBaseConnector databaseConnection;
+        private Classes.Plot.ZedGraphController zedGraphController;
+
+        private ZedGraph.PointPairList temperaturePoints;
+        private ZedGraph.PointPairList temperatureDerivativePoints;
+        private ZedGraph.PointPairList diodeCurrentPoints;
+
 
         public MeasurementForm(string serialPort, DataTypes.MeasurementInfo measInfo)
         {
@@ -36,15 +43,19 @@ namespace Komora.Windows
             databaseConnection = new Classes.DataBase.LinqDataBaseConnector();
             databaseConnection.connect();
 
-            controllerValues.cont_Mode = CONT_MODE.FEEDBACK;
-            controllerValues.pwm_Mode = CONTROL_MODE.HEATER;
-
-            atCommand.AT_CONT_MODE(controllerValues.cont_Mode);
+            atCommand.AT_CONT_MODE(CONT_MODE.FEEDBACK);
             Thread.Sleep(300);
-            atCommand.AT_CONTROL_MODE(controllerValues.pwm_Mode);
+            atCommand.AT_CONTROL_MODE(CONTROL_MODE.HEATER);
             Thread.Sleep(300);
 
             measurementInfoControl.setMeasurementInfo(databaseConnection.getMeasurementInfo(measInfo.measurementName));
+
+            temperaturePoints = new PointPairList();
+            temperatureDerivativePoints = new PointPairList();
+            diodeCurrentPoints = new PointPairList();
+
+            zedGraphController = new Classes.Plot.ZedGraphController(ref plot);
+            zedGraphController.configureMeasurementPlot();
         }
 
         private void MeasurementForm_FormClosing(object sender, FormClosingEventArgs e)
