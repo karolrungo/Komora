@@ -104,7 +104,16 @@
     <Compile Include="Classes\Matlab\IMatlabConnector.cs" />
     <Compile Include="Classes\Matlab\MatlabCOMSerwerConnection.cs" />
     <Compile Include="Classes\Plot\ZedGraphController.cs" />
+    <Compile Include="Classes\Segment\DynamicSegment.cs" />
+    <Compile Include="Classes\Segment\IzothermalSegment.cs" />
     <Compile Include="Classes\Segment\Segment.cs" />
+    <Compile Include="Classes\Segment\SegmentData.cs" />
+    <Compile Include="Classes\Segment\SegmentFactory.cs" />
+    <Compile Include="Classes\Segment\SegmentList.cs" />
+    <Compile Include="Classes\Segment\SegmentListProcessor.cs" />
+    <Compile Include="Classes\Segment\SegmentStatus.cs" />
+    <Compile Include="Classes\Segment\SegmentType.cs" />
+    <Compile Include="Classes\Segment\StartSegment.cs" />
     <Compile Include="Classes\Tools\DateCounter.cs" />
     <Compile Include="Classes\Communication\SerialPortWatcher.cs" />
     <Compile Include="Controls\CalibrationControl.cs">
@@ -125,11 +134,41 @@
     <Compile Include="Controls\DateAndTimePicker.Designer.cs">
       <DependentUpon>DateAndTimePicker.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\DynamicSegmentData.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\DynamicSegmentData.Designer.cs">
+      <DependentUpon>DynamicSegmentData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\IzothermalSegmentData.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\IzothermalSegmentData.Designer.cs">
+      <DependentUpon>IzothermalSegmentData.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\MeasurementInfoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controls\MeasurementInfoControl.Designer.cs">
       <DependentUpon>MeasurementInfoControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SegmentInterfaceControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\SegmentInterfaceControl.Designer.cs">
+      <DependentUpon>SegmentInterfaceControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SegmentTypeControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\SegmentTypeControl.Designer.cs">
+      <DependentUpon>SegmentTypeControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\StartSegmentData.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\StartSegmentData.Designer.cs">
+      <DependentUpon>StartSegmentData.cs</DependentUpon>
     </Compile>
     <Compile Include="DataTypes\ControllerValues.cs" />
     <Compile Include="DataTypes\Enum.cs" />
@@ -224,8 +263,23 @@
     <EmbeddedResource Include="Controls\DateAndTimePicker.resx">
       <DependentUpon>DateAndTimePicker.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\DynamicSegmentData.resx">
+      <DependentUpon>DynamicSegmentData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\IzothermalSegmentData.resx">
+      <DependentUpon>IzothermalSegmentData.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\MeasurementInfoControl.resx">
       <DependentUpon>MeasurementInfoControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\SegmentInterfaceControl.resx">
+      <DependentUpon>SegmentInterfaceControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\SegmentTypeControl.resx">
+      <DependentUpon>SegmentTypeControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\StartSegmentData.resx">
+      <DependentUpon>StartSegmentData.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Windows\CalibrationWindow.resx">
       <DependentUpon>CalibrationWindow.cs</DependentUpon>

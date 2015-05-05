@@ -251,8 +251,11 @@ namespace Komora.Classes.Communication
             SendAT_Command();
 
         }
-        public void AT_CONTR_SEGMENT() //TODO
-        { }
+        public void AT_CONTR_SEGMENT(int segmentNumber)
+        {
+            sender = "AT+CONTR_SEGMENT=" + segmentNumber.ToString();
+            SendAT_Command();
+        }
         public void AT_AUTO_SENDER_DATA(bool value)
         {
             if (value)

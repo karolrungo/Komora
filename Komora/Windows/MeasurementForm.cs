@@ -17,22 +17,26 @@ namespace Komora.Windows
 {
     public partial class MeasurementForm : Form
     {
+        private const int ATMegaScaler = 100;
         private string serialPort;
+        private readonly int chamberID;
         private DataTypes.ControllerValues controllerValues; //dane ze sterownika
         private Classes.Communication.AT_Command atCommand; //komendy AT
         private Classes.Communication.ParserThread parserThread; //parser danych przychodzacych ze sterownika (osobny watek)
         private DataTypes.MeasurementInfo measInfo;
         private Classes.DataBase.LinqDataBaseConnector databaseConnection;
         private Classes.Plot.ZedGraphController zedGraphController;
+        private Utilities.Pt100converter pt100Converter;
 
         private ZedGraph.PointPairList temperaturePoints;
         private ZedGraph.PointPairList temperatureDerivativePoints;
         private ZedGraph.PointPairList diodeCurrentPoints;
 
 
-        public MeasurementForm(string serialPort, DataTypes.MeasurementInfo measInfo)
+        public MeasurementForm(string serialPort, int chamberID, DataTypes.MeasurementInfo measInfo)
         {
             this.serialPort = serialPort;
+            this.chamberID = chamberID;
             this.measInfo = measInfo;
 
             InitializeComponent();
@@ -43,10 +47,15 @@ namespace Komora.Windows
             databaseConnection = new Classes.DataBase.LinqDataBaseConnector();
             databaseConnection.connect();
 
+            pt100Converter = new Utilities.Pt100converter(databaseConnection.selectPt100Polynomial(chamberID).Coefficients,
+                                                          ATMegaScaler);
+
             atCommand.AT_CONT_MODE(CONT_MODE.FEEDBACK);
             Thread.Sleep(300);
-            atCommand.AT_CONTROL_MODE(CONTROL_MODE.HEATER);
+            atCommand.AT_CONTROL_MODE(CONTROL_MODE.BOTH);
             Thread.Sleep(300);
+
+            atCommand.AT_CONTR_SEGMENT(5);
 
             measurementInfoControl.setMeasurementInfo(databaseConnection.getMeasurementInfo(measInfo.measurementName));
 

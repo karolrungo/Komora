@@ -8,28 +8,65 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Komora.Controls;
+using Komora.Classes.Segment;
+
 
 namespace Komora.Windows
 {
     public partial class MeasurementConfigurationWindow : Form
     {
+        private const int oneSecond = 1000;
         private Classes.DataBase.LinqDataBaseConnector databaseConnector;
         private DataTypes.MeasurementInfo measurementInfo;
         private Classes.Communication.SerialPortValidator serialPortValidator;
         private Classes.Communication.SerialPortWatcher serialPortWatcher;
+        private SegmentFactory segmentFactory;
+        private SegmentData segmentData;
+        private SegmentList segmentList;
 
         public MeasurementConfigurationWindow()
         {
             InitializeComponent();
 
             serialPortValidator = new Classes.Communication.SerialPortValidator();
-            serialPortWatcher = new Classes.Communication.SerialPortWatcher(1000);
+            serialPortWatcher = new Classes.Communication.SerialPortWatcher(oneSecond);
             serialPortWatcher.comPortsUpdate += serialPortWatcher_comPortsUpdate;
             databaseConnector = new Classes.DataBase.LinqDataBaseConnector();
             databaseConnector.connect();
             measurementInfo = new DataTypes.MeasurementInfo();
+            segmentFactory = new SegmentFactory();
+            segmentData = new SegmentData();
+            segmentList = new SegmentList();
 
             dgvChambers.DataSource = databaseConnector.selectCalibratedChambers();
+
+            segmentInterfaceControl.ButtonAddClicked += segmentInterfaceControl_ButtonAddClicked;
+            segmentInterfaceControl.ButtonDeleteClicked += segmentInterfaceControl_ButtonDeleteClicked;
+            segmentInterfaceControl.ButtonEditClicked += segmentInterfaceControl_ButtonEditClicked;
+            segmentInterfaceControl.ButtonClearListClicked += segmentInterfaceControl_ButtonClearListClicked;
+        }
+
+        void segmentInterfaceControl_ButtonClearListClicked(object sender, EventArgs e)
+        {
+            SEGMENT_TYPE segmentType = segmentInterfaceControl.getSegmentType();
+            segmentData = segmentInterfaceControl.getSegmentData();
+            Segment segment = segmentFactory.createSegment(segmentType, segmentData);
+
+        }
+
+        void segmentInterfaceControl_ButtonEditClicked(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void segmentInterfaceControl_ButtonDeleteClicked(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void segmentInterfaceControl_ButtonAddClicked(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         private void btnStartMeasurement_Click(object sender, EventArgs e)
@@ -37,15 +74,31 @@ namespace Komora.Windows
             try
             {
                 string serialPort = getSerialPortFromDataGridView();
+                int chamberID = getChamberIdFromDataGridView();
+
                 measurementInfo = measurementInfoControl.getMeasurementInfo();
                 databaseConnector.saveMeasurementInfo(measurementInfo);
 
-                MeasurementForm measurementForm = new MeasurementForm(serialPort, measurementInfo);
+                MeasurementForm measurementForm = new MeasurementForm(serialPort, chamberID, measurementInfo);
                 measurementForm.Show(); 
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        private int getChamberIdFromDataGridView()
+        {
+            if (onlyOneRowSelected(dgvChambers))
+            {
+                string chamberID = dgvChambers.SelectedRows[0].Cells["ID"].Value.ToString();
+
+                return Int32.Parse(chamberID);
+            }
+            else
+            {
+                throw new Exception("Select only one chamber!");
             }
         }
 

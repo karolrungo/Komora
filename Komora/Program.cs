@@ -18,11 +18,11 @@ namespace Komora
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Windows.LoginWindow());
-            //Application.Run(new Windows.MeasurementConfigurationWindow());
+            Application.Run(new Windows.MeasurementConfigurationWindow());
 
-            DataTypes.MeasurementInfo measInfo = new DataTypes.MeasurementInfo();
-            measInfo.measurementName = "MeasurementName";
-            Application.Run(new Windows.MeasurementForm("COM4", measInfo));
+            //DataTypes.MeasurementInfo measInfo = new DataTypes.MeasurementInfo();
+            //measInfo.measurementName = "MeasurementName";
+            //Application.Run(new Windows.MeasurementForm("COM4", 6, measInfo));
         }
     }
 }
