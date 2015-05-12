@@ -85,6 +85,7 @@ namespace Komora.Classes.Plot
         internal void DrawLines(PointPairList temperaturePoints, PointPairList temperatureDerivativePoints, PointPairList diodeCurrentPoints)
         {
             pane = graph.GraphPane;
+            pane.CurveList.Clear();
 
             temperature = pane.AddCurve("Temperature", temperaturePoints, Color.Red);
             temperature.IsX2Axis = false;

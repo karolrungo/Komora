@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Komora.Classes.Segment;
 
 namespace Komora.Controls
 {
@@ -54,7 +55,26 @@ namespace Komora.Controls
 
         internal Classes.Segment.SegmentData getSegmentData()
         {
-            throw new NotImplementedException();
+            switch (segmentTypeControl1.getSegmentType())
+            {
+                case SEGMENT_TYPE.start:
+                    return segmentTypeControl1.getStartSegmentData();
+                //case SEGMENT_TYPE.dynamic:
+                //    throw new NotImplementedException();
+                //    break;
+                case SEGMENT_TYPE.izothermal:
+                    return segmentTypeControl1.getIzothermalSegmentData();
+                //case SEGMENT_TYPE.final:
+                //    throw new NotImplementedException();
+                //    break;
+                default:
+                    throw new ArgumentException("Fatal error while adding segment - error while reading segment data!");
+            }
+        }
+
+        public void updateSegmentListDataGridView(DataTable dt)
+        {
+            dgvSegmentList.DataSource = dt;
         }
     }
 }

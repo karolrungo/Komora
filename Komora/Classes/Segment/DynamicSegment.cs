@@ -8,19 +8,9 @@ namespace Komora.Classes.Segment
 {
     public class DynamicSegment : Segment
     {
-        public DynamicSegment(bool p_ledOn, long p_ledCurrent, long p_tempStart, long p_tempEnd, double p_acquisitionRate) :
-            base(p_ledOn, p_ledCurrent, p_tempStart, p_tempEnd, p_acquisitionRate)
+        public override object[] DataTableRow()
         {
-        }
-
-        public override void startProcessing()
-        {
-            base.startProcessing();
-        }
-
-        public override void endProcessing()
-        {
-            base.endProcessing();
+            return new object[] { "Dynamic", startTemperature, endTemperature, durationTimeSeconds, acquisitionRateMinutes.ToString("0.000"), heatingRateMinutes};
         }
     }
 }

@@ -32,19 +32,19 @@ namespace Komora.Classes.Segment
            // checkIfSegmentEnded();
         }
 
-        public void startProcessing()
-        {
-            foreach (Segment segment in segmentList)
-            {
-                segment.startProcessing();
-               // atCommand.AT_HEATER_SP()
-                atCommand.AT_CONTR_SEGMENT(segmentList.actualSegment);
-            }
-        }
+        //public void startProcessing()
+        //{
+        //    foreach (Segment segment in segmentList)
+        //    {
+        //        segment.startProcessing();
+        //       // atCommand.AT_HEATER_SP()
+        //        atCommand.AT_CONTR_SEGMENT(segmentList.actualSegment);
+        //    }
+        //}
 
-        public void endProcessing()
-        {
+        //public void endProcessing()
+        //{
  
-        }
+        //}
     }
 }

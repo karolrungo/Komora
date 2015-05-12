@@ -28,7 +28,7 @@ namespace Komora.Controls
             //SetControlEnabledAndVisibility(finalSegmentData1, false);
         }
 
-                private void rb_CheckChanged(object sender, EventArgs e)
+        private void rb_CheckChanged(object sender, EventArgs e)
         {
             try
             {
@@ -88,6 +88,16 @@ namespace Komora.Controls
             else if (rBtnIzothermal.Checked) return SEGMENT_TYPE.izothermal;
             else if (rBthFinal.Checked) return SEGMENT_TYPE.final;
             else throw new Exception("None segment type selected");
+        }
+
+        public SegmentData getStartSegmentData()
+        {
+            return startSegmentData1.getSegmentData();
+        }
+
+        internal SegmentData getIzothermalSegmentData()
+        {
+            return izothermalSegmentData1.getSegmentData();
         }
     }
 }

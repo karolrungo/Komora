@@ -7,6 +7,7 @@ using Komora.Classes;
 using MathNet.Numerics;
 using System.Threading;
 using System.Windows.Forms;
+using System.Globalization;
 
 namespace Komora.Utilities
 {
@@ -33,7 +34,7 @@ namespace Komora.Utilities
     
             foreach (string coefficient in splitted)
             {
-                coefficients.Add(Double.Parse(coefficient));
+                coefficients.Add(Double.Parse(coefficient.Replace(',', '.')));
             }
         }
 

@@ -66,9 +66,9 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(197, 12);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(38, 13);
+            this.label3.Size = new System.Drawing.Size(43, 13);
             this.label3.TabIndex = 17;
-            this.label3.Text = "hh:mm";
+            this.label3.Text = "min:sec";
             // 
             // tbIsothermalTime
             // 

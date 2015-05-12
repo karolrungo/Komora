@@ -38,6 +38,19 @@ namespace Komora.Windows
             segmentData = new SegmentData();
             segmentList = new SegmentList();
 
+            //do usuniecia
+            segmentData.endTemperature = 15;
+            segmentData.acquisitionRateMinutes = 60;
+            StartSegment segment = new StartSegment(segmentData);
+            segmentList.Add(segment);
+
+            //segmentData = new SegmentData();
+            //segmentData.timeSeconds = 10;
+            //segmentData.acquisitionRateMinutes = 300;
+            //IzothermalSegment izosegment = new IzothermalSegment(segmentData);
+            //segmentList.Add(izosegment);
+            //koniec
+
             dgvChambers.DataSource = databaseConnector.selectCalibratedChambers();
 
             segmentInterfaceControl.ButtonAddClicked += segmentInterfaceControl_ButtonAddClicked;
@@ -46,11 +59,24 @@ namespace Komora.Windows
             segmentInterfaceControl.ButtonClearListClicked += segmentInterfaceControl_ButtonClearListClicked;
         }
 
+        private void segmentInterfaceControl_ButtonAddClicked(object sender, EventArgs e)
+        {
+            try
+            {
+                SEGMENT_TYPE segmentType = segmentInterfaceControl.getSegmentType();
+                segmentData = segmentInterfaceControl.getSegmentData();
+                Segment segment = segmentFactory.createSegment(segmentType, segmentData);
+                segmentList.Add(segment);
+                segmentInterfaceControl.updateSegmentListDataGridView(segmentList.ToDataTable());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
         void segmentInterfaceControl_ButtonClearListClicked(object sender, EventArgs e)
         {
-            SEGMENT_TYPE segmentType = segmentInterfaceControl.getSegmentType();
-            segmentData = segmentInterfaceControl.getSegmentData();
-            Segment segment = segmentFactory.createSegment(segmentType, segmentData);
 
         }
 
@@ -60,11 +86,6 @@ namespace Komora.Windows
         }
 
         private void segmentInterfaceControl_ButtonDeleteClicked(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void segmentInterfaceControl_ButtonAddClicked(object sender, EventArgs e)
         {
             throw new NotImplementedException();
         }
@@ -79,7 +100,7 @@ namespace Komora.Windows
                 measurementInfo = measurementInfoControl.getMeasurementInfo();
                 databaseConnector.saveMeasurementInfo(measurementInfo);
 
-                MeasurementForm measurementForm = new MeasurementForm(serialPort, chamberID, measurementInfo);
+                MeasurementForm measurementForm = new MeasurementForm(serialPort, chamberID, measurementInfo, segmentList);
                 measurementForm.Show(); 
             }
             catch (Exception ex)

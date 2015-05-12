@@ -89,7 +89,7 @@
             // 
             this.segmentTypeControl1.Location = new System.Drawing.Point(15, 162);
             this.segmentTypeControl1.Name = "segmentTypeControl1";
-            this.segmentTypeControl1.Size = new System.Drawing.Size(362, 146);
+            this.segmentTypeControl1.Size = new System.Drawing.Size(430, 146);
             this.segmentTypeControl1.TabIndex = 11;
             // 
             // SegmentInterfaceControl
