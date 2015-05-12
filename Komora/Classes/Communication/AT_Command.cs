@@ -403,6 +403,11 @@ namespace Komora.Classes.Communication
             sender = "AT+PID_DIODE_SAMPLE?";
             SendAT_Command();
         }
+        public void AT_LED_BARGRAPH_READ()
+        {
+            sender = "AT+LED_BARGRAPH?";
+            SendAT_Command();
+        }
         #endregion
 
         #region Serial Port

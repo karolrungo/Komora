@@ -75,6 +75,7 @@ namespace Komora.Controls
         public void updateSegmentListDataGridView(DataTable dt)
         {
             dgvSegmentList.DataSource = dt;
+            dgvSegmentList.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
         }
     }
 }

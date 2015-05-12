@@ -39,11 +39,12 @@ namespace Komora.Windows
             segmentList = new SegmentList();
 
             //do usuniecia
-            segmentData.endTemperature = 15;
-            segmentData.acquisitionRateMinutes = 60;
+            segmentData.endTemperature = 50;
+            segmentData.acquisitionRateMinutes = 30;
             StartSegment segment = new StartSegment(segmentData);
             segmentList.Add(segment);
 
+            segmentInterfaceControl.updateSegmentListDataGridView(segmentList.ToDataTable());
             //segmentData = new SegmentData();
             //segmentData.timeSeconds = 10;
             //segmentData.acquisitionRateMinutes = 300;

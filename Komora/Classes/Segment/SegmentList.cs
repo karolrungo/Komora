@@ -75,7 +75,6 @@ namespace Komora.Classes.Segment
         public DataTable ToDataTable()
         {
             DataTable dt = new DataTable();
-
             dt.Columns.Add("Type");
             dt.Columns.Add("Start temp. [oC]");
             dt.Columns.Add("End temp. [oC]");
@@ -86,13 +85,8 @@ namespace Komora.Classes.Segment
             foreach (Segment segment in segmentList)
             {
                 dt.Rows.Add(segment.DataTableRow());
-                //what with heating rate?
-                //if (segment is StartSegment)
-                //    dt.Rows.Add("Start segment", "-", segment.endTemperature, segment.durationTimeSeconds, segment.acquisitionRateMinutes.ToString("0.000"));
-               // else
-               //     dt.Rows.Add(segment.type, segment.startTemperature, segment.endTemperature, segment.time_seconds, segment.acquisitionRate.ToString("0.000"));
-            }
 
+            }
             return dt;
         }
 

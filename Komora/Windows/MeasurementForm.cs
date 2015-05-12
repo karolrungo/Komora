@@ -28,6 +28,7 @@ namespace Komora.Windows
         private Classes.Plot.ZedGraphController zedGraphController;
         private Utilities.Pt100converter pt100Converter;
         private Classes.Segment.SegmentList segmentList;
+        private Classes.Communication.LcdController lcdController;
 
         private ZedGraph.PointPairList temperaturePoints;
         private ZedGraph.PointPairList temperatureDerivativePoints;
@@ -37,8 +38,6 @@ namespace Komora.Windows
         public MeasurementForm(string serialPort, int chamberID, DataTypes.MeasurementInfo measInfo, Classes.Segment.SegmentList p_segmentList)
         {
             this.serialPort = serialPort;
-            atCommand = new Classes.Communication.AT_Command(serialPort);
-            controllerValues = new DataTypes.ControllerValues();
             this.chamberID = chamberID;
             this.measInfo = measInfo;
             segmentList = p_segmentList;
@@ -47,10 +46,16 @@ namespace Komora.Windows
 
             InitializeComponent();
 
+            atCommand = new Classes.Communication.AT_Command(serialPort);
+            controllerValues = new DataTypes.ControllerValues();
+
             parserThread = new Classes.Communication.ParserThread(atCommand.RecivedStrings, ref controllerValues);
             parserThread.sendRecivedCommandsEvent += parserThread_sendRecivedCommandsEvent;
+
             databaseConnection = new Classes.DataBase.LinqDataBaseConnector();
             databaseConnection.connect();
+
+            lcdController = new Classes.Communication.LcdController(ref atCommand, ref controllerValues);
 
             pt100Converter = new Utilities.Pt100converter(databaseConnection.selectPt100Polynomial(chamberID).Coefficients,
                                                           ATMegaScaler);
@@ -69,8 +74,8 @@ namespace Komora.Windows
             Thread.Sleep(300);
             atCommand.AT_CONTROL_MODE(CONTROL_MODE.BOTH);
             Thread.Sleep(300);
-            atCommand.AT_AUTO_SENDER_DATA(true);
-            atCommand.AT_DISPLAY_MODE(DISPLAY_MODE.INFO);
+           // atCommand.AT_AUTO_SENDER_DATA(true);
+            atCommand.AT_DISPLAY_MODE(DISPLAY_MODE.PT100_PARAMS);
             segmentList.setControllerValues(ref controllerValues);
             segmentList.setAtCommands(ref atCommand);
             segmentList.setPt100Converter(pt100Converter);
@@ -139,6 +144,36 @@ namespace Komora.Windows
                                                 controllerValues.diode_Params.pv));
 
             zedGraphController.DrawLines(temperaturePoints, temperatureDerivativePoints, diodeCurrentPoints);
+        }
+
+        private void btnLcdScreenMinus_Click(object sender, EventArgs e)
+        {
+            lcdController.lcdPreviousScreen();
+        }
+
+        private void btnLcdScreenPlus_Click(object sender, EventArgs e)
+        {
+            lcdController.lcdNextScreen();
+        }
+
+        private void btnLCD_on_off_Click(object sender, EventArgs e)
+        {
+            lcdController.setLcdBackground();
+        }
+
+        private void sliderLcdContr_ValueChanged(object sender, EventArgs e)
+        {
+            lcdController.setLcdCotrast(sliderLcdContr.Value);
+        }
+
+        private void comboBoxTimeDisplayMode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            lcdController.changeTimeDisplayMode(comboBoxTimeDisplayMode.SelectedItem.ToString());
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            lcdController.changeLedBargraphMode(comboBoxLedBargraph.SelectedItem.ToString());
         }
     }
 }

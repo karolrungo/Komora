@@ -84,6 +84,7 @@
     <Compile Include="Classes\Calibration\DeviceCalibrator.cs" />
     <Compile Include="Classes\Communication\AT_Command.cs" />
     <Compile Include="Classes\Communication\FrameParser.cs" />
+    <Compile Include="Classes\Communication\LcdController.cs" />
     <Compile Include="Classes\Communication\ParserThread.cs" />
     <Compile Include="Classes\Communication\RecivedCommandsEventArgs.cs" />
     <Compile Include="Classes\Communication\SerialPortValidator.cs" />
