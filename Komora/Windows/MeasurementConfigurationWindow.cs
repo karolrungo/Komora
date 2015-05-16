@@ -39,17 +39,18 @@ namespace Komora.Windows
             segmentList = new SegmentList();
 
             //do usuniecia
-            segmentData.endTemperature = 50;
+            segmentData.endTemperature = 0;
             segmentData.acquisitionRateMinutes = 30;
             StartSegment segment = new StartSegment(segmentData);
             segmentList.Add(segment);
 
+            segmentData = new SegmentData();
+            segmentData.timeSeconds = 1000;
+            segmentData.acquisitionRateMinutes = 30;
+            IzothermalSegment izosegment = new IzothermalSegment(segmentData);
+            segmentList.Add(izosegment);
+
             segmentInterfaceControl.updateSegmentListDataGridView(segmentList.ToDataTable());
-            //segmentData = new SegmentData();
-            //segmentData.timeSeconds = 10;
-            //segmentData.acquisitionRateMinutes = 300;
-            //IzothermalSegment izosegment = new IzothermalSegment(segmentData);
-            //segmentList.Add(izosegment);
             //koniec
 
             dgvChambers.DataSource = databaseConnector.selectCalibratedChambers();

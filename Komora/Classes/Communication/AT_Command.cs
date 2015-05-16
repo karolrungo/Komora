@@ -12,7 +12,7 @@ namespace Komora.Classes.Communication
     public class AT_Command
     {
         #region Private Variables
-        private string sender;
+        public string sender;
         private List<string> recivedStrings;
         private List<string> sendedStrings;
         private SerialPort port;
@@ -38,7 +38,7 @@ namespace Komora.Classes.Communication
         #endregion
 
 
-        private void SendAT_Command()
+        public void SendAT_Command()
         {
             lock (RecivedStrings)
             {

@@ -183,7 +183,7 @@
             this.tbFilename.Name = "tbFilename";
             this.tbFilename.Size = new System.Drawing.Size(100, 20);
             this.tbFilename.TabIndex = 45;
-            this.tbFilename.Text = "file";
+            this.tbFilename.Text = "MEAS/data.csv";
             // 
             // labelMeasurmentFile
             // 

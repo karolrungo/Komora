@@ -29,6 +29,7 @@ namespace Komora.Windows
         private Utilities.Pt100converter pt100Converter;
         private Classes.Segment.SegmentList segmentList;
         private Classes.Communication.LcdController lcdController;
+        private Classes.File.MeasurementFileManager measurementFileManager;
 
         private ZedGraph.PointPairList temperaturePoints;
         private ZedGraph.PointPairList temperatureDerivativePoints;
@@ -56,6 +57,7 @@ namespace Komora.Windows
             databaseConnection.connect();
 
             lcdController = new Classes.Communication.LcdController(ref atCommand, ref controllerValues);
+            measurementFileManager = new Classes.File.MeasurementFileManager(measInfo.filename, ref controllerValues);
 
             pt100Converter = new Utilities.Pt100converter(databaseConnection.selectPt100Polynomial(chamberID).Coefficients,
                                                           ATMegaScaler);
@@ -70,11 +72,15 @@ namespace Komora.Windows
             zedGraphController = new Classes.Plot.ZedGraphController(ref plot);
             zedGraphController.configureMeasurementPlot();
 
+            measurementFileManager.deleteFile();
+            measurementFileManager.createFileIfNotExists();
+
             atCommand.AT_CONT_MODE(CONT_MODE.FEEDBACK);
+
             Thread.Sleep(300);
-            atCommand.AT_CONTROL_MODE(CONTROL_MODE.BOTH);
+            atCommand.AT_CONTROL_MODE(CONTROL_MODE.HEATER);
             Thread.Sleep(300);
-           // atCommand.AT_AUTO_SENDER_DATA(true);
+            atCommand.AT_AUTO_SENDER_DATA(true);
             atCommand.AT_DISPLAY_MODE(DISPLAY_MODE.PT100_PARAMS);
             segmentList.setControllerValues(ref controllerValues);
             segmentList.setAtCommands(ref atCommand);
@@ -84,6 +90,7 @@ namespace Komora.Windows
 
             //atCommand.AT_CONTR_SEGMENT(5);
           //  atCommand.AT_HEATER_PARAMS_READ();
+
         }
 
         private void parserThread_sendRecivedCommandsEvent(object sender, Classes.Communication.RecivedCommandsEventArgs e)
@@ -125,12 +132,15 @@ namespace Komora.Windows
         private void btnSendCommand_Click(object sender, EventArgs e)
         {
             listBoxCommands.Items.Clear();
-            atCommand.ATI();
+            //atCommand.ATI();
+            atCommand.sender = tbCommand.Text;
+            atCommand.SendAT_Command();
         }
 
         void segmentList_AcquisitionRateTimerTicked(object sender, EventArgs e)
         {
             updatePlot();
+            measurementFileManager.writeDataToFile();
         }
 
         private void updatePlot()

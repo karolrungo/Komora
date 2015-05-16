@@ -97,6 +97,7 @@
       <DependentUpon>LinqDatabase.dbml</DependentUpon>
     </Compile>
     <Compile Include="Classes\File\ISamplesReader.cs" />
+    <Compile Include="Classes\File\MeasurementFileManager.cs" />
     <Compile Include="Classes\File\MeasurementSamplesReader.cs" />
     <Compile Include="Classes\DataBase\IDataBaseConnector.cs" />
     <Compile Include="Classes\DataBase\LinqDataBaseConnector.cs" />
