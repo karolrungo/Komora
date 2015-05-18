@@ -11,7 +11,9 @@ namespace Komora.Classes.Segment
 {
     public class SegmentList : IEnumerable
     {
-        public event EventHandler AcquisitionRateTimerTicked;
+        public delegate void TimerTickedEvent(object sender, SegmentEventArgs e);
+        public event TimerTickedEvent AcquisitionRateTimerTicked;
+
         public List<Segment> segmentList;
         public int actualSegment;
         private Classes.Communication.AT_Command atCommand;
@@ -90,8 +92,6 @@ namespace Komora.Classes.Segment
             return dt;
         }
 
-
-
         //WAZNE!!!!!!!!!
         public  void catchAcquisitionRateTimerTicks()
         {
@@ -105,7 +105,7 @@ namespace Komora.Classes.Segment
         {
             if (AcquisitionRateTimerTicked != null)
             {
-                AcquisitionRateTimerTicked(this, EventArgs.Empty);
+                AcquisitionRateTimerTicked(this, new SegmentEventArgs(actualSegment, segmentList[actualSegment].segmentType));
             }
         }
 
@@ -137,7 +137,6 @@ namespace Komora.Classes.Segment
             atCommand.AT_CONTR_SEGMENT(actualSegment + 1);
             segmentList[actualSegment].Start();
         }
-        //WAZNE koniec
 
         internal void setControllerValues(ref DataTypes.ControllerValues controllerValues)
         {

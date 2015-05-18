@@ -14,6 +14,7 @@ namespace Komora.Classes.File
         private DataTypes.ControllerValues controllerValues;
         private FileStream filestream;
         private StreamWriter streamWriter;
+        private StreamReader streamReader;
 
         public MeasurementFileManager(string filePath, ref DataTypes.ControllerValues controllerValues)
         {
@@ -33,13 +34,10 @@ namespace Komora.Classes.File
             }
         }
 
-        public void writeDataToFile()
+        public void writeDataToFile(int segmentNumber, Segment.SEGMENT_TYPE sEGMENT_TYPE)
         {
             openFile();
-
-            //Byte[] info = new UTF8Encoding(true).GetBytes(DateTime.Now.ToLongDateString() + Environment.NewLine);
-            // Add some information to the file.
-            streamWriter.WriteLine(DateTime.Now.ToLongTimeString());
+            streamWriter.WriteLine(buildFileRow(segmentNumber, sEGMENT_TYPE));
             closeFile();
         }
 
@@ -51,7 +49,6 @@ namespace Komora.Classes.File
                 {
                     DirectoryInfo di = Directory.CreateDirectory(Path.GetDirectoryName(filePath));
                 }
-
                 System.IO.File.Create(filePath);
             }
         }
@@ -66,6 +63,43 @@ namespace Komora.Classes.File
         {
             streamWriter.Close();
             filestream.Close();
+        }
+
+        private string getSegmentTypeString(Segment.SEGMENT_TYPE sEGMENT_TYPE)
+        {
+            string segmentType = "";
+
+            switch (sEGMENT_TYPE)
+            {
+                case Segment.SEGMENT_TYPE.dynamic:
+                    segmentType = "dynamic";
+                    break;
+                case Segment.SEGMENT_TYPE.final:
+                    segmentType = "final";
+                    break;
+                case Segment.SEGMENT_TYPE.start:
+                    segmentType = "start";
+                    break;
+                case Segment.SEGMENT_TYPE.izothermal:
+                    segmentType = "izothermal";
+                    break;
+                default:
+                    return "";
+            }
+            return segmentType;
+        }
+
+        private string buildFileRow(int segmentNumber, Segment.SEGMENT_TYPE sEGMENT_TYPE)
+        {
+            StringBuilder row = new StringBuilder();
+            row.Append(segmentNumber.ToString()).Append(separator);
+            row.Append(getSegmentTypeString(sEGMENT_TYPE)).Append(separator);
+            row.Append(controllerValues.heater_Params.sp.ToString()).Append(separator);
+            row.Append(controllerValues.heater_Params.pv.ToString()).Append(separator);
+            row.Append(controllerValues.heater_Params.cv.ToString()).Append(separator);
+            row.Append(controllerValues.heater_Params.err.ToString()).Append(separator);
+            row.Append(String.Format("{0:d/M/yyyy HH:mm:ss}", controllerValues.heater_Params.dateTime));
+            return row.ToString();
         }
     }
 }

@@ -137,10 +137,10 @@ namespace Komora.Windows
             atCommand.SendAT_Command();
         }
 
-        void segmentList_AcquisitionRateTimerTicked(object sender, EventArgs e)
+        void segmentList_AcquisitionRateTimerTicked(object sender, Classes.Segment.SegmentEventArgs e)
         {
             updatePlot();
-            measurementFileManager.writeDataToFile();
+            measurementFileManager.writeDataToFile(e.actualSegment, e.sEGMENT_TYPE);
         }
 
         private void updatePlot()

@@ -45,7 +45,7 @@ namespace Komora.Windows
             segmentList.Add(segment);
 
             segmentData = new SegmentData();
-            segmentData.timeSeconds = 1000;
+            segmentData.timeSeconds = 100;
             segmentData.acquisitionRateMinutes = 30;
             IzothermalSegment izosegment = new IzothermalSegment(segmentData);
             segmentList.Add(izosegment);

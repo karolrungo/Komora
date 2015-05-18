@@ -111,6 +111,7 @@
     <Compile Include="Classes\Segment\IzothermalSegment.cs" />
     <Compile Include="Classes\Segment\Segment.cs" />
     <Compile Include="Classes\Segment\SegmentData.cs" />
+    <Compile Include="Classes\Segment\SegmentEventArgs.cs" />
     <Compile Include="Classes\Segment\SegmentFactory.cs" />
     <Compile Include="Classes\Segment\SegmentList.cs" />
     <Compile Include="Classes\Segment\SegmentListProcessor.cs" />
