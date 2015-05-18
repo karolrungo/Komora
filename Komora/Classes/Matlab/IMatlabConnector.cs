@@ -11,6 +11,6 @@ namespace Komora.Classes.Matlab
         bool connect();
         bool disconnect();
 
-        void exectuteStatement(string statement);
+        void exectuteStatement(string scriptPath, List<double> errorValues, List<double> timeDeltas);
     }
 }

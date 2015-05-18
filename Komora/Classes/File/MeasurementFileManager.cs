@@ -22,6 +22,9 @@ namespace Komora.Classes.File
             this.controllerValues = controllerValues;
         }
 
+        public MeasurementFileManager()
+        {}
+
         public void deleteFile()
         {
             if (System.IO.File.Exists(filePath))
@@ -98,8 +101,46 @@ namespace Komora.Classes.File
             row.Append(controllerValues.heater_Params.pv.ToString()).Append(separator);
             row.Append(controllerValues.heater_Params.cv.ToString()).Append(separator);
             row.Append(controllerValues.heater_Params.err.ToString()).Append(separator);
-            row.Append(String.Format("{0:d/M/yyyy HH:mm:ss}", controllerValues.heater_Params.dateTime));
+            row.Append(String.Format("{0:d/M/yyyy HH/mm/ss}", controllerValues.heater_Params.dateTime));
             return row.ToString();
+        }
+
+        internal List<double> getErrorValuesFromFile(string filename)
+        {
+            List<double> values = new List<double>();
+            string[] content = System.IO.File.ReadAllLines(filename);
+
+            foreach (string row in content)
+            {
+                string[] rowElements = row.Split(separator);
+                values.Add(Double.Parse(rowElements[5]));
+            }
+
+            return values;
+        }
+
+        internal List<double> getTimeDeltaFromFile(string filename)
+        {
+            List<double> values = new List<double>();
+            List<DateTime> dates = new List<DateTime>();
+            string[] content = System.IO.File.ReadAllLines(filename);
+
+            foreach (string row in content)
+            {
+                string[] rowElements = row.Split(separator);
+
+                dates.Add(DateTime.ParseExact(rowElements[6],
+                                              "dd-M-yyyy HH-mm-ss",
+                                              System.Globalization.CultureInfo.InvariantCulture));
+            }
+
+            values.Add(0);
+            for (int i = 1; i < dates.Count; ++i)
+            {
+                values.Add((dates.ElementAt(i) - dates.ElementAt(0)).TotalSeconds);
+            } 
+
+            return values;
         }
     }
 }

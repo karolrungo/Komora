@@ -30,9 +30,12 @@ namespace Komora.Classes.Matlab
             return true;
         }
 
-        public void exectuteStatement(string statement)
+        public void exectuteStatement(string scriptPath, List<double> errorValues, List<double> timeDeltas)
         {
-            throw new NotImplementedException();
+            var matlab = (MLApp.MLApp)Activator.CreateInstance(activationContext);
+            matlab.PutWorkspaceData("error", "base", errorValues.ToArray());
+            matlab.PutWorkspaceData("timeDeltas", "base", timeDeltas.ToArray());
+            matlab.Execute(@"cd " + scriptPath);
         }
     }
 }
