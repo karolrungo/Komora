@@ -32,14 +32,14 @@ namespace Komora.Controls
 
         private void btnDeleteSegment_Click(object sender, EventArgs e)
         {
-            if (ButtonEditClicked != null)
-                ButtonEditClicked(this, e);
+            if (ButtonDeleteClicked != null)
+                ButtonDeleteClicked(this, e);
         }
 
         private void btnEditSegment_Click(object sender, EventArgs e)
         {
-            if (ButtonDeleteClicked != null)
-                ButtonDeleteClicked(this, e);
+            if (ButtonEditClicked != null)
+                ButtonEditClicked(this, e);
         }
 
         private void btnClearList_Click(object sender, EventArgs e)
@@ -59,9 +59,8 @@ namespace Komora.Controls
             {
                 case SEGMENT_TYPE.start:
                     return segmentTypeControl1.getStartSegmentData();
-                //case SEGMENT_TYPE.dynamic:
-                //    throw new NotImplementedException();
-                //    break;
+                case SEGMENT_TYPE.dynamic:
+                    return segmentTypeControl1.getDynamicSegmentData();
                 case SEGMENT_TYPE.izothermal:
                     return segmentTypeControl1.getIzothermalSegmentData();
                 //case SEGMENT_TYPE.final:
@@ -76,6 +75,18 @@ namespace Komora.Controls
         {
             dgvSegmentList.DataSource = dt;
             dgvSegmentList.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+        }
+
+        internal int getSelectedRowIndex()
+        {
+            if (dgvSegmentList.SelectedRows.Count != 1)
+            {
+                throw new Exception("only one row can be selected!");
+            }
+            else
+            {
+                return dgvSegmentList.SelectedRows[0].Index;
+            }
         }
     }
 }

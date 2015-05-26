@@ -14,7 +14,7 @@ namespace Komora.Classes.Segment
         public delegate void TimerTickedEvent(object sender, SegmentEventArgs e);
         public event TimerTickedEvent AcquisitionRateTimerTicked;
 
-        public List<Segment> segmentList;
+        private List<Segment> segmentList;
         public int actualSegment;
         private Classes.Communication.AT_Command atCommand;
 
@@ -39,6 +39,16 @@ namespace Komora.Classes.Segment
             {
                 throw new Exception("Wrong segment type");
             }
+        }
+
+        internal void RemoveAtIndex(int indexToRemove)
+        {
+            segmentList.RemoveAt(indexToRemove);
+        }
+
+        public void Clear()
+        {
+            segmentList.Clear();
         }
 
         private void setTemperaturesForDynamicOrIozthermalSegment(ref Segment segment)

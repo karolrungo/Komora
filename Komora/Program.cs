@@ -18,8 +18,8 @@ namespace Komora
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Windows.LoginWindow());
-            Application.Run(new Windows.MatlabWndow());
-            //Application.Run(new Windows.MeasurementConfigurationWindow());
+            //Application.Run(new Windows.MatlabWndow());
+            Application.Run(new Windows.MeasurementConfigurationWindow());
 
             //DataTypes.MeasurementInfo measInfo = new DataTypes.MeasurementInfo();
             //measInfo.measurementName = "MeasurementName";

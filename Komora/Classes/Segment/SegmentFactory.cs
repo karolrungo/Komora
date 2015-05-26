@@ -16,6 +16,8 @@ namespace Komora.Classes.Segment
                     return new StartSegment(segmentData);
                 case SEGMENT_TYPE.izothermal:
                     return new IzothermalSegment(segmentData);
+                case SEGMENT_TYPE.dynamic:
+                    return new DynamicSegment(segmentData);
 
                 default:
                     throw new Exception("Wrong segment type selected");

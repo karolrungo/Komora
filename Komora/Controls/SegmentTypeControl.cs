@@ -99,5 +99,10 @@ namespace Komora.Controls
         {
             return izothermalSegmentData1.getSegmentData();
         }
+
+        internal SegmentData getDynamicSegmentData()
+        {
+            return dynamicSegmentData1.getSegmentData();
+        }
     }
 }

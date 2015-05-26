@@ -79,6 +79,7 @@
             // 
             // dgvSegmentList
             // 
+            this.dgvSegmentList.AllowUserToAddRows = false;
             this.dgvSegmentList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSegmentList.Location = new System.Drawing.Point(3, 3);
             this.dgvSegmentList.Name = "dgvSegmentList";

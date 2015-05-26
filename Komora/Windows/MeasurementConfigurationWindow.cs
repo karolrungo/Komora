@@ -39,7 +39,7 @@ namespace Komora.Windows
             segmentList = new SegmentList();
 
             //do usuniecia
-            segmentData.endTemperature = 0;
+            segmentData.endTemperature = 10;
             segmentData.acquisitionRateMinutes = 30;
             StartSegment segment = new StartSegment(segmentData);
             segmentList.Add(segment);
@@ -79,7 +79,8 @@ namespace Komora.Windows
 
         void segmentInterfaceControl_ButtonClearListClicked(object sender, EventArgs e)
         {
-
+            segmentList.Clear();
+            segmentInterfaceControl.updateSegmentListDataGridView(segmentList.ToDataTable());
         }
 
         void segmentInterfaceControl_ButtonEditClicked(object sender, EventArgs e)
@@ -89,7 +90,16 @@ namespace Komora.Windows
 
         private void segmentInterfaceControl_ButtonDeleteClicked(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            try
+            {
+                int indexToRemove = segmentInterfaceControl.getSelectedRowIndex();
+                segmentList.RemoveAtIndex(indexToRemove);
+                segmentInterfaceControl.updateSegmentListDataGridView(segmentList.ToDataTable());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         private void btnStartMeasurement_Click(object sender, EventArgs e)
