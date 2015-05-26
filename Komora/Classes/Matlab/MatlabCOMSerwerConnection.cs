@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MLApp;
+using System.Windows.Forms;
 
 namespace Komora.Classes.Matlab
 {
@@ -26,16 +27,17 @@ namespace Komora.Classes.Matlab
 
         public bool disconnect()
         {
-            matlab.Quit();
             return true;
         }
 
         public void exectuteStatement(string scriptPath, List<double> errorValues, List<double> timeDeltas)
         {
-            var matlab = (MLApp.MLApp)Activator.CreateInstance(activationContext);
-            matlab.PutWorkspaceData("error", "base", errorValues.ToArray());
-            matlab.PutWorkspaceData("timeDeltas", "base", timeDeltas.ToArray());
             matlab.Execute(@"cd " + scriptPath);
+            object result;
+            matlab.Feval("test",1, out result, errorValues.ToArray(), timeDeltas.ToArray());
+
+            object[] res = result as object[];
+            MessageBox.Show("ISE = " + res[0].ToString());
         }
     }
 }

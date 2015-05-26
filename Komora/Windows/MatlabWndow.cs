@@ -13,15 +13,17 @@ namespace Komora.Windows
     public partial class MatlabWndow : Form
     {
         private string filename;
-        private double iseResult;
+        private string scriptLocation;
         private Classes.File.MeasurementFileManager measurementFileManager;
         private Classes.Matlab.IMatlabConnector matlabComServer;
 
         public MatlabWndow()
         {
             InitializeComponent();
-            textBoxFilename.Text = @"D:\Repositories\Komora\Komora\bin\Debug\MEAS\data.csv";
             filename = @"D:\Repositories\Komora\Komora\bin\Debug\MEAS\data.csv";
+            textBoxFilename.Text = filename;
+            scriptLocation = @"D:\Repositories\Komora\matlabScripts";
+            textBoxScriptFilename.Text = scriptLocation;
 
             matlabComServer = new Classes.Matlab.MatlabCOMSerwer();
         }
@@ -41,16 +43,38 @@ namespace Komora.Windows
             }
         }
 
+        private void buttonBrowseScript_Click(object sender, EventArgs e)
+        {
+            folderBrowserDialog = new FolderBrowserDialog();
+            DialogResult result = folderBrowserDialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                scriptLocation = folderBrowserDialog.SelectedPath;
+                textBoxScriptFilename.Text = scriptLocation;
+            }
+            else
+            {
+                MessageBox.Show("There is a problem with selected file");
+            }
+        }
+
         private void buttonLaunchMatlab_Click(object sender, EventArgs e)
         {
             measurementFileManager = new Classes.File.MeasurementFileManager();
             List<double> errorValues = measurementFileManager.getErrorValuesFromFile(filename);
             List<double> timeDeltaValues = measurementFileManager.getTimeDeltaFromFile(filename);
 
-            matlabComServer.connect();
-            matlabComServer.exectuteStatement(@"D:\Repositories\Komora\matlabScripts", errorValues, timeDeltaValues);
-            matlabComServer.disconnect();
-        }
+            try
+            {
+                matlabComServer.connect();
+                matlabComServer.exectuteStatement(scriptLocation, errorValues, timeDeltaValues);
+                matlabComServer.disconnect();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
+        }
     }
 }

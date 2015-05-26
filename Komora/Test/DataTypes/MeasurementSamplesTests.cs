@@ -37,14 +37,14 @@ namespace Komora.Test.DataTypes
         { 
             List<double> x = new List<double>(){1.0, 2.0, 4.5};
             List<double> y = new List<double>(){7.0, 5.3, 2.1};
-            measurementSamples = new Komora.DataTypes.MeasurementSamples<double>(x, y);
-            
-            var result = new List<Tuple<double,double>>() {
+            var result = new List<Tuple<double, double>>() {
                                                           new Tuple<double,double>(1.0, 7.0),
                                                           new Tuple<double,double>(2.0, 5.3),
                                                           new Tuple<double,double>(4.5, 2.1)
                                                           };
 
+            measurementSamples = new Komora.DataTypes.MeasurementSamples<double>(x, y);
+            
             Assert.AreEqual(result.Count, measurementSamples.samples.Count);
             Assert.AreEqual(result, measurementSamples.samples);
         }
