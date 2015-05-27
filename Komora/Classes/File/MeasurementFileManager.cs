@@ -14,7 +14,9 @@ namespace Komora.Classes.File
         private DataTypes.ControllerValues controllerValues;
         private FileStream filestream;
         private StreamWriter streamWriter;
-        private StreamReader streamReader;
+
+        private readonly int errorColumn = 4;
+        private readonly int dateColumn = 5;
 
         public MeasurementFileManager(string filePath/*, ref DataTypes.ControllerValues controllerValues*/)
         {
@@ -108,7 +110,7 @@ namespace Komora.Classes.File
             foreach (string row in content)
             {
                 string[] rowElements = row.Split(separator);
-                values.Add(Double.Parse(rowElements[5]));
+                values.Add(Double.Parse(rowElements[errorColumn]));
             }
 
             return values;
@@ -124,7 +126,7 @@ namespace Komora.Classes.File
             {
                 string[] rowElements = row.Split(separator);
 
-                dates.Add(DateTime.ParseExact(rowElements[6],
+                dates.Add(DateTime.ParseExact(rowElements[dateColumn],
                                               "dd-M-yyyy HH-mm-ss",
                                               System.Globalization.CultureInfo.InvariantCulture));
             }

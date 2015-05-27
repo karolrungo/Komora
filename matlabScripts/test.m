@@ -1,10 +1,8 @@
 function [result] = test(error, timeDeltas);
 result = 0;
-skaler = 100;
 
 time = timeDeltas(1) : 0.1 : timeDeltas(length(timeDeltas));
 SignalInterp = interp1(timeDeltas, error, time);
-SignalInterp = SignalInterp / 100;
 
 for i = 1 : length(time)-1
 	dt = time(i+1)-time(i);

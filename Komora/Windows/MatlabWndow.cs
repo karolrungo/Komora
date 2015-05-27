@@ -63,7 +63,7 @@ namespace Komora.Windows
             measurementFileManager = new Classes.File.MeasurementFileManager();
             List<double> errorValues = measurementFileManager.getErrorValuesFromFile(filename);
             List<double> timeDeltaValues = measurementFileManager.getTimeDeltaFromFile(filename);
-
+            ;
             try
             {
                 matlabComServer.connect();
