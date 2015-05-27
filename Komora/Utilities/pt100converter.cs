@@ -50,19 +50,18 @@ namespace Komora.Utilities
             return Convert.ToInt64(result*scaler);
         }
 
-        public double resistanceToTemperature(long resistance)
+        public double resistanceToTemperature(double resistance)
         {
             resistance = resistance / scaler;
 
             coefficients[0] -= resistance;
 
             Func<double, double> f = x => Evaluate.Polynomial(x, coefficients.ToArray());
-            double result = FindRoots.OfFunction(f, 0, 225000);
+            double result = FindRoots.OfFunction(f, 0, 225);
 
             coefficients[0] += resistance;
 
             return result;
         }
-
     }
 }

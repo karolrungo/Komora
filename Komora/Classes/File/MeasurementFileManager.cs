@@ -16,10 +16,10 @@ namespace Komora.Classes.File
         private StreamWriter streamWriter;
         private StreamReader streamReader;
 
-        public MeasurementFileManager(string filePath, ref DataTypes.ControllerValues controllerValues)
+        public MeasurementFileManager(string filePath/*, ref DataTypes.ControllerValues controllerValues*/)
         {
             this.filePath = filePath;
-            this.controllerValues = controllerValues;
+            //this.controllerValues = controllerValues;
         }
 
         public MeasurementFileManager()
@@ -31,16 +31,12 @@ namespace Komora.Classes.File
             {
                 System.IO.File.Delete(filePath);
             }
-            else
-            {
-                //throw new FileNotFoundException("File not found!"); 
-            }
         }
 
-        public void writeDataToFile(int segmentNumber, Segment.SEGMENT_TYPE sEGMENT_TYPE)
+        public void writeDataToFile(int segmentNumber, Segment.SEGMENT_TYPE sEGMENT_TYPE, string pv, string sp, string err, string date)
         {
             openFile();
-            streamWriter.WriteLine(buildFileRow(segmentNumber, sEGMENT_TYPE));
+            streamWriter.WriteLine(buildFileRow(segmentNumber, sEGMENT_TYPE, pv, sp, err, date));
             closeFile();
         }
 
@@ -92,16 +88,15 @@ namespace Komora.Classes.File
             return segmentType;
         }
 
-        private string buildFileRow(int segmentNumber, Segment.SEGMENT_TYPE sEGMENT_TYPE)
+        private string buildFileRow(int segmentNumber, Segment.SEGMENT_TYPE sEGMENT_TYPE, string pv, string sp, string err, string date)
         {
             StringBuilder row = new StringBuilder();
             row.Append(segmentNumber.ToString()).Append(separator);
             row.Append(getSegmentTypeString(sEGMENT_TYPE)).Append(separator);
-            row.Append(controllerValues.heater_Params.sp.ToString()).Append(separator);
-            row.Append(controllerValues.heater_Params.pv.ToString()).Append(separator);
-            row.Append(controllerValues.heater_Params.cv.ToString()).Append(separator);
-            row.Append(controllerValues.heater_Params.err.ToString()).Append(separator);
-            row.Append(String.Format("{0:d/M/yyyy HH/mm/ss}", controllerValues.heater_Params.dateTime));
+            row.Append(sp).Append(separator);
+            row.Append(pv).Append(separator);
+            row.Append(err).Append(separator);
+            row.Append(date);
             return row.ToString();
         }
 

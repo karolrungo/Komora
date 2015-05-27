@@ -57,10 +57,10 @@ namespace Komora.Windows
             databaseConnection.connect();
 
             lcdController = new Classes.Communication.LcdController(ref atCommand, ref controllerValues);
-            measurementFileManager = new Classes.File.MeasurementFileManager(measInfo.filename, ref controllerValues);
 
             pt100Converter = new Utilities.Pt100converter(databaseConnection.selectPt100Polynomial(chamberID).Coefficients,
                                                           ATMegaScaler);
+            measurementFileManager = new Classes.File.MeasurementFileManager(measInfo.filename);
 
             measurementInfoControl.setMeasurementInfo(databaseConnection.getMeasurementInfo(measInfo.measurementName));
             dgvSegmentList.DataSource = p_segmentList.ToDataTable();
@@ -71,6 +71,7 @@ namespace Komora.Windows
 
             zedGraphController = new Classes.Plot.ZedGraphController(ref plot);
             zedGraphController.configureMeasurementPlot();
+            plot.GraphPane.Title.Text = "Measurement plot";
 
             measurementFileManager.deleteFile();
             measurementFileManager.createFileIfNotExists();
@@ -87,10 +88,6 @@ namespace Komora.Windows
             segmentList.setPt100Converter(pt100Converter);
             segmentList.AddSegmentFinishedEventForeachSegment();
             segmentList.Start();
-
-            //atCommand.AT_CONTR_SEGMENT(5);
-          //  atCommand.AT_HEATER_PARAMS_READ();
-
         }
 
         private void parserThread_sendRecivedCommandsEvent(object sender, Classes.Communication.RecivedCommandsEventArgs e)
@@ -132,21 +129,35 @@ namespace Komora.Windows
         private void btnSendCommand_Click(object sender, EventArgs e)
         {
             listBoxCommands.Items.Clear();
-            //atCommand.ATI();
             atCommand.sender = tbCommand.Text;
             atCommand.SendAT_Command();
         }
 
         void segmentList_AcquisitionRateTimerTicked(object sender, Classes.Segment.SegmentEventArgs e)
         {
+            string format = "0.00";
+            double pv = pt100Converter.resistanceToTemperature(controllerValues.heater_Params.pv);
+            double sp = pt100Converter.resistanceToTemperature(controllerValues.heater_Params.sp);
+            double err = sp - pv;
+            string date = String.Format("{0:d/M/yyyy HH/mm/ss}", controllerValues.heater_Params.dateTime);
+
+            labelPV.Invoke((MethodInvoker)delegate { labelPV.Text = pv.ToString(format); });
+            labelSP.Invoke((MethodInvoker)delegate { labelSP.Text = sp.ToString(format); });
+            labelERR.Invoke((MethodInvoker)delegate { labelERR.Text = err.ToString(format); });
+
             updatePlot();
-            measurementFileManager.writeDataToFile(e.actualSegment, e.sEGMENT_TYPE);
+            measurementFileManager.writeDataToFile(e.actualSegment,
+                                                   e.sEGMENT_TYPE,
+                                                   pv.ToString(format),
+                                                   sp.ToString(format),
+                                                   (sp - pv).ToString(format),
+                                                   date);
         }
 
         private void updatePlot()
         {
             temperaturePoints.Add(new PointPair(new XDate(controllerValues.heater_Params.dateTime),
-                                                controllerValues.heater_Params.pv));
+                                                pt100Converter.resistanceToTemperature(controllerValues.heater_Params.pv)));
 
             temperatureDerivativePoints = Classes.Algorithm.DerivativeCalculator.calculate(temperaturePoints);
 
