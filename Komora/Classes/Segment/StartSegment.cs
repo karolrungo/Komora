@@ -13,8 +13,6 @@ namespace Komora.Classes.Segment
     public class StartSegment : Segment
     {
 
-        private int timerTicks; //zmienna pomocnicza, aby timer wykonal sie conajmniej kilka razy
-
         public StartSegment(SegmentData segmentData)
             : base(segmentData.timeSeconds, segmentData.acquisitionRateMinutes)
         {
@@ -26,27 +24,25 @@ namespace Komora.Classes.Segment
             ledCurrent = ledON ? segmentData.ledCurrent : 0;
 
             timer1000ms.Elapsed += new System.Timers.ElapsedEventHandler(checkForSegmentEnd);
-            timerTicks = 0;
         }
 
         private void checkForSegmentEnd(object sender, System.Timers.ElapsedEventArgs e)
         {
-            //sprtawdzenie warunku konca
+            //sprtawdzenie warunku konca segmetn dziala conajmniej 5 sekund aby ustabilizowac odczyt
             //if (this.endTemperature <= converterRT.ResistanceToTemperature(this.controllerValues.heater_Params.pv) && timerTicks > 2)
-            if(pt100Converter.temperatureToResistance(endTemperature) <= controllerValues.heater_Params.pv)
+            if(pt100Converter.temperatureToResistance(endTemperature) <= controllerValues.heater_Params.pv && DateTime.Now > startTime.AddSeconds(5))
             {
                 timer1000ms.Stop();
                 Finish();
                 return;
             }
-
-            timerTicks++;
         }
 
         public override void Start()
         {
          //  MessageBox.Show("start starts");
             base.Start();
+            startTime = DateTime.Now;
             sendEndTemperatureToController();
             sendLedCurrentToController();
 

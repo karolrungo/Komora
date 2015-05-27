@@ -40,7 +40,7 @@ namespace Komora.Windows
 
             //do usuniecia
             segmentData.endTemperature = 10;
-            segmentData.acquisitionRateMinutes = 30;
+            segmentData.acquisitionRateMinutes = 120;
             StartSegment segment = new StartSegment(segmentData);
             segmentList.Add(segment);
 

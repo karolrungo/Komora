@@ -97,6 +97,7 @@
             this.Controls.Add(this.btnMatlab);
             this.Name = "MainMenuForm";
             this.Text = "MainMenuForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainMenuForm_FormClosing);
             this.ResumeLayout(false);
 
         }

@@ -77,12 +77,11 @@ namespace Komora.Windows
             measurementFileManager.createFileIfNotExists();
 
             atCommand.AT_CONT_MODE(CONT_MODE.FEEDBACK);
-
             Thread.Sleep(300);
             atCommand.AT_CONTROL_MODE(CONTROL_MODE.HEATER);
             Thread.Sleep(300);
             atCommand.AT_AUTO_SENDER_DATA(true);
-            atCommand.AT_DISPLAY_MODE(DISPLAY_MODE.PT100_PARAMS);
+            atCommand.AT_DISPLAY_MODE(DISPLAY_MODE.INFO);
             segmentList.setControllerValues(ref controllerValues);
             segmentList.setAtCommands(ref atCommand);
             segmentList.setPt100Converter(pt100Converter);

@@ -57,5 +57,10 @@ namespace Komora.Windows
             MeasurementConfigurationWindow measConfigWindow = new MeasurementConfigurationWindow();
             measConfigWindow.Show();
         }
+
+        private void MainMenuForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            RaiseShowLoginWindowEvent(EventArgs.Empty);
+        }
     }
 }
